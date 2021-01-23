@@ -1,10 +1,15 @@
 import { fetch } from './csrf'
 const LOGIN = 'session/LOGIN'
+const LOGOUT = 'session/LOGOUT'
 
 const login = (user) => ({
   type: LOGIN,
   user
 });
+
+const logout =() => ({
+  type: LOGOUT
+})
 
  export const loginUser = (user) => async dispatch => {
   const options = {
@@ -25,17 +30,17 @@ const initialState = {
 export default function sessionReducer (state = initialState, action) {
   switch(action.type) {
     case LOGIN: {
-      const newState = {
+      const newState = {...state,
         user: action.user
       }
       return newState;
     }
-    // case LOGOUT: {
-    //   const newState = {
-    //     user: null
-    //   };
-    //   return newState
-    // }
+    case LOGOUT: {
+      const newState = {...state,
+        user: null
+      };
+      return newState
+    }
     default:
       return state
   }
