@@ -46,7 +46,15 @@ export const signupUser = (user) => async dispatch => {
   const res = await fetch('api/users', options)
   dispatch(setUser(res.data.user));
   return res
+};
+
+export const logoutUser = () => async dispatch => {
+  const res = await fetch('/api/session', {
+    method: 'DELETE'});
+  dispatch(removeUser());
+  return res
 }
+
 
 const initialState = {
   user: null
