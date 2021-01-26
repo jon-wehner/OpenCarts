@@ -1,0 +1,30 @@
+.navbar {
+  text-decoration: none;
+  list-style-type: none;
+  border: 1px black solid;
+  display:flex;
+  justify-content: flex-end;
+  position: relative;
+  height: 3rem;
+}
+
+.navbar__link {
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+.navbar__link,.navbar__link:visited {
+  display: inline-block;
+  color: black;
+  height: 1.5rem;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: .15rem;
+  margin: .3rem;
+}
+
+.nav__icon {
+  display: block;
+  background-color: white;
+  padding: .3rem;
+}
