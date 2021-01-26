@@ -29,15 +29,15 @@ function LoginFormPage () {
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <div>
-        <label htmlFor="credential">Username or Email</label>
+      <div className="form__inputField">
+        <label>Username or Email:</label>
         <input value={credential} type="text" onChange={e=> setCredential(e.target.value)}/>
       </div>
-      <div>
-        <label htmlFor="password">Password</label>
+      <div className="form__inputField">
+        <label>Password:</label>
         <input type="password" value={password} onChange={e=> setPassword(e.target.value)}/>
       </div>
-        <button type="submit">Login</button>
+        <button className="button" type="submit">Login</button>
 
     </form>
   )

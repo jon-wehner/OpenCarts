@@ -1,6 +1,9 @@
 import { useState, useEffect} from "react";
 import { useDispatch} from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import './ProfileButton.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -26,20 +29,25 @@ function ProfileButton({ user }) {
   }, [showMenu])
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user" />
-      </button>
+    <div className="dropdown">
       {showMenu && (
-        <ul className="dropdown">
+        <ul className="dropdown__list">
           <li>{user.username}</li>
           <li>{user.email}</li>
+          <li>My Reservations</li>
+          <li>Favorites</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button className="dropdown__logout" onClick={logout}>Log Out</button>
           </li>
         </ul>
       )}
-    </>
+      <div>
+        <button className="dropdown__button" onClick={openMenu}>
+          <FontAwesomeIcon icon={faUser} />
+        </button>
+      </div>
+
+    </div>
   )
 }
 

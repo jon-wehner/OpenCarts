@@ -1,0 +1,49 @@
+.dropdown {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  position:relative;
+}
+
+.dropdown__list {
+  list-style-type: none;
+  position: absolute;
+  top: 100%;
+  animation: revealMenu 400ms ease-in-out forwards;
+  transform-origin: top;
+  box-sizing: border-box;
+  width: 15rem;
+  text-align: right;
+}
+
+.dropdown__list > li {
+  font-size: 1.2rem;
+}
+
+.dropdown__button {
+  display: block;
+  background-color: white;
+  border: 1px black solid;
+  border-radius: 3px;
+  height: 1.9rem;
+  margin: .3rem;
+  padding: .3rem
+}
+
+.dropdown__logout {
+  background-color: white;
+  border: 1px, black, solid;
+  border-radius: 3px;
+}
+
+@keyframes revealMenu {
+  0% {
+    transform: scaleY(0)
+  }
+  80% {
+    transform: scaleY(1.1)
+  }
+  100% {
+    transform: scaleY(1)
+  }
+}
