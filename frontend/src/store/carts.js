@@ -9,18 +9,16 @@ const loadCarts = (carts) => {
   }
 }
 
-export const getCarts =() => {
-  const carts = await fetch('/api/carts');
-  dispatch(loadCarts(carts))
+export const getCarts =() => async dispatch => {
+  const res = await fetch('/api/carts');
+  dispatch(loadCarts(res.data))
 }
-const initialState = {
-  carts: null
-}
+const initialState = {}
 
 export default function cartsReducer (state= initialState, action) {
   switch(action.type) {
     case LOAD: {
-      const newState = {...state, carts: action.carts
+      const newState = {...state, ...action.carts
       }
       return newState;
     }

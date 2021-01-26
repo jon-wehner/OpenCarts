@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import * as sessionActions from './store/session'
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
+import CartCarousel from "./components/CartCarousel"
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
           </Route>
         </Switch>
         }
+      <CartCarousel />
     </>
   );
 }
