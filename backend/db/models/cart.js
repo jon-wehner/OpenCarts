@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         max: 4,
       }
     },
-    foodTypeId: {
+    cusineId: {
       type:DataTypes.INTEGER,
       allowNull: false
     },
@@ -30,13 +30,17 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       allowNull: false,
     },
-    zipcode: {
+    zipCode: {
       type : DataTypes.INTEGER,
       allowNull: false,
+    },
+    imageUrl: {
+      type : DataTypes.STRING,
+      allowNull: true,
     }
   }, {});
   Cart.associate = function(models) {
-    Cart.belongsTo(models.FoodType, { foreignKey : 'foodTypeId'})
+    Cart.belongsTo(models.Cuisine, { foreignKey : 'cuisineId'})
     Cart.belongsTo(models.State, { foreignKey : 'stateId'})
   };
   return Cart;

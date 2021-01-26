@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const FoodType = sequelize.define('FoodType', {
+  const Cuisine = sequelize.define('Cuisine', {
     name: {
       type:DataTypes.STRING,
       allowNull: true,
@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {});
-  FoodType.associate = function(models) {
-    FoodType.hasMany(models.Cart, {foreignKey: 'foodTypeId'})
+  Cuisine.associate = function(models) {
+    Cuisine.hasMany(models.Cart, {foreignKey: 'cuisineId'})
   };
-  return FoodType;
+  return Cuisine;
 };

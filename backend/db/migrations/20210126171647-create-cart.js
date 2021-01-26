@@ -21,9 +21,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      foodTypeId: {
+      cuisineId: {
         type: Sequelize.INTEGER,
-        references: { model: "FoodTypes" }
+        references: { model: "Cuisines" }
       },
       city: {
         type: Sequelize.STRING,
@@ -34,9 +34,13 @@ module.exports = {
         allowNull: false,
         references: {model: "States" }
       },
-      zipcode: {
+      zipCode: {
         type: Sequelize.INTEGER,
         allowNull: false,
+      },
+      imageUrl: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,
