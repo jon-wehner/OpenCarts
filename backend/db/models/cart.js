@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     stateId: {
       type:DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     zipcode: {
       type : DataTypes.INTEGER,
@@ -36,7 +36,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Cart.associate = function(models) {
-    // associations can be defined here
+    Cart.belongsTo(models.FoodType, { foreignKey : 'foodTypeId'})
+    Cart.belongsTo(models.State, { foreignKey : 'stateId'})
   };
   return Cart;
 };
