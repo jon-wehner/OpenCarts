@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         max: 4,
       }
     },
-    cusineId: {
+    cuisineId: {
       type:DataTypes.INTEGER,
       allowNull: false
     },

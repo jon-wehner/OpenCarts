@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   State.associate = function(models) {
-    State.hasMany(models.Cart, { foreignKey: 'classId' })
+    State.hasMany(models.Cart, { foreignKey: 'stateId' })
   };
   return State;
 };
