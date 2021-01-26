@@ -9,37 +9,44 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       address: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       priceLevel: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        r
       },
-      foodType: {
-        type: Sequelize.STRING
+      foodTypeId: {
+        type: Sequelize.INTEGER,
+        references: { model: "FoodTypes" }
       },
       city: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
-      state: {
-        type: Sequelize.STRING
+      stateId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {model: "States" }
       },
       zipcode: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       }
     });
   },
