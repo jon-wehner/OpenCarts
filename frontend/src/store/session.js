@@ -22,9 +22,7 @@ export const loginUser = (user) => async dispatch => {
     body: JSON.stringify(user)
   }
   const res = await fetch('/api/session', options);
-  if(res.ok) {
-    dispatch(setUser(res.data.user));
-  }
+  dispatch(setUser(res.data.user));
 };
 
 export const restoreUser = () => async dispatch => {
