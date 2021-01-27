@@ -9,6 +9,7 @@ import App from './App';
 import configureStore from './store';
 import { restoreCSRF, fetch } from './store/csrf';
 import * as sessionActions from './store/session'
+import * as cartActions from './store/carts'
 
 const store = configureStore();
 
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.csrfFetch = fetch
   window.store = store;
   window.sessionActions = sessionActions
+  window.cartActions = cartActions
 };
 
 function Root() {

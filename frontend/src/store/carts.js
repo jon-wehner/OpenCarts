@@ -1,29 +1,8 @@
 import { fetch } from './csrf'
 
-/*
-  Initial State:
-  Pivot is 3
-  curr = slice(pivot-3,pivot+1)
-  next = slice(pivot, pivot+4)
-  curr has carts 0, 1, 2, 3
-  next has 3, 4 , 5, 6
-
-  Hit Next Button:
-  prev= CurrCarts
-  pivot+3
-  Pivot is 6
-  curr = slice(pivot-3, pivot+1)
-  next = slice(pivot, pivot+4)
-  curr has 3, 4, 5, 6
-  next has 6, 7, 8, 9
-  currCarts = carts.slice(3,7)
-  nextCarts = carts.slce(6,10)
-  prevCarts =
-  Carts include every cart in our db
-  We want to render 0-3, then 4-7
-  on page load currCarts = carts.slice(0,3) */
-
 const LOAD = 'carts/load'
+const NEXT = 'carts/next'
+const PREV = 'carts/prev'
 
 const loadCarts = (carts) => {
   return {
@@ -32,11 +11,49 @@ const loadCarts = (carts) => {
   }
 }
 
-export const getCarts =() => async dispatch => {
-  const res = await fetch('/api/carts');
-  dispatch(loadCarts(res.data))
+const nextCarts = () => {
+  return {
+    type: NEXT
+  }
 }
-const initialState = {}
+
+const prevCarts = () => {
+  return {
+    type: PREV
+  }
+}
+
+export const getNextCarts = () => async dispatch => {
+  dispatch(nextCarts())
+}
+
+export const getPrevCarts = () => async dispatch => {
+  dispatch(prevCarts())
+}
+
+
+
+export const getCarts = () => async dispatch => {
+  const res = await fetch('/api/carts');
+  const carts = { list: res.data}
+  const keys = Object.keys(carts.list);
+  carts.keys = keys
+  const currKeys = keys.slice(0,4)
+  const nextKeys = keys.slice(3,7)
+  carts.current = currKeys.map(key => carts.list[key])
+  carts.prev = []
+  carts.next = nextKeys.map(key => carts.list[key])
+  carts.pivot = 3
+  dispatch(loadCarts(carts))
+}
+const initialState = {
+  list: null,
+  keys: null,
+  pivot: null,
+  next: null,
+  current: null,
+  prev: null,
+}
 
 export default function cartsReducer (state= initialState, action) {
   switch(action.type) {
@@ -45,7 +62,30 @@ export default function cartsReducer (state= initialState, action) {
       }
       return newState;
     }
+    case NEXT: {
+      const newState = {...state}
+      newState.pivot = newState.pivot + 3
+      const nextKeys = newState.keys.slice(newState.pivot, newState.keys.length)
+      newState.current = newState.next
+      newState.prev = newState.current
+      newState.next = nextKeys.map(key => state.list[key])
+      return newState
+    }
+    case PREV: {
+      const newState = {...state}
+      const prevKeys = state.keys.slice(state.pivot-3, state.pivot+1)
+      newState.pivot = state.pivot- 3
+      newState.current = state.prev
+      newState.next = state.current
+      if (newState.pivot <= 3){
+        newState.prev = []
+      } else {
+        newState.prev = prevKeys.map(key => state.list[key])
+      }
+      return newState;
+    }
     default:
       return state
   }
 }
+
