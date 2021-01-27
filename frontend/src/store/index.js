@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk';
 import sessionReducer from './session'
 import cartsReducer from './carts'
+import statesReducer from './states'
 
 const rootReducer = combineReducers({
   session: sessionReducer,
