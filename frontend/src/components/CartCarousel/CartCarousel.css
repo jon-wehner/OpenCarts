@@ -1,0 +1,7 @@
+.carousel {
+  display: flex;
+  width: 70%;
+  overflow-x: auto;
+  margin: 0 auto;
+
+}

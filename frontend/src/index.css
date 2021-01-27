@@ -1,3 +1,7 @@
 * {
   font-family: "Lato", "sans-serif";
 }
+body {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
