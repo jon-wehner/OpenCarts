@@ -6,13 +6,10 @@ import './CartCarousel.css'
 
 export default function CartCarousel () {
   const dispatch = useDispatch();
-  const carts = useSelector(state => Object.values(state.carts));
+  const carts = useSelector(state => state.carts);
 
   useEffect(() => {
     dispatch(getCarts());
-    setCurrCarts(carts.slice(0,4))
-    setNextCarts(carts.slice(3,7))
-
   },[dispatch]);
 
   if (!carts) {
@@ -20,10 +17,12 @@ export default function CartCarousel () {
   }
   return (
     <div className="carousel">
-      {carts.map(cart=> {
+
+      <button >Prev</button>
+      {Object.values(carts).map(cart=> {
         return <CartDetail key={cart.id} cart={cart} />
       })}
-    {/* <button>Next</button> */}
+      <button>Next</button>
     </div>
   )
 }
