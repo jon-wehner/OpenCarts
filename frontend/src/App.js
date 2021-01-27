@@ -6,6 +6,7 @@ import * as sessionActions from './store/session'
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import CartCarousel from "./components/CartCarousel"
+import BookingArea from "./components/BookingArea";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
           </Route>
         </Switch>
         }
+      <BookingArea />
       <CartCarousel />
     </>
   );
