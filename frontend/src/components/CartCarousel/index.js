@@ -6,26 +6,24 @@ import './CartCarousel.css'
 
 export default function CartCarousel () {
   const dispatch = useDispatch();
-  const carts = useSelector(state => Object.values(state.carts))
-  /* const [currCarts, setCurrCarts] = useState(carts.slice(0,4));
-  const [prevCarts, setPrevCarts] = useState([]);
-  const [nextCarts, setNextCarts] = useState(carts.slice(3,8));
-  Carts include every cart in our db
-  We want to render 0-3, then 4-7
-  on page load currCarts = carts.slice(0,3) */
+  const carts = useSelector(state => Object.values(state.carts));
 
   useEffect(() => {
     dispatch(getCarts());
+    setCurrCarts(carts.slice(0,4))
+    setNextCarts(carts.slice(3,7))
 
-  },[dispatch])
+  },[dispatch]);
+
   if (!carts) {
     return null;
   }
   return (
     <div className="carousel">
-    {carts.map(cart=> {
-      return <CartDetail key={cart.id} cart={cart} />
-    })}
+      {carts.map(cart=> {
+        return <CartDetail key={cart.id} cart={cart} />
+      })}
+    {/* <button>Next</button> */}
     </div>
   )
 }
