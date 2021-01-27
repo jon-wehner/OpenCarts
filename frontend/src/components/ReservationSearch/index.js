@@ -1,11 +1,11 @@
-export default function ReservationSearch () {
-  const times = []
+export default function ReservationSearch ({onDateChange, onTimeChange, onPartyChange}) {
+
 
   return (
     <div>
-      <input type="date" />
-      <input type="time" step="900" min="11:00" max="20:00"/>
-      <select>
+      <input type="date" onChange={e=> onDateChange(e.target.value)}/>
+      <input type="time" step="900" min="11:00" max="20:00"onChange={e=> onTimeChange(e.target.value)}/>
+      <select onChange={e=> onPartyChange(e.target.value)}>
         <option value="1">1 Person</option>
         <option value="2">2 People</option>
         <option value="3">3 People</option>
