@@ -24,7 +24,7 @@ export const getAllCarts = () => async dispatch => {
 export const getCartsByQuery = (query) => async dispatch => {
   const options = {
     method: 'POST',
-    query
+    body: JSON.stringify({query})
   }
   const res = await fetch('/api/carts', options)
   dispatch(searchCarts(res.data))
@@ -34,7 +34,16 @@ const initialState = {}
 export default function cartsReducer (state= initialState, action) {
   switch(action.type) {
     case LOAD: {
-      const newState = {...state, list: action.carts
+      const newState = {
+        ...state,
+        list: action.carts
+      }
+      return newState;
+    }
+    case SEARCH: {
+      const newState = {
+        ...state,
+        searchResults: action.carts
       }
       return newState;
     }
