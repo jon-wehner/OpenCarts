@@ -23,7 +23,7 @@ export default function BookingArea () {
         <h1 className="booking-area__title">Local & Delicious</h1>
         <ReservationSearch onDateChange={setDate} onTimeChange={setTime} onPartyChange={setParty}/>
         <SearchBar value={query} onInputChange={setQuery}/>
-        <button type="submit">Skip the Line</button>
+        <button className=""type="submit">Skip the Line</button>
       </form>
     </div>
   )
