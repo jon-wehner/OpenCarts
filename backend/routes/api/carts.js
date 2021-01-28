@@ -35,6 +35,7 @@ router.post(
           {cuisineId: {
             [Op.or]: [...cuisineIds]}}]
       },
+      include: [State, Cuisine]
     });
     res.json(carts)
   })

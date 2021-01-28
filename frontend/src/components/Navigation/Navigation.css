@@ -1,7 +1,6 @@
 .navbar {
   text-decoration: none;
   list-style-type: none;
-  border: 1px  #36393B solid;
   display:flex;
   justify-content: flex-end;
   position: relative;
