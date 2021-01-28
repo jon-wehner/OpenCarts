@@ -1,3 +1,4 @@
+import TimeSelect from './TimeSelect'
 import './ReservationSearch.css'
 
 export default function ReservationSearch ({onDateChange, onTimeChange, onPartyChange, onSearchChange}) {
@@ -5,10 +6,10 @@ export default function ReservationSearch ({onDateChange, onTimeChange, onPartyC
     <div className="reservationSearch__fields">
       <div className="reservationSearch__inputWrapper">
         <input className="reservationSearch__inputs" type="date" onChange={e=> onDateChange(e.target.value)}/>
-        <input className="reservationSearch__inputs" type="time" onChange={e=> onTimeChange(e.target.value)}/>
+        <TimeSelect onTimeChange={onTimeChange}/>
       </div>
       <div className="reservationSearch__inputWrapper">
-        <select className="reservationSearch__inputs"onChange={e=> onPartyChange(e.target.value)}>
+        <select className="reservationSearch__inputs" onChange={e=> onPartyChange(e.target.value)}>
           <option value="1">1 Person</option>
           <option value="2">2 People</option>
           <option value="3">3 People</option>
