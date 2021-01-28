@@ -7,6 +7,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import CartCarousel from "./components/CartCarousel"
 import BookingArea from "./components/BookingArea";
+import SearchResults from "./components/SearchResults";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,9 +30,12 @@ function App() {
         </Switch>
         }
       <Switch>
-        <Route path="/">
+        <Route path="/" exact>
           <BookingArea />
           <CartCarousel />
+        </Route>
+        <Route path="/search">
+          <SearchResults />
         </Route>
       </Switch>
 

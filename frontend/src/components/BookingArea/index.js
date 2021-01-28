@@ -1,20 +1,25 @@
 import ReservationSearch from "../ReservationSearch";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import './BookingArea.css'
 import { getCartsByQuery } from '../../store/carts'
+import { useHistory } from "react-router-dom";
 
 
 export default function BookingArea () {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [query, setQuery] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
   const [party, setParty] = useState(1)
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(query)
     dispatch(getCartsByQuery(query))
+    history.push("/search")
+
+
   }
   return (
     <div className="booking-area">
