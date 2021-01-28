@@ -9,11 +9,16 @@
   list-style-type: none;
   position: absolute;
   top: 100%;
+  border: 1px #F6F6F6 solid;
+  border-radius: .3rem;
+  background-color: #F6F6F6;
   animation: revealMenu 400ms ease-in-out forwards;
   transform-origin: top;
   box-sizing: border-box;
   width: 15rem;
   text-align: right;
+  padding-left: 0rem;
+  margin-top: .4rem;
 }
 
 .dropdown__list > li {
@@ -22,12 +27,17 @@
 
 .dropdown__button {
   display: block;
-  background-color: white;
-  border: 1px black solid;
+  margin-top: 1rem;
+  background-color: #9CAFB7;
+  border: 2px #36393B solid;
   border-radius: 3px;
-  height: 1.9rem;
+  height: 1.8rem;
   margin: .3rem;
   padding: .3rem
+}
+
+.dropdown__fontIcon {
+  color: #36393B
 }
 
 .dropdown__logout {

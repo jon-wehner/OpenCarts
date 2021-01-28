@@ -1,3 +1,35 @@
-.booking-area__input {
+.reservationSearch__fields {
+  font-family: "Martel";
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.reservationSearch__inputs {
+  padding: .5rem;
+  font-family: "Martel";
+  border: none;
+  color: #2d333f;
+}
+
+
+.reservationSearch__inputWrapper {
   display: inline-block;
+  background-color: white;
+  margin-left: 2rem;
+  border: 1px lightgray solid;
+  border-radius: .3rem;
+}
+
+.reservationSearch__btn{
+  margin-left: 1rem;
+  font-family: "Martel";
+  cursor: pointer;
+  font-weight: 700;
+  background-color:#37FF8B;
+  border: none;
+  outline:none;
+  /* color: black; */
+  color: #2d333f;
 }

@@ -4,4 +4,11 @@
 body {
   font-size: 62.5%;
   box-sizing: border-box;
+  background-color: #f7f7f7;
+}
+
+.wrapper {
+  background-color: white;
+  width:90%;
+  margin: 0 auto;
 }

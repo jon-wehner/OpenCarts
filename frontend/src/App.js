@@ -16,7 +16,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="wrapper">
       <Navigation isLoaded={isLoaded} />
       {isLoaded &&
         <Switch>
@@ -35,7 +35,7 @@ function App() {
         </Route>
       </Switch>
 
-    </>
+    </div>
   );
 }
 export default App;

@@ -25,6 +25,7 @@ function Navigation({ isLoaded }){
 
   return (
     <ul className="navbar">
+        <h1 className="navbar__title">OpenCarts</h1>
         <NavLink className="navbar__link" exact to="/"><FontAwesomeIcon className="nav__icon" icon={faHome} /></NavLink>
         {isLoaded && sessionLinks}
     </ul>

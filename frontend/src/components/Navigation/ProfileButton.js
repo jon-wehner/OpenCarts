@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
       )}
       <div>
         <button className="dropdown__button" onClick={openMenu}>
-          <FontAwesomeIcon icon={faUser} />
+          <FontAwesomeIcon className="dropdown__fontIcon" icon={faUser} />
         </button>
       </div>
 

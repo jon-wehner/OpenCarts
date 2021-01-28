@@ -1,5 +1,4 @@
 import ReservationSearch from "../ReservationSearch";
-import SearchBar from "../SearchBar";
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import './BookingArea.css'
@@ -19,12 +18,16 @@ export default function BookingArea () {
   }
   return (
     <div className="booking-area">
-      <form className="booking-area__form" onSubmit={handleSubmit}>
+      <div className="booking-area__formWrapper">
         <h1 className="booking-area__title">Local & Delicious</h1>
-        <ReservationSearch onDateChange={setDate} onTimeChange={setTime} onPartyChange={setParty}/>
-        <SearchBar value={query} onInputChange={setQuery}/>
-        <button className=""type="submit">Skip the Line</button>
-      </form>
+        <form className="booking-area__form" onSubmit={handleSubmit}>
+          <ReservationSearch onDateChange={setDate}
+          onTimeChange={setTime}
+          onPartyChange={setParty}
+          onSearchChange={setQuery}/>
+        </form>
+      </div>
+
     </div>
   )
 }

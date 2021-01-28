@@ -17,12 +17,9 @@ export default function CartCarousel () {
   }
   return (
     <div className="carousel">
-
-      <button >Prev</button>
       {Object.values(carts).map(cart=> {
         return <CartDetail key={cart.id} cart={cart} />
       })}
-      <button>Next</button>
     </div>
   )
 }
