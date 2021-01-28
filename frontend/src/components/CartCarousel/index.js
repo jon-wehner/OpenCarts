@@ -6,7 +6,7 @@ import './CartCarousel.css'
 
 export default function CartCarousel () {
   const dispatch = useDispatch();
-  const carts = useSelector(state => state.carts);
+  const carts = useSelector(state => state.carts.list);
 
   useEffect(() => {
     dispatch(getAllCarts());
