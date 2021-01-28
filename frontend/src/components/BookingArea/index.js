@@ -19,8 +19,8 @@ export default function BookingArea () {
   }
   return (
     <div className="booking-area">
-      <h1>Local & Delicious</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="booking-area__form" onSubmit={handleSubmit}>
+        <h1 className="booking-area__title">Local & Delicious</h1>
         <ReservationSearch onDateChange={setDate} onTimeChange={setTime} onPartyChange={setParty}/>
         <SearchBar value={query} onInputChange={setQuery}/>
         <button type="submit">Skip the Line</button>

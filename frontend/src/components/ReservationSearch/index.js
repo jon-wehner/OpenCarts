@@ -2,7 +2,7 @@ import './ReservationSearch.css'
 
 export default function ReservationSearch ({onDateChange, onTimeChange, onPartyChange}) {
   return (
-    <div>
+    <div className="booking-area__input">
       <input type="date" onChange={e=> onDateChange(e.target.value)}/>
       <input type="time" step="900" min="11:00" max="20:00"onChange={e=> onTimeChange(e.target.value)}/>
       <select onChange={e=> onPartyChange(e.target.value)}>
