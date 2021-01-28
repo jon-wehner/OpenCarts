@@ -1,0 +1,26 @@
+.booking-area {
+  background-image: url("../../images/emily-fletke-TBUTK17BHoc-unsplash.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
+  width: 80%;
+}
+.booking-area__form {
+  margin: 0 auto;
+  width: 70%;
+}
+
+.booking-area__formWrapper {
+  padding-top: 15rem;
+  padding-bottom: 10rem;
+  width:100%;
+  margin: 0 auto;
+}
+
+.booking-area__title {
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+}

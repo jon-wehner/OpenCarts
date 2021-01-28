@@ -6,6 +6,7 @@ import * as sessionActions from './store/session'
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import CartCarousel from "./components/CartCarousel"
+import BookingArea from "./components/BookingArea";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="wrapper">
       <Navigation isLoaded={isLoaded} />
       {isLoaded &&
         <Switch>
@@ -27,8 +28,14 @@ function App() {
           </Route>
         </Switch>
         }
-      <CartCarousel />
-    </>
+      <Switch>
+        <Route path="/">
+          <BookingArea />
+          <CartCarousel />
+        </Route>
+      </Switch>
+
+    </div>
   );
 }
 export default App;

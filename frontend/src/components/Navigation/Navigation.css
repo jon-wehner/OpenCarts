@@ -1,30 +1,42 @@
 .navbar {
   text-decoration: none;
   list-style-type: none;
-  border: 1px black solid;
+  border: 1px  #36393B solid;
   display:flex;
   justify-content: flex-end;
   position: relative;
   height: 3rem;
+  background-color: #9CAFB7;
+  align-items: center;
 }
 
 .navbar__link {
   text-decoration: none;
   margin-left: 1rem;
 }
+.navbar__title {
+  align-self: flex-start;
+  color: #36393B;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
 
 .navbar__link,.navbar__link:visited {
   display: inline-block;
-  color: black;
-  height: 1.5rem;
-  border: 1px solid black;
+  color: #36393B;
+  border: none;
   border-radius: 3px;
-  padding: .15rem;
-  margin: .3rem;
+  margin-left: .5rem;
+  font-size: 1rem;
+
 }
 
 .nav__icon {
   display: block;
-  background-color: white;
-  padding: .3rem;
+  padding: .25rem;
+  background-color: #9CAFB7;
+  border: 2px #36393B solid;
+  border-radius: 3px;
+  color: #36393B;
+
 }
