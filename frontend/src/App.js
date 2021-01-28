@@ -28,8 +28,13 @@ function App() {
           </Route>
         </Switch>
         }
-      <BookingArea />
-      <CartCarousel />
+      <Switch>
+        <Route path="/">
+          <BookingArea />
+          <CartCarousel />
+        </Route>
+      </Switch>
+
     </>
   );
 }
