@@ -1,6 +1,6 @@
+import './ReservationSearch.css'
+
 export default function ReservationSearch ({onDateChange, onTimeChange, onPartyChange}) {
-
-
   return (
     <div>
       <input type="date" onChange={e=> onDateChange(e.target.value)}/>

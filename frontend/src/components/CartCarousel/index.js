@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getCarts } from '../../store/carts'
+import { getAllCarts } from '../../store/carts'
 import CartDetail from './CartDetail'
 import './CartCarousel.css'
 
@@ -9,7 +9,7 @@ export default function CartCarousel () {
   const carts = useSelector(state => state.carts);
 
   useEffect(() => {
-    dispatch(getCarts());
+    dispatch(getAllCarts());
   },[dispatch]);
 
   if (!carts) {

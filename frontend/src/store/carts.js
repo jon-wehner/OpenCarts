@@ -8,7 +8,7 @@ const loadCarts = (carts) => {
     carts
   }
 }
-export const getCarts = () => async dispatch => {
+export const getAllCarts = () => async dispatch => {
   const res = await fetch('/api/carts');
   dispatch(loadCarts(res.data))
 }

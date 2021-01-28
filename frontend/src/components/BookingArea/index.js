@@ -1,6 +1,7 @@
 import ReservationSearch from "../ReservationSearch";
 import SearchBar from "../SearchBar";
 import { useState } from 'react'
+import './BookingArea.css'
 
 
 export default function BookingArea () {
@@ -9,16 +10,16 @@ export default function BookingArea () {
   const [time, setTime] = useState("")
   const [party, setParty] = useState(1)
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
   }
-  console.log(query)
   return (
-    <div>
-      <h1>Skip the Line</h1>
+    <div className="booking-area">
+      <h1>Local & Delicious</h1>
       <form onSubmit={handleSubmit}>
         <ReservationSearch onDateChange={setDate} onTimeChange={setTime} onPartyChange={setParty}/>
         <SearchBar value={query} onInputChange={setQuery}/>
-        <button type="submit">Wouldst thou like to live deliciously?</button>
+        <button type="submit">Skip the Line</button>
       </form>
     </div>
   )
