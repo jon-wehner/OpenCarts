@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
-const cartsRouter = require('./carts')
-const reservationsRouter = require('./reservations')
+const cartsRouter = require('./carts');
+const reservationsRouter = require('./reservations');
+const reviewsRouter = require('./reviews');
 const asyncHandler = require('express-async-handler');
 const { Cuisine, State } = require('../../db/models');
 
@@ -13,6 +14,8 @@ router.use('/users', usersRouter);
 router.use('/carts', cartsRouter);
 
 router.use('/reservations', reservationsRouter)
+
+router.use('/reviews', reviewsRouter)
 
 
 
