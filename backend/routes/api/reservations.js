@@ -3,7 +3,6 @@ const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const { Cart, Reservation } = require('../../db/models');
 const { Op } = require('sequelize');
-const moment = require('moment')
 
 
 
@@ -41,14 +40,14 @@ router.post(
         const dateUnix = Date.parse(reservation.dateTime)
         const reservationTime = timeslots[dateUnix]
         if (reservationTime.length >= 1) {
-          delete reservationTime
+          delete timeslots[dateUnix]
         } else {
           reservationTime.push(reservation)
         }
       })
     }
     const keys = Object.keys(timeslots)
-    const availableTimeslots= keys.map(key => moment(parseInt(key, 10)))
+    const availableTimeslots= keys.map(key => new Date(parseInt(key, 10)))
     res.json(availableTimeslots)
   })
 )

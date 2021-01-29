@@ -21,7 +21,7 @@ const build =(pendingReservation) => {
 export const getAvailReservationsByCart = (cartId, dateTime) => async dispatch => {
   const options = {
     method: 'POST',
-    body: JSON.stringify({dateTime: dateTime.toJSON()})
+    body: JSON.stringify({dateTime})
   }
   const res = await fetch(`/api/reservations/${cartId}/available`, options)
   const pivot = (res.data.length/2)
