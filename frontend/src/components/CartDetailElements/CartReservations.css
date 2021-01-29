@@ -1,0 +1,11 @@
+.reservation__btn {
+  margin-left: 1rem;
+  font-family: "Martel";
+  cursor: pointer;
+  font-weight: 700;
+  background-color:#37FF8B;
+  border: none;
+  outline:none;
+  /* color: black; */
+  color: #2d333f;
+}

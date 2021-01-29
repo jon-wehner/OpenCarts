@@ -1,9 +1,19 @@
-export default function CartReservations({reservations, date, time}) {
-  //reservations will be an array of existing reservations for this cart
-  //if reservation@time DO NOT render a button
-  //lets assume time = 5:00PM/17:00:00
+import { useSelector } from "react-redux"
+import './CartReservations.css'
 
+export default function CartReservations({reservations, date, time}) {
+  const availableTimeslots = useSelector(state => state.reservations.availableTimeslots)
+  const pendingReservation = useSelector(state => state.reservations.pendingReservation)
+  if(!availableTimeslots.length) {
+    return null
+  }
   return (
+    <div>
+      {availableTimeslots.map(time => {
+        const innerText =  time.slice(11,16)
+          return <button className="reservation__btn" value={time}>{innerText}</button>
+      })}
+    </div>
 
   )
 }

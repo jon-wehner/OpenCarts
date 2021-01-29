@@ -1,11 +1,12 @@
 import { fetch } from './csrf';
 
-const SEARCH = 'reservations/search'
+const SET_TIMESLOTS= 'reservations/set_timeslots'
 const BUILD = 'reservations/build'
 
-const lookUpReservations = () => {
+const setAvilableTimeslots = (availableTimeslots) => {
   return {
-    type: SEARCH,
+    type: SET_TIMESLOTS,
+    payload: availableTimeslots
   }
 }
 
@@ -22,9 +23,11 @@ export const getAvailReservationsByCart = (cartId, dateTime) => async dispatch =
     method: 'POST',
     body: JSON.stringify({dateTime: dateTime.toJSON()})
   }
-  console.log(options)
-  const reservations = await fetch(`/api/reservations/${cartId}/available`, options)
-  // console.log(reservations)
+  const res = await fetch(`/api/reservations/${cartId}/available`, options)
+  const pivot = (res.data.length/2)
+  const timesToDisplay =  res.data.slice(pivot- 2, pivot + 3)
+  dispatch(setAvilableTimeslots(timesToDisplay))
+
 };
 
 export const buildReservation = (dateTime, partySize) => async dispatch =>  {
@@ -42,6 +45,13 @@ export default function reservationsReducer (state = initialState, action) {
       const newState = {
         ...state,
         pendingReservation: action.pendingReservation
+      }
+      return newState
+    }
+    case SET_TIMESLOTS: {
+      const newState = {
+        ...state,
+        availableTimeslots: action.payload
       }
       return newState
     }
