@@ -5,7 +5,7 @@ import './BookingArea.css'
 import { getCartsByQuery } from '../../store/carts'
 import { useHistory } from "react-router-dom";
 import { buildReservation } from "../../store/reservations";
-import { $CombinedState } from "redux";
+import { tzOffsetToString } from '../../utils/utils'
 
 
 export default function BookingArea () {
@@ -19,7 +19,9 @@ export default function BookingArea () {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getCartsByQuery(query));
-    const dateTime =new Date(`${date}T${time}`)
+    let offset = (new Date().getTimezoneOffset() / 60);
+    offset = tzOffsetToString(offset)
+    const dateTime =`${date}T${time}${offset}`
     dispatch(buildReservation(dateTime, partySize))
     history.push("/search");
   }
