@@ -7,7 +7,9 @@ import { useEffect } from 'react';
 import CartReservations from '../CartDetailElements/CartReservations'
 export default function CartBigDetail ({cart}) {
   const dispatch = useDispatch()
-  const pendingReservation = useSelector(state=> state.reservations.pendingReservation);
+  const pendingReservation = useSelector(state=> state.reservations.pendingReservation)
+  const userId = useSelector(state=> state.session.user.id)
+
   useEffect(() => {
     dispatch(getAvailReservationsByCart(cart.id,pendingReservation.dateTime))
   })
@@ -16,7 +18,7 @@ export default function CartBigDetail ({cart}) {
       <CartImage name={cart.name} imageUrl={cart.imageUrl} />
       <CartTitle name={cart.name} />
       <CartPrice priceLevel={cart.priceLevel} />
-      <CartReservations />
+      <CartReservations userId={userId} cartId={cart.id}/>
     </>
   )
 }

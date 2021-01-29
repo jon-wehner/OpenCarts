@@ -4,10 +4,6 @@ const router = express.Router();
 const { Cart, Reservation } = require('../../db/models');
 const { Op } = require('sequelize');
 
-
-
-
-
 router.post(
   '/:id(\\d+)/available',
   asyncHandler(async (req, res) => {
@@ -19,11 +15,13 @@ router.post(
     const minTime = new Date(dateTime).setHours(hours-2)
     const maxTime = new Date(dateTime).setHours(hours+2)
     const timeslots = {}
+
     let i = minTime
     while (i <= maxTime) {
       i += 900000;
       timeslots[i] = [];
     }
+
     const cartReservations = await Reservation.findAll({
       where: {
         cartId,
@@ -52,6 +50,23 @@ router.post(
   })
 )
 
+router.post(
+  '/:id(\\d+)/new',
+  asyncHandler(async (req, res) => {
+    const {dateTime,
+      partySize,
+      userId,
+      cartId} = req.body
+
+    const newRes = await Reservation.create({
+      dateTime,
+      partySize,
+      userId,
+      cartId
+    })
+    res.json(newRes)
+  })
+)
 
 
 
