@@ -17,12 +17,13 @@ const build =(pendingReservation) => {
 }
 
 
-export const getReservationsByCart = (cartId, dateTime) => async dispatch => {
+export const getAvailReservationsByCart = (cartId, dateTime) => async dispatch => {
   const options = {
     method: 'POST',
-    body: JSON.stringify(dateTime),
+    body: JSON.stringify({dateTime})
   }
-  const reservations = await fetch(`/reservations/${cartId}`)
+  console.log(options)
+  const reservations = await fetch(`/api/reservations/${cartId}`, options)
   console.log(reservations)
 };
 

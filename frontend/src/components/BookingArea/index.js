@@ -18,7 +18,7 @@ export default function BookingArea () {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getCartsByQuery(query));
-    const dateTime = new Date(`${date}T${time}`)
+    const dateTime =date + time
     dispatch(buildReservation(dateTime, partySize))
     history.push("/search");
   }
