@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import './BookingArea.css'
 import { getCartsByQuery } from '../../store/carts'
 import { useHistory } from "react-router-dom";
+import { buildReservation } from "../../store/reservations";
 
 
 export default function BookingArea () {
@@ -12,15 +13,16 @@ export default function BookingArea () {
   const [query, setQuery] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
-  const [party, setParty] = useState(1)
+  const [partySize, setPartySize] = useState(1)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getCartsByQuery(query))
-    history.push("/search")
-
-
+    dispatch(getCartsByQuery(query));
+    const dateTime = new Date(`${date}T${time}`)
+    dispatch(buildReservation(dateTime, partySize))
+    history.push("/search");
   }
+
   return (
     <div className="booking-area">
       <div className="booking-area__formWrapper">
@@ -28,7 +30,7 @@ export default function BookingArea () {
         <form className="booking-area__form" onSubmit={handleSubmit}>
           <ReservationSearch onDateChange={setDate}
           onTimeChange={setTime}
-          onPartyChange={setParty}
+          onPartyChange={setPartySize}
           onSearchChange={setQuery}/>
         </form>
       </div>

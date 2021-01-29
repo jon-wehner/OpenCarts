@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const cartsRouter = require('./carts')
+const reservationsRouter = require('./reservations')
 const asyncHandler = require('express-async-handler');
 const { Cuisine, State } = require('../../db/models');
 
@@ -9,7 +10,11 @@ router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-router.use('/carts', cartsRouter)
+router.use('/carts', cartsRouter);
+
+router.use('/reservations', reservationsRouter)
+
+
 
 //Get call for states, will probably not be needed but keeping here for now
 // router.get('/states',
