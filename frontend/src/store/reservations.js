@@ -33,9 +33,18 @@ export const getAvailReservationsByCart = (cartId, dateTime) => async dispatch =
 export const buildReservation = (dateTime, partySize) => async dispatch =>  {
   const pendingReservation = {
     dateTime,
-    partySize
+    partySize,
   }
   dispatch(build(pendingReservation))
+};
+
+export const makeReservation = (newReservation) => async dispatch =>{
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(newReservation)
+  }
+  const res = await fetch(`/api/reservations/${newReservation.cartId}/new`, options)
+  console.log(res)
 }
 
 const initialState = {}
