@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
-const { Cart, State, Cuisine } = require('../../db/models')
+const { Cart, State, Cuisine, Review } = require('../../db/models')
 const { Op } = require('sequelize');
 
 
@@ -11,7 +11,9 @@ router.get(
   asyncHandler(async (req, res) => {
     const carts = await Cart.findAll({ include: [State, Cuisine]});
     const normalizedCarts = {}
-    carts.forEach(cart => normalizedCarts[cart.id] = cart)
+    carts.forEach(cart => {
+      normalizedCarts[cart.id] = cart
+      console.log(cart.reviews)})
     res.json(normalizedCarts);
 }));
 
