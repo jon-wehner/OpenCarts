@@ -20,11 +20,11 @@ const build =(pendingReservation) => {
 export const getAvailReservationsByCart = (cartId, dateTime) => async dispatch => {
   const options = {
     method: 'POST',
-    body: JSON.stringify({dateTime})
+    body: JSON.stringify({dateTime: dateTime.toJSON()})
   }
   console.log(options)
-  const reservations = await fetch(`/api/reservations/${cartId}`, options)
-  console.log(reservations)
+  const reservations = await fetch(`/api/reservations/${cartId}/available`, options)
+  // console.log(reservations)
 };
 
 export const buildReservation = (dateTime, partySize) => async dispatch =>  {

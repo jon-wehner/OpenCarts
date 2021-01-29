@@ -5,6 +5,7 @@ import './BookingArea.css'
 import { getCartsByQuery } from '../../store/carts'
 import { useHistory } from "react-router-dom";
 import { buildReservation } from "../../store/reservations";
+import { $CombinedState } from "redux";
 
 
 export default function BookingArea () {
@@ -18,7 +19,7 @@ export default function BookingArea () {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getCartsByQuery(query));
-    const dateTime =date + time
+    const dateTime =new Date(`${date}T${time}`)
     dispatch(buildReservation(dateTime, partySize))
     history.push("/search");
   }

@@ -3,24 +3,30 @@ const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const { Cart, Reservation } = require('../../db/models');
 const { Op } = require('sequelize');
+const { date } = require('faker');
 
 
 
 
 router.post(
-  '/reservations/1',
+  '/:id(\\d+)/available',
   asyncHandler(async (req, res) => {
-    console.log(req.body)
-    const cartId  = req.params.cartId
+    const cartId  = parseInt(req.params.id, 10)
     const { dateTime }  = req.body
-    const minTime = dateTime - 7.2e+6;
-    const maxTime = dateTime + 7.2e+6;
-    const availableTimeSlots = {}
+
+    const dateObj = new Date(dateTime)
+    const hours = dateObj.getHours()
+    const minTime = new Date(dateTime).setHours(hours+2)
+    console.log(minTime)
+    const maxTime = new Date(dateTime).setHours(hours+2)
+    console.log(maxTime)
+    const availableTimeslots = {}
     let i = minTime
     while (i <= maxTime) {
       i += 900000;
-      timeSlots.i = [];
+      availableTimeslots[i] = [];
     }
+    console.log(availableTimeslots)
     const cartReservations = await Reservation.findAll({
       where: {
         cartId,
@@ -32,15 +38,18 @@ router.post(
         },
       },
     })
-    cartReservations.forEach(reservation => {
-      const reservationTime = availableTimeslots[reservation.dateTime]
-      if (reservationTime.length >= 1) {
-        delete reservationTime
-      } else {
-        reservationTime.push(reservation)
-      }
-    })
-    res.json(availableTimeSlots)
+    // console.log(cartReservations)
+    // if (cartReservations.length) {
+    //   cartReservations.forEach(reservation => {
+    //     const reservationTime = availableTimeslots[reservation[dateTime]]
+    //     if (reservationTime.length >= 1) {
+    //       delete reservationTime
+    //     } else {
+    //       reservationTime.push(reservation)
+    //     }
+    //   })
+    // }
+    // res.json("hello")
   })
 )
 
