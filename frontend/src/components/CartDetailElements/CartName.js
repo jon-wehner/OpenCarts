@@ -1,5 +1,5 @@
 export default function CartTitle ({name}) {
   return (
-    <h2>{name}</h2>
+    <h2 className="cartDetails__name">{name}</h2>
   )
 }

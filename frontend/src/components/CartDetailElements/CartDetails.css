@@ -1,0 +1,50 @@
+.reservation__btn {
+  margin-left: 2rem;
+  font-family: "Martel";
+  cursor: pointer;
+  font-weight: 700;
+  background-color:#37FF8B;
+  border: none;
+  outline:none;
+  /* color: black; */
+  color: #2d333f;
+}
+
+.cartDetails__image {
+
+}
+.cartDetails__name {
+  margin-left: 2rem;
+  display: block;
+}
+.cartDetails__greenPrice {
+  color: green;
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 700;
+}
+.cartDetails__grayPrice {
+  color: lightgray;
+  display: inline;
+  font-size: .8rem;
+  font-weight: 700;
+}
+.cartDetails__rating {
+    font-size: .8rem;
+}
+.cartDetails__ratingText {
+  display: inline;
+  margin-left: .4rem;
+  font-family: "Martel";
+}
+.cartDetails__filledStar {
+  display: inline-block;
+}
+.cartDetails__review {
+  font-size: .8rem;
+  font-family: "Martel", sans-serif;
+}
+
+
+
+
