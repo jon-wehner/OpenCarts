@@ -8,26 +8,26 @@ import { getAvailReservationsByCart } from '../../store/reservations'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { getReviewsByCart } from '../../store/reviews'
+import './CartBigDetail.css'
 
 export default function CartBigDetail ({cart}) {
   const dispatch = useDispatch()
   const pendingReservation = useSelector(state=> state.reservations.pendingReservation)
   const userId = useSelector(state=> state.session.user.id)
-  const reviews = useSelector(state => state.reviews.cartId);
 
   useEffect(() => {
     dispatch(getAvailReservationsByCart(cart.id,pendingReservation.dateTime))
     dispatch(getReviewsByCart(cart.id));
-  },[dispatch])
+  },[dispatch, cart.id, pendingReservation.dateTime])
 
   return (
-    <>
+    <div className="searchResults__cart">
       <CartImage name={cart.name} imageUrl={cart.imageUrl} />
       <CartTitle name={cart.name} />
       <CartPrice priceLevel={cart.priceLevel} />
+      <CartRating cartId={cart.id}/>
       <CartReservations userId={userId} cartId={cart.id}/>
       <CartReviewSnippet cartId={cart.id} />
-      <CartRating cartId={cart.id}/>
-    </>
+    </div>
   )
 }

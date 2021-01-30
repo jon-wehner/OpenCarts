@@ -1,7 +1,7 @@
-import { image } from "faker";
+import './CartDetails.css'
 
 export default function CartImage({name, imageUrl}) {
   return (
-    <img src={imageUrl} alt={name} />
+    <img className="cartDetails__image" src={imageUrl} alt={name} />
   )
 }

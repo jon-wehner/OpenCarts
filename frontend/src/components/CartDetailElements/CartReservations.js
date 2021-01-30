@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { makeReservation } from "../../store/reservations";
-import './CartReservations.css'
+import './CartDetails.css'
 
 export default function CartReservations({cartId, userId}) {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export default function CartReservations({cartId, userId}) {
     dispatch(makeReservation(newRes))
   }
   return (
-    <div>
+    <div className="cartDetails__buttonContainer">
       {availableTimeslots.map(time => {
         time = new Date(time);
         const innerText = time.toLocaleTimeString([],{ hour: '2-digit', minute: '2-digit'})

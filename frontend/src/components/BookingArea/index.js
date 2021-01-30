@@ -1,5 +1,5 @@
 import ReservationSearch from "../ReservationSearch";
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import './BookingArea.css'
 import { getCartsByQuery } from '../../store/carts'
