@@ -10,6 +10,7 @@ import configureStore from './store';
 import { restoreCSRF, fetch } from './store/csrf';
 import * as sessionActions from './store/session'
 import * as cartActions from './store/carts'
+import { ModalProvider } from './Context/Modal';
 
 const store = configureStore();
 
@@ -25,10 +26,12 @@ if (process.env.NODE_ENV !== 'production') {
 function Root() {
   return (
     <Provider store={store}>
+    <ModalProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Provider>
+    </ModalProvider>
+  </Provider>
   );
 }
 
