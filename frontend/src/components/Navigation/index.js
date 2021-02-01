@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import './Navigation.css';
+import LoginFormModal from '../LoginFormModal'
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -17,7 +18,7 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <NavLink className="navbar__link" to="/login">Log In</NavLink>
+        <LoginFormModal  />
         <NavLink className="navbar__link" to="/signup">Sign Up</NavLink>
       </>
     );

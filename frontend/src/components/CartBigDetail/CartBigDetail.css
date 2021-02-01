@@ -1,8 +1,9 @@
 .searchResults__cart {
   display:grid;
-  width: 100%;
+  width: 80%;
   grid-template-columns: 15rem auto;
   grid-template-rows: 2rem 2rem 2rem 2rem 2rem 2rem;
+  margin: 0 auto;
   margin-bottom: 2rem;
 }
 .cartDetails__image {

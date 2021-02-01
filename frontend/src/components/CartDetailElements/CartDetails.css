@@ -6,16 +6,17 @@
   background-color:#37FF8B;
   border: none;
   outline:none;
-  /* color: black; */
   color: #2d333f;
-}
-
-.cartDetails__image {
-
+  border: 1px solid #37FF8B;
+  border-radius: 3px;
 }
 .cartDetails__name {
   margin-left: 2rem;
   display: block;
+}
+.cartDetails__image {
+  border: 1px white solid;
+  border-radius: 4px;
 }
 .cartDetails__greenPrice {
   color: green;
