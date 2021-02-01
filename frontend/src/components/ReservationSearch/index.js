@@ -22,12 +22,15 @@ export default function ReservationSearch ({onDateChange, onTimeChange, onPartyC
           <option value="10">10 People</option>
         </select>
       </div>
-      <div className="reservationSearch__inputWrapper">
-        <input className="reservationSearch__inputs"
-        type="text"
-        onChange={e => onSearchChange(e.target.value)}/>
+      <div>
+        <div className="reservationSearch__inputWrapper">
+          <input className="reservationSearch__inputs"
+          type="text"
+          onChange={e => onSearchChange(e.target.value)}/>
+        </div>
+        <button className="btn reservationSearch__btn" type="submit">Skip the Line</button>
+
       </div>
-      <button className="btn reservationSearch__btn" type="submit">Skip the Line</button>
     </div>
 
   )

@@ -7,7 +7,7 @@
   flex-wrap: wrap;
 }
 .reservationSearch__inputs {
-  padding: .5rem;
+  padding: .2rem;
   font-family: "Martel";
   border: none;
   color: #2d333f;
@@ -17,13 +17,15 @@
 .reservationSearch__inputWrapper {
   display: inline-block;
   background-color: white;
-  margin-left: 2rem;
+  margin-left: .5rem;
   border: 1px lightgray solid;
   border-radius: .3rem;
+  max-height: .4rem;
 }
 
 .reservationSearch__btn{
-  margin-left: 1rem;
+  width: 7rem;
+  display: inline;
   font-family: "Martel";
   cursor: pointer;
   font-weight: 700;
@@ -31,7 +33,7 @@
   border: none;
   outline:none;
   color: #2d333f;
-  margin-top: 2rem;
+  margin-left: .5rem;
   border:2px solid #37FF8B;
   border-radius: 3px;
 }

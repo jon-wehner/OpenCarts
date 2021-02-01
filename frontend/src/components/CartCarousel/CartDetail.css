@@ -7,10 +7,10 @@
 
 .cartDetail {
   height: 13rem;
-  width: 20rem;
+  min-width: 15rem;
   margin-left: 1.5rem;
   border: 1px lightgray solid;
-  border-radius: 5px;
+  border-radius: .3rem;
   display:grid;
   grid-template-columns: 100%;
   grid-template-rows: 40% 30% 20% 10%;
