@@ -10,7 +10,6 @@ export default function CartReservations({cartId, userId}) {
     return null
   }
   const reserve = (e) => {
-    console.log('click')
     const newRes = {...pendingReservation}
     newRes.dateTime = e.target.value;
     newRes.cartId = cartId;
