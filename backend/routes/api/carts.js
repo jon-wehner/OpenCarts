@@ -13,7 +13,7 @@ router.get(
     const normalizedCarts = {}
     carts.forEach(cart => {
       normalizedCarts[cart.id] = cart
-      console.log(cart.reviews)})
+    })
     res.json(normalizedCarts);
 }));
 

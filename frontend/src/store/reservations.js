@@ -44,7 +44,6 @@ export const makeReservation = (newReservation) => async dispatch =>{
     body: JSON.stringify(newReservation)
   }
   const res = await fetch(`/api/reservations/${newReservation.cartId}/new`, options)
-  console.log(res)
 }
 
 const initialState = {}
