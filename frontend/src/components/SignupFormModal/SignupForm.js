@@ -4,7 +4,7 @@ import * as sessionActions from '../../store/session';
 import { Redirect } from 'react-router-dom';
 import './SignupForm.css';
 
-function SignupFormPage () {
+function SignupForm () {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user)
   const [email, setEmail] = useState("");
@@ -31,29 +31,29 @@ function SignupFormPage () {
     return setErrors(['Password fields must match.'])
   }
   return (
-    <form onSumbit={onSubmit}>
+    <form className="signupForm" onSumbit={onSubmit}>
       <ul>
         {errors.map((err, i) => <li key={i}>{err}</li>)}
       </ul>
       <div>
-        <label>Email:</label>
-        <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
+        <label className="signupForm__label">Email:</label>
+        <input className="signupForm__input" type="text" value={email} onChange={e => setEmail(e.target.value)} />
       </div>
       <div>
-        <label>Username:</label>
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+        <label className="signupForm__label">Username:</label>
+        <input className="signupForm__input" type="text" value={username} onChange={e => setUsername(e.target.value)} />
       </div>
       <div>
-        <label>Password:</label>
-        <input type="password" value={password} onChange={e=> setPassword(e.target.value)} />
+        <label className="signupForm__label">Password:</label>
+        <input className="signupForm__input" type="password" value={password} onChange={e=> setPassword(e.target.value)} />
       </div>
       <div>
-        <label>Confirm Password:</label>
-        <input type="password" value={confirmPassword} onChange={e=> setConfirmPassword(e.target.value)} />
+        <label className="signupForm__label">Confirm Password:</label>
+        <input className="signupForm__input" type="password" value={confirmPassword} onChange={e=> setConfirmPassword(e.target.value)} />
       </div>
-      <button type="submit">Sign Up</button>
+      <button className="signupForm__btn" type="submit">Sign Up</button>
     </form>
   );
 }
 
-export default SignupFormPage
+export default SignupForm

@@ -1,9 +1,7 @@
-import LoginFormPage from "./components/LoginFormPage"
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch }from 'react-redux'
 import { useState, useEffect } from 'react'
 import * as sessionActions from './store/session'
-import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import CartCarousel from "./components/CartCarousel"
 import BookingArea from "./components/BookingArea";
@@ -19,13 +17,6 @@ function App() {
   return (
     <div className="wrapper">
       <Navigation isLoaded={isLoaded} />
-      {isLoaded &&
-        <Switch>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-        </Switch>
-        }
       <Switch>
         <Route path="/" exact>
           <BookingArea />
