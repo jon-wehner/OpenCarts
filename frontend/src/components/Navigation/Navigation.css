@@ -8,12 +8,13 @@
   background-color: #9CAFB7;
   align-items: center;
 }
-
 .navbar__link {
   text-decoration: none;
   margin-left: .5rem;
   margin-right: .5rem;
+  font-weight: 600;
   background-color: #9CAFB7;
+  cursor: pointer;
 }
 .navbar__title {
   align-self: flex-start;
@@ -21,7 +22,6 @@
   font-weight: 700;
   font-size: 1.2rem;
 }
-
 .navbar__link,.navbar__link:visited {
   display: inline-block;
   color: #36393B;
@@ -29,9 +29,10 @@
   border-radius: 3px;
   margin-left: .5rem;
   font-size: 1rem;
-
 }
-
+.navbar__link:active {
+  transform: translateY(.1rem);
+}
 .nav__icon {
   display: block;
   padding: .25rem;
