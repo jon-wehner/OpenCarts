@@ -15,23 +15,25 @@ function SignupForm () {
 
   if(sessionUser) return <Redirect to="/" />
 
-  const onSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (password === confirmPassword) {
-      setErrors([]);
-      return dispatch(sessionActions.signupUser({
+    setErrors([]);
+    const user = await dispatch(sessionActions.signupUser({
         email,
         username,
-        password
-      }))
-        .catch(res => {
-          if (res.data.errors) setErrors(res.data.errors)
-        });
+        password,
+        confirmPassword
+    }));
+    if (!user.errors) {
+      return
     }
-    return setErrors(['Password fields must match.'])
+    else {
+      setErrors(user.errors)
+    }
   }
+
   return (
-    <form className="signupForm" onSumbit={onSubmit}>
+    <form className="signupForm" onSubmit={handleSubmit}>
       <ul>
         {errors.map((err, i) => <li key={i}>{err}</li>)}
       </ul>
