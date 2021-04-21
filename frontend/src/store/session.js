@@ -42,9 +42,13 @@ export const signupUser = (user) => async dispatch => {
       password
     }),
   };
-  const res = await fetch('api/users', options)
-  dispatch(setUser(res.data.user));
-  return res
+  try {
+    const res = await fetch('api/users', options)
+    dispatch(setUser(res.data.user));
+    return res.data
+  } catch (err) {
+    return err.data
+  }
 };
 
 export const logoutUser = () => async dispatch => {

@@ -1,12 +1,30 @@
+/* COLOR VARS */
+:root {
+  /* main colors */
+  --primary-color: #9cafb7;
+  --background-lightgray: #f7f7f7;
+
+  /* Text Colors */
+  --text-gray: #1c1c1c;
+  --text-gray-shadow: #FFF;
+  --text-black: #2d333f;
+
+  --border-lightgray: #E4E4E4;
+
+  /* Button Colors */
+  --button-green: #37FF8B;
+  --button-green-hover: #7eedad;
+}
 * {
   font-family: "Lato", "sans-serif";
 }
-body {
+html {
   font-size: 62.5%;
-  box-sizing: border-box;
-  background-color: #f7f7f7;
 }
-
+body {
+  box-sizing: border-box;
+  background-color: var(--background-lightgray);
+}
 .wrapper {
   background-color: white;
   width:90%;
