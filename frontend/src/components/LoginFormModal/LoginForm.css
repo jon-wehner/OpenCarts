@@ -4,11 +4,11 @@
 	flex-direction: column;
 	align-items: center;
   width: 100%;
-  background: #F7F7F7;
+  background: var(--background-lightgray);
   font: 12px Georgia, "Times New Roman", Times, serif;
-  color: #1c1c1c;
-  text-shadow: 1px 1px 1px #FFF;
-  border:1px solid #E4E4E4;
+  color: var(--text-gray);
+  text-shadow: 1px 1px 1px var(--text-gray-shadow);
+  border:1px solid var(--border-lightgray);
 	padding:2rem;
 }
 .loginForm__label {
@@ -18,8 +18,8 @@
 }
 
 .loginForm__input {
-	border: 1px solid #DADADA;
-  color: #1c1c1c;
+	border: 1px solid var(--border-lightgray);
+  color: var(--text-gray);
   display: inline-block;
 	height: 2.5rem;
 	outline: 0 none;
@@ -29,17 +29,17 @@
 	margin-top: .5rem;
 }
 .loginForm__btn {
-	background: #37FF8B;
+	background: var(--button-green);
 	border: none;
 	padding: 1rem 2.5rem;
 	color: black;
 	border-radius: .6rem;
 	cursor: pointer;
 }
-.loginForm__btn .loginForm__btn:hover {
-    background: #7eedad
+.loginForm__btn:hover {
+    background: var(--button-green-hover)
+}
+.loginForm__btn:active {
+	transform: translateY(.1rem);
 }
 
-span {
-  display: block;
-}
