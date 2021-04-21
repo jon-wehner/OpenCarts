@@ -3,6 +3,12 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css'
 
+const buttonContainerStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  width: "80%",
+}
+
 function LoginForm() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
@@ -12,13 +18,19 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.loginUser({ credential, password })).catch(
+    dispatch(sessionActions.loginUser({ credential, password })).catch(
       (res) => {
         if (res.data && res.data.errors) setErrors(res.data.errors);
       }
     );
   };
-
+  const demoLogin = (e) => {
+    e.preventDefault()
+    dispatch(sessionActions.loginUser({
+      credential: 'demo',
+      password: 'password'
+    }));
+  }
   return (
     <form className="loginForm" onSubmit={handleSubmit}>
       <ul>
@@ -47,7 +59,10 @@ function LoginForm() {
         />
       </label>
       <span />
-      <button className="loginForm__btn" type="submit">Log In</button>
+      <div style={buttonContainerStyle}>
+        <button className="loginForm__btn" type="submit">Log In</button>
+        <button className="loginForm__btn" onClick={demoLogin}>Demo User</button>
+      </div>
     </form>
   );
 }
