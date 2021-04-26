@@ -3,15 +3,16 @@
   list-style-type: none;
   display:flex;
   justify-content: flex-end;
+  height: 4.5rem;
   position: relative;
-  height: 3rem;
   background-color: #9CAFB7;
   align-items: center;
+  width: 100%;
+  margin-bottom: 5rem;
 }
 .navbar__link {
   text-decoration: none;
-  margin-left: .5rem;
-  margin-right: .5rem;
+  margin-left: 1rem;
   font-weight: 600;
   background-color: #9CAFB7;
   cursor: pointer;
@@ -20,7 +21,7 @@
   align-self: flex-start;
   color: #36393B;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 2rem;
 }
 .navbar__link,.navbar__link:visited {
   display: inline-block;

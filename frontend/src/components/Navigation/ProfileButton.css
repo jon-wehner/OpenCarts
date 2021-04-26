@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   position:relative;
+  margin: 1rem 1.5rem 0 1rem;
 }
 
 .dropdown__list {
@@ -27,17 +28,15 @@
 
 .dropdown__button {
   display: block;
-  margin-top: 1rem;
   background-color: #9CAFB7;
-  border: 2px #36393B solid;
-  border-radius: 3px;
   height: 1.8rem;
   margin: .3rem;
-  padding: .3rem
+  border: none;
 }
 
 .dropdown__fontIcon {
-  color: #36393B
+  color: #36393B;
+  font-size: 1.8rem;
 }
 
 .dropdown__logout {
