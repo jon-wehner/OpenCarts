@@ -29,8 +29,10 @@ function Navigation({ isLoaded }){
   return (
     <nav className="navbar">
         <h1 className="navbar__title">OpenCarts</h1>
-        {location.pathname !== "/" && <NavLink className="navbar__link" exact to="/"><FontAwesomeIcon className="nav__icon" icon={faHome} /></NavLink>}
-        {isLoaded && sessionLinks}
+        <div>
+          {location.pathname !== "/" && <NavLink className="navbar__link" exact to="/"><FontAwesomeIcon className="nav__icon" icon={faHome} /></NavLink>}
+          {isLoaded && sessionLinks}
+        </div>
     </nav>
   );
 }

@@ -12,7 +12,7 @@
   top: 100%;
   border: 1px #F6F6F6 solid;
   border-radius: .3rem;
-  background-color: #F6F6F6;
+  background-color: white;
   animation: revealMenu 400ms ease-in-out forwards;
   transform-origin: top;
   box-sizing: border-box;
@@ -23,7 +23,10 @@
 }
 
 .dropdown__list > li {
+  margin-top: .5rem;
+  margin-right: .5rem;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .dropdown__button {
@@ -41,8 +44,10 @@
 
 .dropdown__logout {
   background-color: white;
-  border: 1px, black, solid;
-  border-radius: 3px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: .5rem;
 }
 
 @keyframes revealMenu {

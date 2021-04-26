@@ -33,7 +33,6 @@ function ProfileButton({ user }) {
       {showMenu && (
         <ul className="dropdown__list">
           <li>{user.username}</li>
-          <li>{user.email}</li>
           <li>My Reservations</li>
           <li>Favorites</li>
           <li>
