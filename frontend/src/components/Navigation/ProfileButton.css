@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   position:relative;
+  margin: 1rem 1.5rem 0 1rem;
 }
 
 .dropdown__list {
@@ -11,7 +12,7 @@
   top: 100%;
   border: 1px #F6F6F6 solid;
   border-radius: .3rem;
-  background-color: #F6F6F6;
+  background-color: white;
   animation: revealMenu 400ms ease-in-out forwards;
   transform-origin: top;
   box-sizing: border-box;
@@ -22,28 +23,31 @@
 }
 
 .dropdown__list > li {
+  margin-top: .5rem;
+  margin-right: .5rem;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .dropdown__button {
   display: block;
-  margin-top: 1rem;
   background-color: #9CAFB7;
-  border: 2px #36393B solid;
-  border-radius: 3px;
   height: 1.8rem;
   margin: .3rem;
-  padding: .3rem
+  border: none;
 }
 
 .dropdown__fontIcon {
-  color: #36393B
+  color: #36393B;
+  font-size: 1.8rem;
 }
 
 .dropdown__logout {
   background-color: white;
-  border: 1px, black, solid;
-  border-radius: 3px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: .5rem;
 }
 
 @keyframes revealMenu {

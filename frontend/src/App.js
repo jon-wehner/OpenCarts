@@ -15,19 +15,20 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="wrapper">
+    <>
       <Navigation isLoaded={isLoaded} />
-      <Switch>
-        <Route path="/" exact>
-          <BookingArea />
-          <CartCarousel />
-        </Route>
-        <Route path="/search">
-          <SearchResults />
-        </Route>
-      </Switch>
-
-    </div>
+      <div className="wrapper">
+        <Switch>
+          <Route path="/" exact>
+            <BookingArea />
+            <CartCarousel />
+          </Route>
+          <Route path="/search">
+            <SearchResults />
+          </Route>
+        </Switch>
+      </div>
+    </>
   );
 }
 export default App;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,6 +10,7 @@ import SignupFormModal from '../SignupFormModal';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
+  const location = useLocation()
 
   let sessionLinks;
   if (sessionUser) {
@@ -26,11 +27,13 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul className="navbar">
+    <nav className="navbar">
         <h1 className="navbar__title">OpenCarts</h1>
-        <NavLink className="navbar__link" exact to="/"><FontAwesomeIcon className="nav__icon" icon={faHome} /></NavLink>
-        {isLoaded && sessionLinks}
-    </ul>
+        <div>
+          {location.pathname !== "/" && <NavLink className="navbar__link" exact to="/"><FontAwesomeIcon className="nav__icon" icon={faHome} /></NavLink>}
+          {isLoaded && sessionLinks}
+        </div>
+    </nav>
   );
 }
 
