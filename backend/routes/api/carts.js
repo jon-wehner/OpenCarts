@@ -14,7 +14,7 @@ router.get(
     carts.forEach(cart => {
       normalizedCarts[cart.id] = cart
     })
-    res.json(normalizedCarts);
+    res.json(carts);
 }));
 
 router.post(
