@@ -6,8 +6,9 @@
 }
 
 .cartDetail {
-  height: 13rem;
-  min-width: 15rem;
+  box-sizing: border-box;
+  height: 95%;
+  width: 25%;
   margin-left: 1.5rem;
   border: 1px lightgray solid;
   border-radius: .3rem;
@@ -15,6 +16,8 @@
   grid-template-columns: 100%;
   grid-template-rows: 40% 30% 20% 10%;
   padding-bottom: .3rem;
+  animation: slidein;
+  animation-duration: 3s;
 }
 
 .cartDetail__title {
@@ -24,7 +27,7 @@
 }
 
 .cartDetail__info, .cartDetail__address {
-  font-size: .7rem;
+  font-size: 1.4rem;
   display: inline-block;
   text-align: center;
   white-space: nowrap;
@@ -38,4 +41,15 @@
 .cartDetail__infoContainer {
   display: flex;
   justify-content: center;
+  padding-bottom: .3rem;
+}
+
+@keyframes slidein {
+  from {
+    opacity: 5%;
+  }
+  to {
+
+    opacity: 100%;
+  }
 }
