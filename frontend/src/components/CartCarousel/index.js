@@ -3,13 +3,15 @@ import { useEffect, useState } from 'react';
 import { getAllCarts } from '../../store/carts'
 import CartDetail from './CartDetail'
 import './CartCarousel.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import  { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function CartCarousel () {
   const dispatch = useDispatch();
   const carts = useSelector(state => state.carts.list);
-  const [prev, setPrev] = useState(0);
-  const [curr, setcurr] = useState(4);
-  const [next, setNext] = useState(8);
+  const [prev, setPrev] = useState(false);
+  const [curr, setCurr] = useState(0);
+  const [next, setNext] = useState(4);
 
   useEffect(() => {
     dispatch(getAllCarts());
@@ -17,9 +19,26 @@ export default function CartCarousel () {
 
 
   const loadNext = () => {
+    const lastIdx = carts.length - 1
     setPrev(curr)
-    setcurr(curr + 4)
-    setNext(next+4)
+    setCurr(next)
+    if (next + 4 > lastIdx) {
+      setNext(false)
+    }
+    else {
+      setNext(next+4)
+    }
+  }
+
+  const loadPrev = () => {
+    setNext(curr)
+    setCurr(prev)
+    if (prev -4 < 0) {
+      setPrev(false)
+    }
+    else {
+      setPrev(prev-4)
+    }
   }
 
   if (!carts) {
@@ -27,12 +46,13 @@ export default function CartCarousel () {
   }
   return (
     <>
+      {prev !== false && <button onClick={loadPrev}>Prev</button>}
       <div className="carousel">
         {carts.slice(curr, curr + 4).map(cart=> {
           return <CartDetail key={cart.id} cart={cart} />
         })}
       </div>
-      <button onClick={loadNext}>Next</button>
+      {next !== false && <FontAwesomeIcon icon={faArrowRight} onClick={loadNext}/>}
     </>
   )
 }
