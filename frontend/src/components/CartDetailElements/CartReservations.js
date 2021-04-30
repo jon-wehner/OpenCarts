@@ -15,8 +15,8 @@ export default function CartReservations({cart, userId, dateTime, partySize}) {
   return (
     <div className="cartDetails__buttonContainer">
       {availableTimeslots.map(time => {
-        time = new Date(time);
-        const innerText = time.toLocaleTimeString([],{ hour: '2-digit', minute: '2-digit'})
+        const date = new Date(time);
+        const innerText = date.toLocaleTimeString([],{ hour: '2-digit', minute: '2-digit'})
           return (
                   <>
                     <button className="reservation__btn"

@@ -2,18 +2,25 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAvailReservationsByCart, makeReservation } from "../../store/reservations";
 import TimeSelect from "../BookingArea/TimeSelect";
+import { tzOffsetToString } from '../../utils/utils'
 
-export default function ReservationForm ({cart, userId, initialDateTime, initialPartySize}) {
+export default function ReservationForm ({cart, userId, initialDateTime, initialPartySize, initialTime}) {
+  console.log(initialDateTime)
   const dispatch = useDispatch()
-  const [dateTime, setDateTime] = useState(initialDateTime)
+  const [date, setDate] = useState(initialDateTime.slice(0,10))
+  const [time, setTime] = useState(initialDateTime.slice(11,19))
   const [partySize, setPartySize] = useState(initialPartySize)
 
   const reserve = (e) => {
+    e.preventDefault();
+    let offset = (new Date().getTimezoneOffset() / 60);
+    offset = tzOffsetToString(offset)
+    const dateTime =`${date}T${time}${offset}`
     const newRes = {
-      dateTime,
       cartId: cart.id,
       userId,
-      partySize
+      partySize,
+      dateTime
     }
     dispatch(makeReservation(newRes))
     dispatch(getAvailReservationsByCart(cart.id, dateTime))
@@ -21,8 +28,9 @@ export default function ReservationForm ({cart, userId, initialDateTime, initial
 
   return (
     <form onSubmit={reserve}>
-      <h2>New Reservation</h2>
-      <TimeSelect onTimeChange={setDateTime} time={dateTime.slice(11,19)}/>
+      <h2>New Reservation - {cart.name}</h2>
+      <input className="" type="date" value={date} onChange={e=> setDate(e.target.value)}/>
+      <TimeSelect onTimeChange={setTime} time={time}/>
       <select className="" value={partySize} onChange={e=> setPartySize(e.target.value)}>
               <option value="1">1 Person</option>
               <option value="2">2 People</option>

@@ -9,7 +9,7 @@ export default function BookingArea () {
   const history = useHistory();
   const [query, setQuery] = useState("")
   const [date, setDate] = useState("")
-  const [time, setTime] = useState("")
+  const [time, setTime] = useState("00:00:00")
   const [partySize, setPartySize] = useState(1)
 
   const handleSubmit = (e) => {

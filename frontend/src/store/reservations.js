@@ -10,6 +10,7 @@ const setAvilableTimeslots = (availableTimeslots) => {
 }
 
 export const getAvailReservationsByCart = (cartId, dateTime) => async dispatch => {
+  console.log(dateTime)
   const options = {
     method: 'POST',
     body: JSON.stringify({dateTime})
