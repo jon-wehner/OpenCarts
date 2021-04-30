@@ -30,33 +30,19 @@ export const getAvailReservationsByCart = (cartId, dateTime) => async dispatch =
 
 };
 
-export const buildReservation = (dateTime, partySize) => async dispatch =>  {
-  const pendingReservation = {
-    dateTime,
-    partySize,
-  }
-  dispatch(build(pendingReservation))
-};
-
 export const makeReservation = (newReservation) => async dispatch =>{
   const options = {
     method: 'POST',
     body: JSON.stringify(newReservation)
   }
   const res = await fetch(`/api/reservations/${newReservation.cartId}/new`, options)
+  console.log(res)
   //TODO: Complete reservation process
 }
 
 const initialState = {}
 export default function reservationsReducer (state = initialState, action) {
   switch(action.type) {
-    case BUILD: {
-      const newState = {
-        ...state,
-        pendingReservation: action.pendingReservation
-      }
-      return newState
-    }
     case SET_TIMESLOTS: {
       const newState = {
         ...state,

@@ -20,12 +20,10 @@ export default function BookingArea () {
     let offset = (new Date().getTimezoneOffset() / 60);
     offset = tzOffsetToString(offset)
     const dateTime =`${date}T${time}${offset}`
-    dispatch(buildReservation(dateTime, partySize))
+
     history.push({
       pathname:'/search',
-      search: `?query=${query}?date=${dateTime}?party=${partySize}`,
-      dateTime: `?date=${dateTime}`,
-      partySize: `?party=${partySize}`
+      search: `?query=${query}?date=${dateTime}?party=${partySize}`
     });
   }
 

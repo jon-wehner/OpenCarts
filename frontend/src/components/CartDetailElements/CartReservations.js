@@ -1,20 +1,22 @@
 import { useDispatch, useSelector } from "react-redux"
-import { makeReservation } from "../../store/reservations";
+import { getAvailReservationsByCart, makeReservation } from "../../store/reservations";
 import './CartDetails.css'
 
-export default function CartReservations({cartId, userId}) {
+export default function CartReservations({cartId, userId, dateTime, partySize}) {
   const dispatch = useDispatch();
   const availableTimeslots = useSelector(state => state.reservations.availableTimeslots)
-  const pendingReservation = useSelector(state => state.reservations.pendingReservation)
   if(!availableTimeslots) {
     return null
   }
   const reserve = (e) => {
-    const newRes = {...pendingReservation}
-    newRes.dateTime = e.target.value;
-    newRes.cartId = cartId;
-    newRes.userId = userId;
+    const newRes = {
+      dateTime,
+      cartId,
+      userId,
+      partySize
+    }
     dispatch(makeReservation(newRes))
+    dispatch(getAvailReservationsByCart(cartId, dateTime))
   }
   return (
     <div className="cartDetails__buttonContainer">

@@ -15,6 +15,7 @@ export default function CartBigDetail ({cart}) {
   const dispatch = useDispatch()
   const location = useLocation()
   const dateTime = location.search.split('?')[2].split('=')[1]
+  const partySize = location.search.split('?')[3].split('=')[1]
   const user = useSelector(state=> state.session.user)
 
   useEffect(() => {
@@ -28,7 +29,11 @@ export default function CartBigDetail ({cart}) {
       <CartTitle name={cart.name} />
       <CartPrice priceLevel={cart.priceLevel} />
       <CartRating cartId={cart.id}/>
-      <CartReservations userId={user ? user.id : null} cartId={cart.id}/>
+      <CartReservations userId={user ? user.id : null}
+        cartId={cart.id}
+        dateTime={dateTime}
+        partySize={partySize}
+        />
       <CartReviewSnippet cartId={cart.id} />
     </div>
   )
