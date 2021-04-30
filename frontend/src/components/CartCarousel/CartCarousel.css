@@ -1,8 +1,14 @@
 .carousel {
   display: flex;
-  width: 70%;
+  width: 75%;
   overflow-x: auto;
   margin: 0 auto;
   margin-top: 2rem;
+  align-items: center;
+  height: 25rem;
+}
 
+.carousel__arrow {
+  font-size: 3rem;
+  margin-left: 1rem;
 }

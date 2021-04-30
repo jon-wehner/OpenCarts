@@ -4,7 +4,7 @@ import { getAllCarts } from '../../store/carts'
 import CartDetail from './CartDetail'
 import './CartCarousel.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import  { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight, faArrowAltCircleLeft} from '@fortawesome/free-regular-svg-icons'
 
 export default function CartCarousel () {
   const dispatch = useDispatch();
@@ -46,13 +46,13 @@ export default function CartCarousel () {
   }
   return (
     <>
-      {prev !== false && <button onClick={loadPrev}>Prev</button>}
       <div className="carousel">
+        {prev !== false && <FontAwesomeIcon className="carousel__arrow" onClick={loadPrev} icon={faArrowAltCircleLeft}/>}
         {carts.slice(curr, curr + 4).map(cart=> {
           return <CartDetail key={cart.id} cart={cart} />
         })}
+        {next !== false && <FontAwesomeIcon className="carousel__arrow" icon={faArrowAltCircleRight} onClick={loadNext}/>}
       </div>
-      {next !== false && <FontAwesomeIcon icon={faArrowRight} onClick={loadNext}/>}
     </>
   )
 }
