@@ -9,16 +9,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { getReviewsByCart } from '../../store/reviews'
 import './CartBigDetail.css'
+import { useLocation } from 'react-router'
 
 export default function CartBigDetail ({cart}) {
   const dispatch = useDispatch()
-  const pendingReservation = useSelector(state=> state.reservations.pendingReservation)
+  const location = useLocation()
+  const dateTime = location.search.split('?')[2].split('=')[1]
   const user = useSelector(state=> state.session.user)
 
   useEffect(() => {
-    dispatch(getAvailReservationsByCart(cart.id,pendingReservation.dateTime))
+    dispatch(getAvailReservationsByCart(cart.id,dateTime))
     dispatch(getReviewsByCart(cart.id));
-  },[dispatch, cart.id, pendingReservation.dateTime])
+  },[dispatch, cart.id, dateTime])
 
   return (
     <div className="searchResults__cart">

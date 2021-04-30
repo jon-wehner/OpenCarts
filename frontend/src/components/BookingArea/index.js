@@ -2,9 +2,8 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import './BookingArea.css'
 import TimeSelect from './TimeSelect'
-import { getCartsByQuery } from '../../store/carts'
 import { useHistory } from "react-router-dom";
-import { buildReservation } from "../../store/reservations";
+import { buildReservation } from '../../store/reservations';
 import { tzOffsetToString } from '../../utils/utils'
 
 
@@ -18,12 +17,16 @@ export default function BookingArea () {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getCartsByQuery(query));
     let offset = (new Date().getTimezoneOffset() / 60);
     offset = tzOffsetToString(offset)
     const dateTime =`${date}T${time}${offset}`
     dispatch(buildReservation(dateTime, partySize))
-    history.push("/search");
+    history.push({
+      pathname:'/search',
+      search: `?query=${query}?date=${dateTime}?party=${partySize}`,
+      dateTime: `?date=${dateTime}`,
+      partySize: `?party=${partySize}`
+    });
   }
 
   return (
@@ -61,7 +64,6 @@ export default function BookingArea () {
         </div>
         </form>
       </div>
-
     </div>
   )
 }
