@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { getAvailReservationsByCart, makeReservation } from "../../store/reservations";
 import TimeSelect from "../BookingArea/TimeSelect";
 import { tzOffsetToString } from '../../utils/utils'
+import './ReservationForm.css'
 
 export default function ReservationForm ({cart, userId, initialDateTime, initialPartySize, initialTime}) {
   console.log(initialDateTime)
@@ -27,7 +28,7 @@ export default function ReservationForm ({cart, userId, initialDateTime, initial
   }
 
   return (
-    <form onSubmit={reserve}>
+    <form className="reservationForm" onSubmit={reserve}>
       <h2>New Reservation - {cart.name}</h2>
       <input className="" type="date" value={date} onChange={e=> setDate(e.target.value)}/>
       <TimeSelect onTimeChange={setTime} time={time}/>
