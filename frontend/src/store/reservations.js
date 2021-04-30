@@ -1,7 +1,6 @@
 import { fetch } from './csrf';
 
 const SET_TIMESLOTS= 'reservations/set_timeslots'
-const BUILD = 'reservations/build'
 
 const setAvilableTimeslots = (availableTimeslots) => {
   return {
@@ -9,14 +8,6 @@ const setAvilableTimeslots = (availableTimeslots) => {
     payload: availableTimeslots
   }
 }
-
-const build =(pendingReservation) => {
-  return {
-    type: BUILD,
-    pendingReservation
-  }
-}
-
 
 export const getAvailReservationsByCart = (cartId, dateTime) => async dispatch => {
   const options = {
@@ -36,7 +27,6 @@ export const makeReservation = (newReservation) => async dispatch =>{
     body: JSON.stringify(newReservation)
   }
   const res = await fetch(`/api/reservations/${newReservation.cartId}/new`, options)
-  console.log(res)
   //TODO: Complete reservation process
 }
 

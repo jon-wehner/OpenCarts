@@ -1,14 +1,11 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import './BookingArea.css'
 import TimeSelect from './TimeSelect'
 import { useHistory } from "react-router-dom";
-import { buildReservation } from '../../store/reservations';
 import { tzOffsetToString } from '../../utils/utils'
 
 
 export default function BookingArea () {
-  const dispatch = useDispatch();
   const history = useHistory();
   const [query, setQuery] = useState("")
   const [date, setDate] = useState("")
