@@ -1,6 +1,11 @@
-export default function TimeSelect ({onTimeChange}) {
+import { useEffect } from "react"
+
+export default function TimeSelect ({onTimeChange, time}) {
+  useEffect(() => {
+    console.log(time)
+  })
   return (
-    <select className="reservationSearch__inputs" onChange={e=> onTimeChange(e.target.value)} >
+    <select className="reservationSearch__inputs" value={time ? time : "00:00:00"} onChange={e=> onTimeChange(e.target.value)} >
       <option value="00:00:00">12:00AM</option>
       <option value="00:30:00">12:30AM</option>
       <option value="01:00:00">1:00AM</option>

@@ -30,7 +30,7 @@ export default function CartBigDetail ({cart}) {
       <CartPrice priceLevel={cart.priceLevel} />
       <CartRating cartId={cart.id}/>
       <CartReservations userId={user ? user.id : null}
-        cartId={cart.id}
+        cart={cart}
         dateTime={dateTime}
         partySize={partySize}
         />
