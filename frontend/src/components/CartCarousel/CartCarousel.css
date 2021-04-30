@@ -1,14 +1,17 @@
 .carousel {
   display: flex;
   width: 75%;
-  overflow-x: auto;
+  overflow-x: hidden;
   margin: 0 auto;
   margin-top: 2rem;
   align-items: center;
   height: 25rem;
 }
-
 .carousel__arrow {
   font-size: 3rem;
   margin-left: 1rem;
+  cursor: pointer;
+}
+.carousel__arrow:active{
+  transform: translateY(.2rem);
 }
