@@ -9,7 +9,6 @@ router.post(
   asyncHandler(async (req, res) => {
     const cartId  = parseInt(req.params.id, 10)
     const { dateTime }  = req.body
-    console.log(dateTime)
 
     const dateObj = new Date(dateTime)
     const hours = dateObj.getHours()
