@@ -5,9 +5,12 @@ import ReservationForm from '../ReservationForm'
 import './CartDetails.css'
 
 export default function CartReservations({cart, userId, dateTime, partySize}) {
+  const [resTime, setResTime] = useState("")
   const availableTimeslots = useSelector(state => state.reservations.availableTimeslots)
-
   const [showModal, setShowModal] = useState(false)
+
+
+
 
   if(!availableTimeslots) {
     return null
@@ -21,24 +24,26 @@ export default function CartReservations({cart, userId, dateTime, partySize}) {
                   <>
                     <button className="reservation__btn"
                       key={innerText}
-                      value={time}
-                      onClick={()=> setShowModal(true)}>
+                      onClick={()=> {
+                        setShowModal(true)
+                        setResTime(date.toLocaleTimeString('en-GB'))
+                        }}>
                         {innerText}
                     </button>
-                    {showModal && (
-                      <Modal key={time} onClose={() => setShowModal(false)}>
+                  </>
+                  )
+      })}
+      {showModal && (
+                      <Modal onClose={() => setShowModal(false)}>
                         <ReservationForm
                           cart={cart}
                           userId={userId}
                           initialDateTime={dateTime}
                           initialPartySize={partySize}
+                          initialTime={resTime}
                           />
-
                       </Modal>
                     )}
-                  </>
-                  )
-      })}
     </div>
 
   )

@@ -6,10 +6,9 @@ import { tzOffsetToString } from '../../utils/utils'
 import './ReservationForm.css'
 
 export default function ReservationForm ({cart, userId, initialDateTime, initialPartySize, initialTime}) {
-  console.log(initialDateTime)
   const dispatch = useDispatch()
   const [date, setDate] = useState(initialDateTime.slice(0,10))
-  const [time, setTime] = useState(initialDateTime.slice(11,19))
+  const [time, setTime] = useState(initialTime)
   const [partySize, setPartySize] = useState(initialPartySize)
 
   const reserve = (e) => {
@@ -31,7 +30,7 @@ export default function ReservationForm ({cart, userId, initialDateTime, initial
     <form className="reservationForm" onSubmit={reserve}>
       <h2>New Reservation - {cart.name}</h2>
       <input className="" type="date" value={date} onChange={e=> setDate(e.target.value)}/>
-      <TimeSelect onTimeChange={setTime} time={time}/>
+      <TimeSelect onTimeChange={setTime} initialTime={time}/>
       <select className="" value={partySize} onChange={e=> setPartySize(e.target.value)}>
               <option value="1">1 Person</option>
               <option value="2">2 People</option>
