@@ -34,15 +34,16 @@ router.post(
       },
     });
     if (cartReservations.length) {
-      cartReservations.forEach(reservation => {
+      for (let reservation of cartReservations) {
         const dateUnix = Date.parse(reservation.dateTime)
         const reservationTime = timeslots[dateUnix]
-        if (reservationTime.length >= 1) {
+        if (reservationTime && reservationTime.length >= 1) {
           delete timeslots[dateUnix]
+          break
         } else {
           reservationTime.push(reservation)
         }
-      })
+      }
     }
     const keys = Object.keys(timeslots)
     const availableTimeslots= keys.map(key => new Date(parseInt(key, 10)))

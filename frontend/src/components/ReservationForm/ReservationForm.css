@@ -1,0 +1,4 @@
+.reservationForm {
+  display: flex;
+  flex-direction: column;
+}

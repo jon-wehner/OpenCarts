@@ -19,7 +19,7 @@ export default function CartRating ({cartId}) {
   const roundedRating = Math.round(avgRating)
   let stars = []
   for (let i = 0; i<roundedRating; i++) {
-    stars.push(<FontAwesomeIcon className="cartDetails__filledStar" icon={faStar} />)
+    stars.push(<FontAwesomeIcon key={i} className="cartDetails__filledStar" icon={faStar} />)
   }
   let ratingText = ""
   switch (roundedRating) {
