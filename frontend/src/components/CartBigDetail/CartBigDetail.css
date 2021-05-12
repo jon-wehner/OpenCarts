@@ -29,6 +29,7 @@
     grid-column: 2 / 3;
     grid-row: 4;
     padding-top: .5rem;
+    margin-top: 1rem;
 }
 .cartDetails__review {
   grid-column: 2;

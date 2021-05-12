@@ -31,3 +31,6 @@ body {
   width:90%;
   margin: 0 auto;
 }
+button:active {
+  transform: translateY(.2rem);
+}

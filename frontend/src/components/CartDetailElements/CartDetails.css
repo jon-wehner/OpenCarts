@@ -10,6 +10,9 @@
   border: 1px solid #37FF8B;
   border-radius: 3px;
 }
+.reservation__btn:hover {
+  background-color: var(--button-green-hover);
+}
 .cartDetails__name {
   margin-left: 2rem;
   display: block;
@@ -21,21 +24,21 @@
 .cartDetails__greenPrice {
   color: green;
   display: inline-block;
-  font-size: .8rem;
+  font-size: 1.2em;
   font-weight: 700;
 }
 .cartDetails__grayPrice {
   color: lightgray;
   display: inline;
-  font-size: .8rem;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 .cartDetails__rating {
-    font-size: .8rem;
+    font-size: 1.2rem;
 }
 .cartDetails__ratingText {
   display: inline;
-  margin-left: .4rem;
+  margin-left: 1rem;
   font-family: "Martel";
 }
 .cartDetails__filledStar {
