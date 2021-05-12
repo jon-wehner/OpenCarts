@@ -28,13 +28,9 @@ export default function BookingArea () {
     <div className="booking-area">
       <div className="booking-area__formWrapper">
         <h1 className="booking-area__title">Local & Delicious</h1>
-        <form className="booking-area__form" onSubmit={handleSubmit}>
-        <div className="reservationSearch__fields">
-          <div className="reservationSearch__inputWrapper">
+        <form className="booking-area__form" onSubmit={handleSubmit}>        
             <input className="reservationSearch__inputs" type="date" onChange={e=> setDate(e.target.value)}/>
-            <TimeSelect onTimeChange={setTime}/>
-          </div>
-          <div className="reservationSearch__inputWrapper">
+            <TimeSelect onTimeChange={setTime}/>          
             <select className="reservationSearch__inputs" onChange={e=> setPartySize(e.target.value)}>
               <option value="1">1 Person</option>
               <option value="2">2 People</option>
@@ -46,17 +42,12 @@ export default function BookingArea () {
               <option value="8">8 People</option>
               <option value="9">9 People</option>
               <option value="10">10 People</option>
-            </select>
-          </div>
-          <div>
-            <div className="reservationSearch__inputWrapper">
-              <input className="reservationSearch__inputs"
+            </select>  
+            <input className="reservationSearch__inputs"
+              placeholder="Restaurant or Cuisine"
               type="text"
-              onChange={e => setQuery(e.target.value)}/>
-            </div>
-            <button className="btn reservationSearch__btn" type="submit">Skip the Line</button>
-          </div>
-        </div>
+              onChange={e => setQuery(e.target.value)}/>          
+            <button className="btn reservationSearch__btn" type="submit">Skip the Line</button>        
         </form>
       </div>
     </div>
