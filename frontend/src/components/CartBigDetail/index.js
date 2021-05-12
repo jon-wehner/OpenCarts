@@ -29,12 +29,12 @@ export default function CartBigDetail ({cart}) {
       <CartTitle name={cart.name} />
       <CartPrice priceLevel={cart.priceLevel} />
       <CartRating cartId={cart.id}/>
+      <CartReviewSnippet cartId={cart.id} />
       <CartReservations userId={user ? user.id : null}
         cart={cart}
         dateTime={dateTime}
         partySize={partySize}
         />
-      <CartReviewSnippet cartId={cart.id} />
     </div>
   )
 }

@@ -41,5 +41,9 @@
   border: 2px #36393B solid;
   border-radius: 3px;
   color: #36393B;
-
+}
+.navbar div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
