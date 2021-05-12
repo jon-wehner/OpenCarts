@@ -28,7 +28,7 @@ export default function ReservationForm ({cart, userId, initialDateTime, initial
 
   return (
     <form className="reservationForm" onSubmit={reserve}>
-      <h2>New Reservation - {cart.name}</h2>
+      <h2>New Reservation at {cart.name}</h2>
       <input className="" type="date" value={date} onChange={e=> setDate(e.target.value)}/>
       <TimeSelect onTimeChange={setTime} initialTime={time}/>
       <select className="" value={partySize} onChange={e=> setPartySize(e.target.value)}>

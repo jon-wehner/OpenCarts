@@ -1,4 +1,25 @@
 .reservationForm {
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  
+  padding: 2rem;
+}
+.reservationForm input, .reservationForm select {
+  border-radius: .5rem;
+  outline: none;
+  margin-bottom: 1rem;
+  border: thin var(--border-lightgray) solid;
+}
+.reservationForm button {
+  background-color: var(--button-green);
+  border-radius: .6rem;
+  padding: .5rem;
+  width: 40%;
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+.reservationForm button:hover{
+  background-color: var(--button-green-hover);
+  
 }
