@@ -36,6 +36,7 @@
   font-family: "Martel";
   border: none;
   color: #2d333f;
+  border: thin solid var(--border-lightgray);
   border-radius: .6rem;
   outline: none;
 }
