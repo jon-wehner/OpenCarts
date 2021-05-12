@@ -16,8 +16,8 @@
   grid-template-columns: 100%;
   grid-template-rows: 40% 30% 20% 10%;
   padding-bottom: .3rem;
-  animation: slidein;
-  animation-duration: 3s;
+  animation: fadein;
+  animation-duration: 2.5s;
 }
 
 .cartDetail__title {
@@ -44,7 +44,7 @@
   padding-bottom: .3rem;
 }
 
-@keyframes slidein {
+@keyframes fadein {
   from {
     opacity: 5%;
   }
