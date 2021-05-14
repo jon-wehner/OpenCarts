@@ -2,8 +2,8 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation')
-const { setTokenCookie, requireauth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { setTokenCookie } = require('../../utils/auth');
+const { User, Reservation } = require('../../db/models');
 const router = express.Router();
 
 
@@ -32,5 +32,23 @@ router.post(
     });
   }),
 );
+//get a user's reservations
+router.get(
+  '/:id(\\d+)/reservations',
+  asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.id, 10);
+    const userReservations = await Reservation.findAll({
+      where: {
+        userId
+      },
+    })
+    if (userReservations && userReservations.legnth) {
+      res.json(userReservations)
+    }
+    else {
+      res.send('No Reservations found for user')
+    }
+  })
+)
 
 module.exports = router

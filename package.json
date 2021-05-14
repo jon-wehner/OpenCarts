@@ -4,9 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
-    "@fortawesome/react-fontawesome": "^0.1.14",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
     "csurf": "^1.11.0",
@@ -25,7 +22,6 @@
     "sequelize": "^5.22.3",
     "sequelize-cli": "^5.5.1"
   },
-  "devDependencies": {},
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
     "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
