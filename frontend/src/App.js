@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import CartCarousel from "./components/CartCarousel"
 import BookingArea from "./components/BookingArea";
 import SearchResults from "./components/SearchResults";
+import UserProfile from './components/UserProfile';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/search">
             <SearchResults />
+          </Route>
+          <Route path="/profile">
+            <UserProfile />
           </Route>
         </Switch>
       </div>
