@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import './BookingArea.css'
-import TimeSelect from './TimeSelect'
-import { useHistory } from "react-router-dom";
-import { tzOffsetToString } from '../../utils/utils'
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import TimeSelect from './TimeSelect';
+import tzOffsetToString from '../../utils/utils';
+import './BookingArea.css';
 
 
-export default function BookingArea () {
+export default function BookingArea() {
   const history = useHistory();
-  const [query, setQuery] = useState("")
-  const [date, setDate] = useState("")
-  const [time, setTime] = useState("00:00:00")
-  const [partySize, setPartySize] = useState(1)
+  const [query, setQuery] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("00:00:00");
+  const [partySize, setPartySize] = useState(1);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ export default function BookingArea () {
     const dateTime =`${date}T${time}${offset}`
 
     history.push({
-      pathname:'/search',
+      pathname: '/search',
       search: `?query=${query}?date=${dateTime}?party=${partySize}`
     });
   }
