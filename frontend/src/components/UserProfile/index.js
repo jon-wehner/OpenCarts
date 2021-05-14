@@ -2,22 +2,34 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { restoreUser } from '../../store/session';
 import { getUserReservations } from '../../store/reservations';
+import ProfileReservation from './ProfileReservation';
 
 export default function UserProfile() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const reservations = useSelector((state) => state.reservations.userReservations);
 
   useEffect(() => {
     dispatch(restoreUser());
-    dispatch(getUserReservations(user.id));
-  }, [dispatch, user.id]);
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getUserReservations(user.id));
+    }
+  }, [user]);
+
   if (!user) {
     return null;
   }
   return (
-    <span>
-      Hello,
-      {user.username}
-    </span>
+    <>
+      <h2>
+        Hello,
+        {user.username}
+      </h2>
+      { reservations
+      && reservations.map((reservation) => <ProfileReservation reservation={reservation} />)}
+    </>
   );
 }

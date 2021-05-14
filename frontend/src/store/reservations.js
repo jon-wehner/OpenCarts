@@ -34,10 +34,9 @@ export const makeReservation = (newReservation) => async (dispatch) => {
 
 export const getUserReservations = (userId) => async (dispatch) => {
   const url = `/api/users/${userId}/reservations`;
-  const res = await fetch(url);
-  if (res.ok) {
-    const reservations = await res.json();
-    dispatch(setUserReservations(reservations));
+  const reservations = await fetch(url);
+  if (reservations.data.length) {
+    dispatch(setUserReservations(reservations.data));
   }
 };
 

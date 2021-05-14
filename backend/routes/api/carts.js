@@ -3,9 +3,7 @@ const { Op } = require('sequelize');
 const asyncHandler = require('express-async-handler');
 
 const router = express.Router();
-const {
-  Cart, State, Cuisine,
-} = require('../../db/models');
+const { Cart, State, Cuisine } = require('../../db/models');
 
 // get all carts
 router.get(
