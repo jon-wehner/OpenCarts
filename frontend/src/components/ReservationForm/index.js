@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAvailReservationsByCart, makeReservation } from "../../store/reservations";
 import TimeSelect from "../BookingArea/TimeSelect";
-import { tzOffsetToString } from '../../utils/utils'
+import  tzOffsetToString from '../../utils/utils'
 import './ReservationForm.css'
 
 export default function ReservationForm ({cart, userId, initialDateTime, initialPartySize, initialTime}) {

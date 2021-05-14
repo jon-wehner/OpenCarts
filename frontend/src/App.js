@@ -1,11 +1,11 @@
 import { Route, Switch } from 'react-router-dom';
-import { useDispatch }from 'react-redux'
-import { useState, useEffect } from 'react'
-import * as sessionActions from './store/session'
-import Navigation from "./components/Navigation";
-import CartCarousel from "./components/CartCarousel"
-import BookingArea from "./components/BookingArea";
-import SearchResults from "./components/SearchResults";
+import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import * as sessionActions from './store/session';
+import Navigation from './components/Navigation';
+import CartCarousel from './components/CartCarousel';
+import BookingArea from './components/BookingArea';
+import SearchResults from './components/SearchResults';
 import UserProfile from './components/UserProfile';
 
 function App() {
