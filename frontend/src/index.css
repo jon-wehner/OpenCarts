@@ -30,6 +30,7 @@ body {
   background-color: white;
   width:90%;
   margin: 0 auto;
+  min-height: 400px;
 }
 button:active {
   transform: translateY(.2rem);

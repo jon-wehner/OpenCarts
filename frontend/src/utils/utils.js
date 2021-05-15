@@ -1,14 +1,14 @@
-export function tzOffsetToString (offset) {
-  if(offset === 0) return `z`
+export default function tzOffsetToString(offset) {
+  if (offset === 0) return 'z';
   const digits = offset.toString().length;
-  let prepend = ""
+  let prepend = '';
   if (offset > 1) {
-    prepend += '-'
+    prepend += '-';
   } else {
-    prepend += '+'
+    prepend += '+';
   }
   if (digits === 1) {
-    prepend += '0'
+    prepend += '0';
   }
-  return `${prepend}${Math.abs(offset)}:00`
+  return `${prepend}${Math.abs(offset)}:00`;
 }
