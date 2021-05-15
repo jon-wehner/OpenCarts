@@ -53,8 +53,9 @@ router.post(
   }),
 );
 
+// make a new reservation
 router.post(
-  '/:id(\\d+)/new',
+  '/new',
   asyncHandler(async (req, res) => {
     const {
       dateTime,
@@ -70,6 +71,22 @@ router.post(
       cartId,
     });
     res.json(newRes);
+  }),
+);
+
+router.patch(
+  '/:id(\\d+)',
+  asyncHandler(async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    const {
+      dateTime,
+      partySize,
+    } = req.body;
+    const reservation = await Reservation.findByPk(id);
+    reservation.dateTime = dateTime;
+    reservation.partySize = partySize;
+    await reservation.save();
+    res.json(reservation);
   }),
 );
 
