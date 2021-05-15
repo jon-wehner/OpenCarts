@@ -1,14 +1,14 @@
 import { fetch } from './csrf';
 
 const SET_TIMESLOTS = 'reservations/set_timeslots';
-const SET_USER_RESERVATIONS = 'reservations/set_user_reservations';
+const SET_USER_FUTURE_RESERVATIONS = 'reservations/set_user_reservations';
 
 const setAvilableTimeslots = (availableTimeslots) => ({
   type: SET_TIMESLOTS,
   payload: availableTimeslots,
 });
 const setUserReservations = (reservations) => ({
-  type: SET_USER_RESERVATIONS,
+  type: SET_USER_FUTURE_RESERVATIONS,
   payload: reservations,
 });
 
@@ -32,8 +32,8 @@ export const makeReservation = (newReservation) => async (dispatch) => {
   // TODO: Complete reservation process
 };
 
-export const getUserReservations = (userId) => async (dispatch) => {
-  const url = `/api/users/${userId}/reservations`;
+export const getUserFutureReservations = (userId) => async (dispatch) => {
+  const url = `/api/users/${userId}/reservations/future`;
   const reservations = await fetch(url);
   if (reservations.data.length) {
     dispatch(setUserReservations(reservations.data));
@@ -42,7 +42,8 @@ export const getUserReservations = (userId) => async (dispatch) => {
 
 const initialState = {
   availableTimeslots: null,
-  userReservations: null,
+  userFutureReservations: null,
+  userPreviousReservations: null,
 };
 export default function reservationsReducer(state = initialState, action) {
   switch (action.type) {
@@ -53,10 +54,10 @@ export default function reservationsReducer(state = initialState, action) {
       };
       return newState;
     }
-    case SET_USER_RESERVATIONS: {
+    case SET_USER_FUTURE_RESERVATIONS: {
       const newState = {
         ...state,
-        userReservations: action.payload,
+        userFutureReservations: action.payload,
       };
       return newState;
     }

@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { restoreUser } from '../../store/session';
-import { getUserReservations } from '../../store/reservations';
+import { getUserFutureReservations } from '../../store/reservations';
 import ProfileReservation from './ProfileReservation';
 
 export default function UserProfile() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const reservations = useSelector((state) => state.reservations.userReservations);
+  const futureReservations = useSelector((state) => state.reservations.userFutureReservations);
 
   useEffect(() => {
     dispatch(restoreUser());
@@ -15,7 +15,7 @@ export default function UserProfile() {
 
   useEffect(() => {
     if (user) {
-      dispatch(getUserReservations(user.id));
+      dispatch(getUserFutureReservations(user.id));
     }
   }, [user]);
 
@@ -31,8 +31,8 @@ export default function UserProfile() {
       </h2>
       <section>
         <h2>Your Upcoming Reservations</h2>
-        { reservations
-        && reservations.map((reservation) => <ProfileReservation reservation={reservation} />)}
+        { futureReservations
+        && futureReservations.map((res) => <ProfileReservation reservation={res} />)}
       </section>
     </>
   );
