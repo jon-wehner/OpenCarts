@@ -26,10 +26,14 @@ export default function UserProfile() {
     <>
       <h2>
         Hello,
+        <span>{ ' ' }</span>
         {user.username}
       </h2>
-      { reservations
-      && reservations.map((reservation) => <ProfileReservation reservation={reservation} />)}
+      <section>
+        <h2>Your Upcoming Reservations</h2>
+        { reservations
+        && reservations.map((reservation) => <ProfileReservation reservation={reservation} />)}
+      </section>
     </>
   );
 }
