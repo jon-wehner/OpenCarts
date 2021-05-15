@@ -40,6 +40,18 @@ export const getUserFutureReservations = (userId) => async (dispatch) => {
   }
 };
 
+export const editReservation = (reservationId, dateTime, partySize, userId) => async (dispatch) => {
+  const url = `/api/reservations/${reservationId}`;
+  const options = {
+    method: 'PATCH',
+    body: JSON.stringify(dateTime, partySize, userId),
+  };
+  const userReservations = await fetch(url, options);
+  if (userReservations.data) {
+    dispatch(setUserReservations(userReservations.data));
+  }
+};
+
 const initialState = {
   availableTimeslots: null,
   userFutureReservations: null,

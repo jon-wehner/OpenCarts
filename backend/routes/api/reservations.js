@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { Op } = require('sequelize');
 
 const router = express.Router();
-const { Reservation } = require('../../db/models');
+const { Reservation, Cart } = require('../../db/models');
 
 router.post(
   '/:id(\\d+)/available',
@@ -81,12 +81,22 @@ router.patch(
     const {
       dateTime,
       partySize,
+      userId,
     } = req.body;
     const reservation = await Reservation.findByPk(id);
     reservation.dateTime = dateTime;
     reservation.partySize = partySize;
     await reservation.save();
-    res.json(reservation);
+    const reservations = await Reservation.findAll({
+      where: {
+        userId,
+        dateTime: {
+          [Op.gte]: Date.now(),
+        },
+      },
+      include: [Cart],
+    });
+    res.json(reservations);
   }),
 );
 
