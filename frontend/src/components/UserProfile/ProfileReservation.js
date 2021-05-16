@@ -1,16 +1,26 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Modal } from '../../Context/Modal';
 import CartImage from '../CartDetailElements/CartImage';
+import { cancelReservation } from '../../store/reservations';
 import ReservationForm from '../ReservationForm';
 
 export default function ProfileReservation({ reservation }) {
+  const dispatch = useDispatch();
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showCancelModel, setShowCancelModal] = useState(false);
   const date = new Date(reservation.dateTime);
   const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   const timeValue = date.toLocaleTimeString('en-US', {
     hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
   });
   const cart = reservation.Cart;
+
+  const handleCancel = async (e) => {
+    e.preventDefault();
+    setShowCancelModal(false);
+    await dispatch(cancelReservation(reservation.id, reservation.userId));
+  };
   return (
     <div className="profileReservation">
       <h3>{cart.name}</h3>
@@ -36,6 +46,15 @@ export default function ProfileReservation({ reservation }) {
             edit
             id={reservation.id}
           />
+        </Modal>
+      )}
+      <button type="button" onClick={() => setShowCancelModal(true)}>Cancel</button>
+      {showCancelModel && (
+        <Modal onClose={() => setShowCancelModal(false)}>
+          <form className="cancelForm" onSubmit={handleCancel}>
+            Are you sure you want to cancel this reservation?
+            <button type="submit">Confirm Cancellation</button>
+          </form>
         </Modal>
       )}
     </div>

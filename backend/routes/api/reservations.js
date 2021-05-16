@@ -99,5 +99,24 @@ router.patch(
     res.json(reservations);
   }),
 );
+router.delete(
+  '/:id(\\d+)',
+  asyncHandler(async (req, res) => {
+    const reservationId = parseInt(req.params.id, 10);
+    const { userId } = req.body;
+    const reservation = await Reservation.findByPk(reservationId);
+    await reservation.destroy();
+    const reservations = await Reservation.findAll({
+      where: {
+        userId,
+        dateTime: {
+          [Op.gte]: Date.now(),
+        },
+      },
+      include: [Cart],
+    });
+    res.json(reservations);
+  }),
+);
 
 module.exports = router;
