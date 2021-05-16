@@ -44,7 +44,7 @@ export const editReservation = (reservationId, dateTime, partySize, userId) => a
   const url = `/api/reservations/${reservationId}`;
   const options = {
     method: 'PATCH',
-    body: JSON.stringify(dateTime, partySize, userId),
+    body: JSON.stringify({ dateTime, partySize, userId }),
   };
   const userReservations = await fetch(url, options);
   if (userReservations.data) {

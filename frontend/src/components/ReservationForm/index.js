@@ -1,15 +1,18 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { editReservation, getAvailReservationsByCart, makeReservation } from '../../store/reservations';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { editReservation, makeReservation } from '../../store/reservations';
 import TimeSelect from '../BookingArea/TimeSelect';
 import tzOffsetToString from '../../utils/utils';
 import './ReservationForm.css';
 
 export default function ReservationForm({
   cart, userId,
-  initialDateTime, initialPartySize, initialTime, edit,
+  initialDateTime, initialPartySize, initialTime, edit, id,
 }) {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const sessionUser = useSelector((state) => state.session.user);
   const [date, setDate] = useState(initialDateTime.slice(0, 10));
   const [time, setTime] = useState(initialTime);
   const [partySize, setPartySize] = useState(initialPartySize);
@@ -26,11 +29,11 @@ export default function ReservationForm({
       dateTime,
     };
     if (edit) {
-      dispatch(editReservation(newRes));
+      dispatch(editReservation(id, dateTime, partySize, userId));
     } else {
       dispatch(makeReservation(newRes));
     }
-    dispatch(getAvailReservationsByCart(cart.id, dateTime));
+    history.push('/profile');
   };
 
   return (
@@ -53,7 +56,7 @@ export default function ReservationForm({
         <option value="9">9 People</option>
         <option value="10">10 People</option>
       </select>
-      <button type="submit">Make Reservation</button>
+      {sessionUser ? <button type="submit">Reserve</button> : <button type="button" id="noButton">Please log in to reserve</button>}
     </form>
   );
 }

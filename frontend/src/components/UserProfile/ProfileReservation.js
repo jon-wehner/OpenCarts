@@ -33,6 +33,8 @@ export default function ProfileReservation({ reservation }) {
             initialDateTime={reservation.dateTime}
             initialPartySize={reservation.partySize}
             initialTime={timeValue}
+            edit
+            id={reservation.id}
           />
         </Modal>
       )}

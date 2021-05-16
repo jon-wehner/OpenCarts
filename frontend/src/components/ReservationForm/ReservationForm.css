@@ -23,3 +23,10 @@
   background-color: var(--button-green-hover);
   
 }
+#noButton {
+  background-color: var(--button-green-hover);
+  cursor: not-allowed;
+}
+#noButton:active {
+  transform: none;
+}
