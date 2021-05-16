@@ -1,83 +1,79 @@
-import { fetch } from './csrf'
+import { fetch } from './csrf';
+
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
-const setUser = (user) => {
-  return {
-    type: SET_USER,
-    user,
-  };
-};
+const setUser = (user) => ({
+  type: SET_USER,
+  user,
+});
 
-const removeUser = () => {
-  return {
-    type: REMOVE_USER,
-  };
-};
+const removeUser = () => ({
+  type: REMOVE_USER,
+});
 
-
-export const loginUser = (user) => async dispatch => {
+export const loginUser = (user) => async (dispatch) => {
   const options = {
     method: 'POST',
-    body: JSON.stringify(user)
-  }
+    body: JSON.stringify(user),
+  };
   const res = await fetch('/api/session', options);
   dispatch(setUser(res.data.user));
 };
 
-export const restoreUser = () => async dispatch => {
-  const res = await fetch('/api/session')
+export const restoreUser = () => async (dispatch) => {
+  const res = await fetch('/api/session');
   if (res.data.user) {
-    dispatch(setUser(res.data.user))
+    dispatch(setUser(res.data.user));
   }
 };
 
-export const signupUser = (user) => async dispatch => {
+export const signupUser = (user) => async (dispatch) => {
   const { username, email, password } = user;
-  const options =  {
+  const options = {
     method: 'POST',
     body: JSON.stringify({
       username,
       email,
-      password
+      password,
     }),
   };
   try {
-    const res = await fetch('api/users', options)
+    const res = await fetch('api/users', options);
     dispatch(setUser(res.data.user));
-    return res.data
+    return res.data;
   } catch (err) {
-    return err.data
+    return err.data;
   }
 };
 
-export const logoutUser = () => async dispatch => {
-  const res = await fetch('/api/session', {
-    method: 'DELETE'});
+export const logoutUser = () => async (dispatch) => {
+  const res = await fetch('/api/session', { method: 'DELETE' });
   dispatch(removeUser());
-  return res
-}
-
+  return res;
+};
 
 const initialState = {
-  user: null
-}
+  user: null,
+};
 
-export default function sessionReducer (state = initialState, action) {
-  switch(action.type) {
+export default function sessionReducer(state = initialState, action) {
+  switch (action.type) {
     case SET_USER: {
-      const newState = {...state,
-      user: action.user
-      }
+      const newState = {
+        ...state,
+        user: action.user,
+      };
       return newState;
     }
     case REMOVE_USER: {
-      const newState = {...state,
-        user: null
+      const newState = {
+        ...state,
+        user: null,
       };
-      return newState
+      return newState;
     }
     default:
-      return state
+      return state;
   }
 }

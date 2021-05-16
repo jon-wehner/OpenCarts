@@ -32,7 +32,7 @@ export default function UserProfile() {
       <section>
         <h2>Your Upcoming Reservations</h2>
         { futureReservations
-        && futureReservations.map((res) => <ProfileReservation reservation={res} />)}
+        && futureReservations.map((res) => <ProfileReservation key={res.id} reservation={res} />)}
       </section>
     </>
   );

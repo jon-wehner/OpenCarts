@@ -28,7 +28,7 @@ export const makeReservation = (newReservation) => async (dispatch) => {
     method: 'POST',
     body: JSON.stringify(newReservation),
   };
-  const res = await fetch(`/api/reservations/${newReservation.cartId}/new`, options);
+  const res = await fetch('/api/reservations/new', options);
   // TODO: Complete reservation process
 };
 
@@ -37,6 +37,30 @@ export const getUserFutureReservations = (userId) => async (dispatch) => {
   const reservations = await fetch(url);
   if (reservations.data.length) {
     dispatch(setUserReservations(reservations.data));
+  }
+};
+
+export const editReservation = (reservationId, dateTime, partySize, userId) => async (dispatch) => {
+  const url = `/api/reservations/${reservationId}`;
+  const options = {
+    method: 'PATCH',
+    body: JSON.stringify({ dateTime, partySize, userId }),
+  };
+  const userReservations = await fetch(url, options);
+  if (userReservations.data) {
+    dispatch(setUserReservations(userReservations.data));
+  }
+};
+
+export const cancelReservation = (reservationId, userId) => async (dispatch) => {
+  const url = `/api/reservations/${reservationId}`;
+  const options = {
+    method: 'DELETE',
+    body: JSON.stringify({ userId }),
+  };
+  const userReservations = await fetch(url, options);
+  if (userReservations.data) {
+    dispatch(setUserReservations(userReservations.data));
   }
 };
 

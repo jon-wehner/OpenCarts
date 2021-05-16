@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { Op } = require('sequelize');
 
 const router = express.Router();
-const { Reservation } = require('../../db/models');
+const { Reservation, Cart } = require('../../db/models');
 
 router.post(
   '/:id(\\d+)/available',
@@ -53,8 +53,9 @@ router.post(
   }),
 );
 
+// make a new reservation
 router.post(
-  '/:id(\\d+)/new',
+  '/new',
   asyncHandler(async (req, res) => {
     const {
       dateTime,
@@ -70,6 +71,51 @@ router.post(
       cartId,
     });
     res.json(newRes);
+  }),
+);
+
+router.patch(
+  '/:id(\\d+)',
+  asyncHandler(async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    const {
+      dateTime,
+      partySize,
+      userId,
+    } = req.body;
+    const reservation = await Reservation.findByPk(id);
+    reservation.dateTime = dateTime;
+    reservation.partySize = partySize;
+    await reservation.save();
+    const reservations = await Reservation.findAll({
+      where: {
+        userId,
+        dateTime: {
+          [Op.gte]: Date.now(),
+        },
+      },
+      include: [Cart],
+    });
+    res.json(reservations);
+  }),
+);
+router.delete(
+  '/:id(\\d+)',
+  asyncHandler(async (req, res) => {
+    const reservationId = parseInt(req.params.id, 10);
+    const { userId } = req.body;
+    const reservation = await Reservation.findByPk(reservationId);
+    await reservation.destroy();
+    const reservations = await Reservation.findAll({
+      where: {
+        userId,
+        dateTime: {
+          [Op.gte]: Date.now(),
+        },
+      },
+      include: [Cart],
+    });
+    res.json(reservations);
   }),
 );
 

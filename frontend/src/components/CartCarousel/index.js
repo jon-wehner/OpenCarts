@@ -1,45 +1,42 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getAllCarts } from '../../store/carts'
-import CartDetail from './CartDetail'
-import './CartCarousel.css'
+import { faArrowAltCircleRight, faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight, faArrowAltCircleLeft} from '@fortawesome/free-regular-svg-icons'
+import { getAllCarts } from '../../store/carts';
+import CartDetail from './CartDetail';
+import './CartCarousel.css';
 
-export default function CartCarousel () {
+export default function CartCarousel() {
   const dispatch = useDispatch();
-  const carts = useSelector(state => state.carts.list);
+  const carts = useSelector((state) => state.carts.list);
   const [prev, setPrev] = useState(false);
   const [curr, setCurr] = useState(0);
   const [next, setNext] = useState(4);
 
   useEffect(() => {
     dispatch(getAllCarts());
-  },[dispatch]);
-
+  }, [dispatch]);
 
   const loadNext = () => {
-    const lastIdx = carts.length - 1
-    setPrev(curr)
-    setCurr(next)
+    const lastIdx = carts.length - 1;
+    setPrev(curr);
+    setCurr(next);
     if (next + 4 > lastIdx) {
-      setNext(false)
+      setNext(false);
+    } else {
+      setNext(next + 4);
     }
-    else {
-      setNext(next+4)
-    }
-  }
+  };
 
   const loadPrev = () => {
-    setNext(curr)
-    setCurr(prev)
-    if (prev -4 < 0) {
-      setPrev(false)
+    setNext(curr);
+    setCurr(prev);
+    if (prev - 4 < 0) {
+      setPrev(false);
+    } else {
+      setPrev(prev - 4);
     }
-    else {
-      setPrev(prev-4)
-    }
-  }
+  };
 
   if (!carts) {
     return null;
@@ -47,14 +44,10 @@ export default function CartCarousel () {
   return (
     <>
       <div className="carousel">
-        {prev !== false && <FontAwesomeIcon className="carousel__arrow" onClick={loadPrev} icon={faArrowAltCircleLeft}/>}
-        {carts.slice(curr, curr + 4).map(cart=> {
-          return <CartDetail key={cart.id} cart={cart} />
-        })}
-        {next !== false && <FontAwesomeIcon className="carousel__arrow" icon={faArrowAltCircleRight} onClick={loadNext}/>}
+        {prev !== false && <FontAwesomeIcon className="carousel__arrow" onClick={loadPrev} icon={faArrowAltCircleLeft} />}
+        {carts.slice(curr, curr + 4).map((cart) => <CartDetail key={cart.id} cart={cart} />)}
+        {next !== false && <FontAwesomeIcon className="carousel__arrow" icon={faArrowAltCircleRight} onClick={loadNext} />}
       </div>
     </>
-  )
+  );
 }
-
-
