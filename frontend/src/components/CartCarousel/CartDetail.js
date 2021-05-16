@@ -1,9 +1,9 @@
-import './CartDetail.css'
+import './CartDetail.css';
 
-export default function CartDetail ({ cart }) {
+export default function CartDetail({ cart }) {
   return (
     <div className="cartDetail">
-      <img className="cartDetail__cartImage" src={cart.imageUrl} alt={cart.name}/>
+      <img className="cartDetail__cartImage" src={cart.imageUrl} alt={cart.name} />
       <h1 className="cartDetail__title">{cart.name}</h1>
       <span className="cartDetail__address">{`${cart.address}, ${cart.city}, ${cart.State.name}`}</span>
       <div className="cartDetail__infoContainer">
@@ -11,5 +11,5 @@ export default function CartDetail ({ cart }) {
         <span className="cartDetail__info cartDetail__price">{'$'.repeat(cart.priceLevel)}</span>
       </div>
     </div>
-  )
+  );
 }

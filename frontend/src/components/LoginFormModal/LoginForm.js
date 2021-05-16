@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
-import './LoginForm.css'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import * as sessionActions from '../../store/session';
+import './LoginForm.css';
 
 const buttonContainerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  width: "80%",
-}
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '80%',
+};
 
 function LoginForm() {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
+  const [credential, setCredential] = useState('');
+  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
@@ -21,24 +21,24 @@ function LoginForm() {
     dispatch(sessionActions.loginUser({ credential, password })).catch(
       (res) => {
         if (res.data && res.data.errors) setErrors(res.data.errors);
-      }
+      },
     );
   };
   const demoLogin = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     dispatch(sessionActions.loginUser({
       credential: 'demo',
-      password: 'password'
+      password: 'password',
     }));
-  }
+  };
   return (
     <form className="loginForm" onSubmit={handleSubmit}>
       <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+        {errors.map((error) => (
+          <li key={error}>{error}</li>
         ))}
       </ul>
-      <label className="loginForm__label">
+      <label className="loginForm__label" htmlFor="credential">
         Username or Email:
         <input
           type="text"
@@ -48,7 +48,7 @@ function LoginForm() {
           required
         />
       </label>
-      <label className="loginForm__label">
+      <label className="loginForm__label" htmlFor="password">
         Password:
         <input
           type="password"
@@ -61,7 +61,7 @@ function LoginForm() {
       <span />
       <div style={buttonContainerStyle}>
         <button className="loginForm__btn" type="submit">Log In</button>
-        <button className="loginForm__btn" onClick={demoLogin}>Demo User</button>
+        <button className="loginForm__btn" type="button" onClick={demoLogin}>Demo User</button>
       </div>
     </form>
   );

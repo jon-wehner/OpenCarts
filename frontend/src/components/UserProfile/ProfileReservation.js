@@ -4,7 +4,7 @@ import CartImage from '../CartDetailElements/CartImage';
 import ReservationForm from '../ReservationForm';
 
 export default function ProfileReservation({ reservation }) {
-  const [showModal, setShowModal] = useState();
+  const [showEditModal, setShowEditModal] = useState(false);
   const date = new Date(reservation.dateTime);
   const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   const timeValue = date.toLocaleTimeString('en-US', {
@@ -24,9 +24,9 @@ export default function ProfileReservation({ reservation }) {
         {reservation.partySize}
         {' guests'}
       </span>
-      <button type="button" onClick={() => setShowModal(true)}>Change</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+      <button type="button" onClick={() => setShowEditModal(true)}>Change</button>
+      {showEditModal && (
+        <Modal onClose={() => setShowEditModal(false)}>
           <ReservationForm
             cart={cart}
             userId={reservation.userId}
