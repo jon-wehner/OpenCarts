@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getAvailReservationsByCart, makeReservation } from '../../store/reservations';
+import { editReservation, getAvailReservationsByCart, makeReservation } from '../../store/reservations';
 import TimeSelect from '../BookingArea/TimeSelect';
 import tzOffsetToString from '../../utils/utils';
 import './ReservationForm.css';
 
 export default function ReservationForm({
   cart, userId,
-  initialDateTime, initialPartySize, initialTime,
+  initialDateTime, initialPartySize, initialTime, edit,
 }) {
   const dispatch = useDispatch();
   const [date, setDate] = useState(initialDateTime.slice(0, 10));
@@ -25,7 +25,11 @@ export default function ReservationForm({
       partySize,
       dateTime,
     };
-    dispatch(makeReservation(newRes));
+    if (edit) {
+      dispatch(editReservation(newRes));
+    } else {
+      dispatch(makeReservation(newRes));
+    }
     dispatch(getAvailReservationsByCart(cart.id, dateTime));
   };
 

@@ -6,6 +6,10 @@ import ReservationForm from '../ReservationForm';
 export default function ProfileReservation({ reservation }) {
   const [showModal, setShowModal] = useState();
   const date = new Date(reservation.dateTime);
+  const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  const timeValue = date.toLocaleTimeString('en-US', {
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+  });
   const cart = reservation.Cart;
   return (
     <div className="profileReservation">
@@ -14,7 +18,7 @@ export default function ProfileReservation({ reservation }) {
       <div>
         <span>{date.toLocaleDateString()}</span>
         <span> </span>
-        <span>{date.toLocaleTimeString('en-US')}</span>
+        <span>{time}</span>
       </div>
       <span>
         {reservation.partySize}
@@ -25,8 +29,10 @@ export default function ProfileReservation({ reservation }) {
         <Modal onClose={() => setShowModal(false)}>
           <ReservationForm
             cart={cart}
-            initialDateTime={date}
-            
+            userId={reservation.userId}
+            initialDateTime={reservation.dateTime}
+            initialPartySize={reservation.partySize}
+            initialTime={timeValue}
           />
         </Modal>
       )}
