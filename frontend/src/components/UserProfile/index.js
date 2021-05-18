@@ -30,7 +30,7 @@ export default function UserProfile() {
         {user.username}
       </h2>
       <section>
-        <h2>Your Upcoming Reservations</h2>
+        <h2>{futureReservations ? 'Your Upcoming Reservations' : 'No Upcoming Reservations'}</h2>
         {futureReservations &&
           futureReservations.map((res) => <ProfileReservation key={res.id} reservation={res} />)}
       </section>
