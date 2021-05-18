@@ -1,0 +1,48 @@
+.profileReservation {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  align-items: stretch;
+  margin-left: 5rem;
+}
+.profileReservation h3 {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.profileReservation img {
+}
+.profileReservation div span,
+.profileReservation span {
+  font-family: 'Lato', sans-serif;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+.profileReservation button {
+  width: 15rem;
+  height: 3rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 0.6rem;
+  background-color: var(--button-green);
+  font-weight: 500;
+  cursor: pointer;
+}
+.cancelForm {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 2.5rem;
+}
+.cancelForm button {
+  margin-top: 1rem;
+  width: 50%;
+  align-self: center;
+  background-color: red;
+  border: none;
+  border-radius: 0.6rem;
+  color: whitesmoke;
+  font-weight: 700;
+  cursor: pointer;
+}
