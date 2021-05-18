@@ -4,6 +4,7 @@ import { Modal } from '../../Context/Modal';
 import CartImage from '../CartDetailElements/CartImage';
 import { cancelReservation } from '../../store/reservations';
 import ReservationForm from '../ReservationForm';
+import './ProfileReservation.css';
 
 export default function ProfileReservation({ reservation }) {
   const dispatch = useDispatch();
@@ -12,7 +13,10 @@ export default function ProfileReservation({ reservation }) {
   const date = new Date(reservation.dateTime);
   const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   const timeValue = date.toLocaleTimeString('en-US', {
-    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
   });
   const cart = reservation.Cart;
 
@@ -34,7 +38,9 @@ export default function ProfileReservation({ reservation }) {
         {reservation.partySize}
         {' guests'}
       </span>
-      <button type="button" onClick={() => setShowEditModal(true)}>Change</button>
+      <button type="button" onClick={() => setShowEditModal(true)}>
+        Change
+      </button>
       {showEditModal && (
         <Modal onClose={() => setShowEditModal(false)}>
           <ReservationForm
@@ -48,7 +54,9 @@ export default function ProfileReservation({ reservation }) {
           />
         </Modal>
       )}
-      <button type="button" onClick={() => setShowCancelModal(true)}>Cancel</button>
+      <button type="button" onClick={() => setShowCancelModal(true)}>
+        Cancel
+      </button>
       {showCancelModel && (
         <Modal onClose={() => setShowCancelModal(false)}>
           <form className="cancelForm" onSubmit={handleCancel}>

@@ -18,7 +18,7 @@ export const getAvailReservationsByCart = (cartId, dateTime) => async (dispatch)
     body: JSON.stringify({ dateTime }),
   };
   const res = await fetch(`/api/reservations/${cartId}/available`, options);
-  const pivot = (res.data.length / 2);
+  const pivot = res.data.length / 2;
   const timesToDisplay = res.data.slice(pivot - 2, pivot + 3);
   dispatch(setAvilableTimeslots(timesToDisplay));
 };
@@ -35,7 +35,8 @@ export const makeReservation = (newReservation) => async (dispatch) => {
 export const getUserFutureReservations = (userId) => async (dispatch) => {
   const url = `/api/users/${userId}/reservations/future`;
   const reservations = await fetch(url);
-  if (reservations.data.length) {
+  console.log(reservations);
+  if (reservations.data) {
     dispatch(setUserReservations(reservations.data));
   }
 };

@@ -6,17 +6,17 @@
 
   /* Text Colors */
   --text-gray: #1c1c1c;
-  --text-gray-shadow: #FFF;
+  --text-gray-shadow: #fff;
   --text-black: #2d333f;
 
-  --border-lightgray: #E4E4E4;
+  --border-lightgray: #e4e4e4;
 
   /* Button Colors */
-  --button-green: #37FF8B;
+  --button-green: #37ff8b;
   --button-green-hover: #7eedad;
 }
 * {
-  font-family: "Lato", "sans-serif";
+  font-family: 'Lato', 'sans-serif';
 }
 html {
   font-size: 62.5%;
@@ -28,10 +28,11 @@ body {
 }
 .wrapper {
   background-color: white;
-  width:90%;
+  width: 90%;
   margin: 0 auto;
   min-height: 400px;
+  padding: 1rem;
 }
 button:active {
-  transform: translateY(.2rem);
+  transform: translateY(0.2rem);
 }

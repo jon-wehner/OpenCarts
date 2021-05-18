@@ -11,13 +11,13 @@ export default function UserProfile() {
 
   useEffect(() => {
     dispatch(restoreUser());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (user) {
       dispatch(getUserFutureReservations(user.id));
     }
-  }, [user]);
+  }, [dispatch, user]);
 
   if (!user) {
     return null;
@@ -26,13 +26,13 @@ export default function UserProfile() {
     <>
       <h2>
         Hello,
-        <span>{ ' ' }</span>
+        <span> </span>
         {user.username}
       </h2>
       <section>
-        <h2>Your Upcoming Reservations</h2>
-        { futureReservations
-        && futureReservations.map((res) => <ProfileReservation key={res.id} reservation={res} />)}
+        <h2>{futureReservations ? 'Your Upcoming Reservations' : 'No Upcoming Reservations'}</h2>
+        {futureReservations &&
+          futureReservations.map((res) => <ProfileReservation key={res.id} reservation={res} />)}
       </section>
     </>
   );
