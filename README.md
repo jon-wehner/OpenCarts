@@ -29,9 +29,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/jon-wehner/opencarts">
+  <!-- <a href="https://github.com/jon-wehner/opencarts">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  </a> -->
 
   <h3 align="center">OpenCarts</h3>
 
@@ -79,7 +79,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
 ### Built With
 
@@ -91,11 +91,11 @@
 
 <!-- USAGE EXAMPLES -->
 
-## Usage
+<!-- ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Wiki](https://github.com/jon-wehner/OpenCarts/wiki)_
+_For more examples, please refer to the [Wiki](https://github.com/jon-wehner/OpenCarts/wiki)_ -->
 
 <!-- ROADMAP -->
 
