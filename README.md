@@ -87,9 +87,9 @@ Here's a blank template to get started:
 
 ### Built With
 
-- []()
-- []()
-- []()
+- React[]()
+- Express[]()
+- postgreSQL[]()
 
 <!-- GETTING STARTED -->
 
@@ -99,7 +99,7 @@ Here's a blank template to get started:
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [Wiki](https://github.com/jon-wehner/OpenCarts/wiki)_
 
 <!-- ROADMAP -->
 
@@ -138,15 +138,15 @@ Project Link: [https://github.com/jon-wehner/opencarts](https://github.com/jon-w
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/jon-wehner/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/jon-wehner/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/jon-wehner/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/jon-wehner/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/jon-wehner/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/jon-wehner/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/jon-wehner/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/jon-wehner/repo/issues
-[license-shield]: https://img.shields.io/github/license/jon-wehner/repo.svg?style=for-the-badge
-[license-url]: https://github.com/jon-wehner/repo/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/jon-wehner/opencarts.svg?style=for-the-badge
+[contributors-url]: https://github.com/jon-wehner/opencarts/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/jon-wehner/opencarts.svg?style=for-the-badge
+[forks-url]: https://github.com/jon-wehner/opencarts/network/members
+[stars-shield]: https://img.shields.io/github/stars/jon-wehner/opencarts.svg?style=for-the-badge
+[stars-url]: https://github.com/jon-wehner/opencarts/stargazers
+[issues-shield]: https://img.shields.io/github/issues/jon-wehner/opencarts.svg?style=for-the-badge
+[issues-url]: https://github.com/jon-wehner/opencarts/issues
+[license-shield]: https://img.shields.io/github/license/jon-wehner/opencarts.svg?style=for-the-badge
+[license-url]: https://github.com/jon-wehner/opencarts/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/jon-wehner
+[linkedin-url]: https://linkedin.com/in/jonathan-wehner
