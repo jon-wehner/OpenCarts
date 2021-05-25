@@ -36,12 +36,12 @@
   <h3 align="center">OpenCarts</h3>
 
   <p align="center">
-    project_description
+    OpenCarts is an Express/React app for users to reserve times at popular food carts and skip the line.
     <br />
-    <a href="https://github.com/jon-wehner/opencarts"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/jon-wehner/OpenCarts/wiki"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/jon-wehner/opencarts">View Demo</a>
+    <a href="https://opencarts.herokuapp.com/">View Demo</a>
     ·
     <a href="https://github.com/jon-wehner/opencarts/issues">Report Bug</a>
     ·
@@ -80,10 +80,6 @@
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`jon-wehner`, `opencarts`, `twitter_handle`, `jonjwehner@gmail.com`, `OpenCarts`, `project_description`
 
 ### Built With
 
