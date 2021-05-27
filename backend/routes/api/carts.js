@@ -11,7 +11,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const carts = await Cart.findAll({ include: [State, Cuisine] });
     res.json(carts);
-  }),
+  })
 );
 
 // search for carts
@@ -22,7 +22,7 @@ router.post(
     const cuisines = await Cuisine.findAll({
       where: {
         name: {
-          [Op.iLike]: `%${query}%`,
+          [Op.iLike]: `%${query.trim()}%`,
         },
       },
     });
@@ -31,15 +31,15 @@ router.post(
       where: {
         [Op.or]: [
           {
-            name:
-            { [Op.iLike]: `%${query}%` },
+            name: { [Op.iLike]: `%${query}%` },
           },
-          { cuisineId: { [Op.or]: [...cuisineIds] } }],
+          { cuisineId: { [Op.or]: [...cuisineIds] } },
+        ],
       },
       include: [State, Cuisine],
     });
     res.json(carts);
-  }),
+  })
 );
 
 module.exports = router;
