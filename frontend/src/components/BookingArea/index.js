@@ -6,17 +6,17 @@ import './BookingArea.css';
 
 export default function BookingArea() {
   const history = useHistory();
+  const today = new Date().toISOString().slice(0, 10);
   const [query, setQuery] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(today);
   const [time, setTime] = useState('00:00:00');
   const [partySize, setPartySize] = useState(1);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let offset = (new Date().getTimezoneOffset() / 60);
+    let offset = new Date().getTimezoneOffset() / 60;
     offset = tzOffsetToString(offset);
     const dateTime = `${date}T${time}${offset}`;
-
     history.push({
       pathname: '/search',
       search: `?query=${query}?date=${dateTime}?party=${partySize}`,
@@ -28,9 +28,17 @@ export default function BookingArea() {
       <div className="booking-area__formWrapper">
         <h1 className="booking-area__title">Local & Delicious</h1>
         <form className="booking-area__form" onSubmit={handleSubmit}>
-          <input className="reservationSearch__inputs" type="date" onChange={(e) => setDate(e.target.value)} />
+          <input
+            className="reservationSearch__inputs"
+            value={date}
+            type="date"
+            onChange={(e) => setDate(e.target.value)}
+          />
           <TimeSelect onTimeChange={setTime} />
-          <select className="reservationSearch__inputs" onChange={(e) => setPartySize(e.target.value)}>
+          <select
+            className="reservationSearch__inputs"
+            onChange={(e) => setPartySize(e.target.value)}
+          >
             <option value="1">1 Person</option>
             <option value="2">2 People</option>
             <option value="3">3 People</option>
@@ -48,7 +56,9 @@ export default function BookingArea() {
             type="text"
             onChange={(e) => setQuery(e.target.value)}
           />
-          <button className="btn reservationSearch__btn" type="submit">Skip the Line</button>
+          <button className="btn reservationSearch__btn" type="submit">
+            Skip the Line
+          </button>
         </form>
       </div>
     </div>
