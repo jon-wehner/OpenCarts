@@ -4,9 +4,7 @@ import { Modal } from '../../Context/Modal';
 import ReservationForm from '../ReservationForm';
 import './CartDetails.css';
 
-export default function CartReservations({
-  cart, userId, dateTime, partySize,
-}) {
+export default function CartReservations({ cart, userId, dateTime, partySize }) {
   const [resTime, setResTime] = useState('');
   const availableTimeslots = useSelector((state) => state.reservations.availableTimeslots);
   const [showModal, setShowModal] = useState(false);
@@ -20,19 +18,17 @@ export default function CartReservations({
         const date = new Date(time);
         const innerText = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         return (
-          <>
-            <button
-              type="button"
-              className="reservation__btn"
-              key={innerText}
-              onClick={() => {
-                setShowModal(true);
-                setResTime(date.toLocaleTimeString('en-GB'));
-              }}
-            >
-              {innerText}
-            </button>
-          </>
+          <button
+            key={date}
+            type="button"
+            className="reservation__btn"
+            onClick={() => {
+              setShowModal(true);
+              setResTime(date.toLocaleTimeString('en-GB'));
+            }}
+          >
+            {innerText}
+          </button>
         );
       })}
       {showModal && (
