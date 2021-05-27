@@ -28,8 +28,8 @@ export const makeReservation = (newReservation) => async (dispatch) => {
     method: 'POST',
     body: JSON.stringify(newReservation),
   };
-  const res = await fetch('/api/reservations/new', options);
-  // TODO: Complete reservation process
+  await fetch('/api/reservations/new', options);
+  // TODO: Add new reservation to Store
 };
 
 export const getUserFutureReservations = (userId) => async (dispatch) => {
