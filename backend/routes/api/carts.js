@@ -18,11 +18,12 @@ router.get(
 router.post(
   '/',
   asyncHandler(async (req, res) => {
-    const { query } = req.body;
+    let { query } = req.body;
+    query = query.trim();
     const cuisines = await Cuisine.findAll({
       where: {
         name: {
-          [Op.iLike]: `%${query.trim()}%`,
+          [Op.iLike]: `%${query}%`,
         },
       },
     });
