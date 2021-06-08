@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { faArrowAltCircleRight, faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +9,7 @@ import './CartCarousel.css';
 export default function CartCarousel() {
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.carts.list);
+  
   const [prev, setPrev] = useState(false);
   const [curr, setCurr] = useState(0);
   const [next, setNext] = useState(4);
