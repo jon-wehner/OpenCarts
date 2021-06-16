@@ -8,7 +8,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     const cartImages = [];
     const populateImages = async () => {
-      const res = await client.photos.search({ query: 'food carts', per_page: 30 });
+      const res = await client.photos.search({ query: 'food truck', per_page: 30 });
       res.photos.forEach((photo) => cartImages.push(photo.src.medium));
     };
     await populateImages();
@@ -32,6 +32,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Carts', null, { truncate: true });
+    return queryInterface.bulkDelete('Carts', null, {});
   },
 };

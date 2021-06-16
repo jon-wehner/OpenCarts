@@ -8,6 +8,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Cuisines', null, {})
+    return queryInterface.bulkDelete('Cuisines', null, { restartIdentity: true })
   }
 };
