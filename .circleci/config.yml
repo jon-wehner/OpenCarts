@@ -16,12 +16,10 @@ jobs:
     steps: 
       - run: npm heroku postbuild
 
-workflows:
-  test_my_app:
-    jobs:
-      - test  
+workflows:  
   heroku_deploy:
     jobs:
+      - test 
       - build
       - heroku/deploy-via-git:
           requires:
