@@ -12,6 +12,7 @@ jobs:
           override-ci-command: npm install
       - run: npm run test
   build:
+    executor: node/default
     steps: 
       - run: npm run build --prefix frontend
 
