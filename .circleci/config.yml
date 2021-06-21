@@ -16,11 +16,13 @@ workflows:
   test_my_app:
     jobs:
       - test
-  heroku_deploy: 
-    - build
-    - heroku/deploy-via-git:
-        requires:
-          -build
-        filters:
-          branches:
-            only: main
+  workflows:
+    heroku_deploy:
+      jobs:
+        - build
+        - heroku/deploy-via-git:
+            requires:
+              - build # only run deploy-via-git job if the build job has completed
+            filters:
+              branches:
+                only: master # only run deploy-via-git job on master branch
