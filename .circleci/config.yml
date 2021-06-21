@@ -14,7 +14,7 @@ jobs:
   build:
     executor: node/default
     steps: 
-      - run: npm heroku postbuild
+      - run: npm heroku-postbuild
 
 workflows:  
   heroku_deploy:
