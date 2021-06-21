@@ -12,7 +12,8 @@ jobs:
           override-ci-command: npm install
       - run: npm run test
   build:
-    - run: npm run build --prefix frontend
+    steps: 
+      - run: npm run build --prefix frontend
 
 workflows:
   test_my_app:
@@ -23,7 +24,7 @@ workflows:
       - build
       - heroku/deploy-via-git:
           requires:
-            - build # only run deploy-via-git job if the build job has completed
+            - build 
           filters:
             branches:
-              only: master # only run deploy-via-git job on master branch
+              only: main
