@@ -14,7 +14,7 @@ jobs:
   build:
     executor: node/default
     steps: 
-      - run: npm run build --prefix frontend
+      - run: npm heroku postbuild
 
 workflows:
   test_my_app:
