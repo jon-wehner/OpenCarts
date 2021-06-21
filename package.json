@@ -30,7 +30,7 @@
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend",
-    "test": "npm test --prefix frontend"
+    "test": "npm run test --prefix frontend"
   },
   "repository": {
     "type": "git",

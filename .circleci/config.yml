@@ -7,8 +7,10 @@ orbs:
 workflows:
   sample:
     jobs:
-      - node/test:
-          version: '15.1'
-          # This is the node version to use for the `cimg/node` tag
-          # Relevant tags can be found on the CircleCI Developer Hub
-          # https://circleci.com/developer/images/image/cimg/node
+      test:
+        executor: node/default
+          steps:
+            - checkout
+            - node/install-packages: 
+              override-ci-command: npm install        
+            - run: npm test
