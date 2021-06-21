@@ -11,13 +11,12 @@ jobs:
       - node/install-packages:          
           override-ci-command: npm install
       - run: npm run test
-  build:
-    
+  build:    
     executor: node/default
     steps: 
-      - checkout          
+      - checkout
+      - run: npm install    
       - run: npm run heroku-postbuild
-
 workflows:  
   heroku_deploy:
     jobs:
