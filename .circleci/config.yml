@@ -10,7 +10,9 @@ jobs:
       - checkout
       - node/install-packages:          
           override-ci-command: npm install
-      - run: npm run test
+      - run: npm run coverage
+      - store_artifacts:
+          path: coverage
 workflows:  
   heroku_deploy:
     jobs:
