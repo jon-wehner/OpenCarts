@@ -138,6 +138,6 @@ Project Link: [https://github.com/jon-wehner/opencarts](https://github.com/jon-w
 [issues-shield]: https://img.shields.io/github/issues/jon-wehner/opencarts.svg?style=for-the-badge
 [issues-url]: https://github.com/jon-wehner/opencarts/issues
 [license-shield]: https://img.shields.io/github/license/jon-wehner/opencarts.svg?style=for-the-badge
-[license-url]: https://github.com/jon-wehner/opencarts/blob/master/LICENSE.txt
+[license-url]: https://github.com/jon-wehner/opencarts/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/jonathan-wehner
