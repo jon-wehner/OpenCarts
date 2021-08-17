@@ -36,16 +36,12 @@
   <h3 align="center">OpenCarts</h3>
 
   <p align="center">
-    OpenCarts is an Express/React app for users to reserve times at popular food carts and skip the line.
-    <br />
-    <a href="https://github.com/jon-wehner/OpenCarts/wiki"><strong>Explore the docs »</strong></a>
-    <br />
+    A platform for connecting users with local businesses. 
+    <br />    
     <br />
     <a href="https://opencarts.herokuapp.com/">View Demo</a>
     ·
-    <a href="https://github.com/jon-wehner/opencarts/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/jon-wehner/opencarts/issues">Request Feature</a>
+    <a href="https://github.com/jon-wehner/opencarts/issues">Report Bug/Request Features</a>    
   </p>
 </p>
 
@@ -56,36 +52,34 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#technologies">Built With</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
+      <a href="#frontend-technologies">Frontend Technologies</a>    
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <!-- <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li> -->
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
+OpenCarts is a platform for users to connect with local food carts and skip the line. Users can search the platform for local food carts by name, location, or cuisine and make reservations. Users can view past and future reservations, and also leave reviews. The frontend of the application was created in the ReactJS library, and the Express NodeJS framework was utilized for the backend. The application is connected to a postgres databse and deployed to Heroku.
 
-<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
-
-### Built With
-
-- React[]()
-- Express[]()
-- postgreSQL[]()
+### Technologies
+- React
+- Redux
+- NodeJS
+- Express
+- Sequelize
+- postgreSQL
+- CircleCI
 
 <!-- GETTING STARTED -->
 
