@@ -55,9 +55,9 @@
         <li><a href="#technologies">Built With</a></li>
       </ul>
     </li>
-    <li>
+    <!-- <li>
       <a href="#frontend-technologies">Frontend Technologies</a>    
-    </li>
+    </li> -->
     <!-- <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -82,6 +82,7 @@ OpenCarts is a platform for users to connect with local food carts and skip the 
 - CircleCI
 
 <!-- GETTING STARTED -->
+## Frontend Technologies
 
 <!-- USAGE EXAMPLES -->
 
