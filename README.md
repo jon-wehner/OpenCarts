@@ -87,15 +87,11 @@ OpenCarts is a platform for users to connect with local food carts and skip the 
 The OpenCarts frontend was created with the aid of the ReactJS library. The application makes heavy use of React's component tree and virtualDOM features to update components without page refreshes. I created components that could be used in several different areas of the application to streamline development and provide a consistent user experience. 
 ### Redux 
 OpenCarts relies on the redux library for app-wide state management. Redux-thunk is used for making API calls to the backend. As the app needs queries user data, it is put into the store to be made available to all components. This reduces the total API calls that the client needs to make and improves overall application performance.
-<!-- USAGE EXAMPLES -->
 
-<!-- ## Usage
+## Backend Technologies
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Wiki](https://github.com/jon-wehner/OpenCarts/wiki)_ -->
-
-<!-- ROADMAP -->
+### Express
+### PostgreSQL
 
 ## Roadmap
 
