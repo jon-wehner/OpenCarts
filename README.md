@@ -55,10 +55,10 @@
         <li><a href="#technologies">Built With</a></li>
       </ul>
     </li>
-    <!-- <li>
+    <li>
       <a href="#frontend-technologies">Frontend Technologies</a>    
-    </li> -->
-    <!-- <li><a href="#usage">Usage</a></li>
+    </li
+    <li><a href="#Backend-technologies">Backend Technologies</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -87,12 +87,13 @@ OpenCarts is a platform for users to connect with local food carts and skip the 
 The OpenCarts frontend was created with the aid of the ReactJS library. The application makes heavy use of React's component tree and virtualDOM features to update components without page refreshes. I created components that could be used in several different areas of the application to streamline development and provide a consistent user experience. 
 ### Redux 
 OpenCarts relies on the redux library for app-wide state management. Redux-thunk is used for making API calls to the backend. As the app needs queries user data, it is put into the store to be made available to all components. This reduces the total API calls that the client needs to make and improves overall application performance.
-<!--  
-## Backend Technologies
 
+## Backend Technologies
+The backend of the application consists of a RESTful API created with the Express framework. The Sequelize ORM was utilized to interface with a PostgreSQL database. 
 ### Express
+Express is a minimalist web framework for Node.js. A large amount of middleware packages exist that developers can use to streamline API development. It is also possible to create custom middleware, such as a middleware function to handle async calls. Express only has a basic set of features out of the box, and developers can include middleware to improve the functionality of their application. This results in a backend that has only the features required, and nothing extra. 
 ### PostgreSQL
--->
+
 ## Roadmap
 
 See the [open issues](https://github.com/jon-wehner/opencarts/issues) for a list of proposed features (and known issues).
