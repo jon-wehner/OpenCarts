@@ -93,7 +93,7 @@ The backend of the application consists of a RESTful API created with the Expres
 ### Express
 Express is a minimalist web framework for Node.js. A large amount of middleware packages exist that developers can use to streamline API development. It is also possible to create custom middleware, such as a middleware function to handle async calls. Express only has a basic set of features out of the box, and developers can include middleware to improve the functionality of their application. This results in a backend that has only the features required, and nothing extra. 
 ### PostgreSQL
-
+OpenCarts uses the PostgreSQL database to store application data. Postgres is an open-source and highly regarded relational database system. The system is very well document and has an active development community. One reason that I chose to use a relational database over a NoSQL databse is that I felt it was right for the scale of the application, and the enforced schema validation helps reduce data anamolies.
 ## Roadmap
 
 See the [open issues](https://github.com/jon-wehner/opencarts/issues) for a list of proposed features (and known issues).
