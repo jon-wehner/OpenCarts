@@ -57,7 +57,7 @@
     </li>
     <li>
       <a href="#frontend-technologies">Frontend Technologies</a>    
-    </li
+    </li>
     <li><a href="#Backend-technologies">Backend Technologies</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
