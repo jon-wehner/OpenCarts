@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import TimeSelect from './TimeSelect';
 import tzOffsetToString from '../../utils/utils';
 import './BookingArea.css';
 
 export default function BookingArea() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const today = new Date().toISOString().slice(0, 10);
   const [query, setQuery] = useState('');
   const [date, setDate] = useState(today);
@@ -17,10 +17,8 @@ export default function BookingArea() {
     let offset = new Date().getTimezoneOffset() / 60;
     offset = tzOffsetToString(offset);
     const dateTime = `${date}T${time}${offset}`;
-    history.push({
-      pathname: '/search',
-      search: `?query=${query}?date=${dateTime}?party=${partySize}`,
-    });
+    navigate( `/search?query=${query}?date=${dateTime}?party=${partySize}`
+    );
   };
 
   return (
