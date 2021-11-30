@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import * as sessionActions from './store/session';
@@ -19,7 +19,7 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       <div className="wrapper">
-        <Switch>
+        <Routes>
           <Route path="/" exact>
             <BookingArea />
             <CartCarousel />
@@ -30,7 +30,7 @@ function App() {
           <Route path="/profile">
             <UserProfile />
           </Route>
-        </Switch>
+        </Routes>
       </div>
     </>
   );
