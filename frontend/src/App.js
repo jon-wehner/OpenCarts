@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
-import CartCarousel from './components/CartCarousel';
 import BookingArea from './components/BookingArea';
 import SearchResults from './components/SearchResults';
 import UserProfile from './components/UserProfile';
@@ -20,16 +19,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       <div className="wrapper">
         <Routes>
-          <Route path="/" exact>
-            <BookingArea />
-            <CartCarousel />
-          </Route>
-          <Route path="/search">
-            <SearchResults />
-          </Route>
-          <Route path="/profile">
-            <UserProfile />
-          </Route>
+          <Route path="/" element={ <BookingArea />} />
+          <Route path="/search" element={ <SearchResults />} />    
+          <Route path="/profile" element={ <UserProfile />} />
         </Routes>
       </div>
     </>
