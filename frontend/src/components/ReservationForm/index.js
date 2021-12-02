@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { editReservation, makeReservation } from '../../store/reservations';
 import TimeSelect from '../BookingArea/TimeSelect';
 import tzOffsetToString from '../../utils/utils';
@@ -11,7 +11,7 @@ export default function ReservationForm({
   initialDateTime, initialPartySize, initialTime, edit, id,
 }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
   const [date, setDate] = useState(initialDateTime.slice(0, 10));
   const [time, setTime] = useState(initialTime);
@@ -33,7 +33,7 @@ export default function ReservationForm({
     } else {
       dispatch(makeReservation(newRes));
     }
-    history.push('/profile');
+    navigate('/profile');
   };
 
   return (
