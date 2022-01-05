@@ -14,7 +14,7 @@
   border-radius: .3rem;
   display:grid;
   grid-template-columns: 100%;
-  grid-template-rows: 40% 30% 20% 10%;
+  grid-template-rows: 60% 20% 10% 10%;
   padding-bottom: .3rem;
   animation: fadein;
   animation-duration: 2.5s;
