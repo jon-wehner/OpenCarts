@@ -48,7 +48,7 @@ export default function CartCarousel() {
       <div className="carousel">
         {prev !== false && <FontAwesomeIcon className="carousel__arrow" onClick={loadPrev} icon={faArrowAltCircleLeft} />}
         {carts.slice(curr, curr + 4).map((cart) => <CartDetail key={cart.id} cart={cart} />)}
-        {next !== false && <FontAwesomeIcon className="carousel__arrow" icon={faArrowAltCircleRight} onClick={loadNext} />}
+        {next && <FontAwesomeIcon className="carousel__arrow" icon={faArrowAltCircleRight} onClick={loadNext} />}
       </div>
     </>
   );
