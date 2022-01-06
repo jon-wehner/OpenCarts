@@ -59,3 +59,20 @@
   background-color: var(--button-green-hover);
 }
 
+@media screen and (max-width: 900px) {
+  .booking-area {
+    background-position: top;
+  }
+  .booking-area__title {
+    position: absolute;
+    top: 15rem;
+  }
+  .booking-area__form {
+    flex-direction: column;
+    height: 50%;
+    margin-top: 5rem;
+  }
+  .reservationSearch__inputs, .reservationSearch__btn {
+    margin-top: 1rem;
+  }  
+}
