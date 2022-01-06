@@ -1,11 +1,11 @@
 .carousel {
   display: flex;
   width: 90%;
-  overflow-x: hidden;
+  max-width: 1200px;
   margin: 0 auto;
   margin-top: 2rem;
   align-items: center;
-  height: 25rem;
+  height: 32rem;
 }
 .carousel__arrow {
   font-size: 3rem;
@@ -14,4 +14,10 @@
 }
 .carousel__arrow:active{
   transform: translateY(.2rem);
+}
+
+@media screen and (max-width: 1000px) {
+  .carousel {
+    overflow: scroll;
+  }
 }
