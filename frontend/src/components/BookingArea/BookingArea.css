@@ -5,7 +5,7 @@
   background-position: center;
   margin: 0 auto;
   width: 80%;
-  height: 400px;
+  height: 500px;
 }
 .booking-area__form {
   display: flex;
@@ -61,6 +61,7 @@
 
 @media screen and (max-width: 1000px) {
   .booking-area {
+    height: 400px;
     background-position: top;
   }
   .booking-area__title {
