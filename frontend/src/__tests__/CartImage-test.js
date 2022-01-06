@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, render} from '@testing-library/react';
-import CartImage from '../CartImage';
+import CartImage from '../components/CartDetailElements/CartImage';
 
 
 afterEach(cleanup);

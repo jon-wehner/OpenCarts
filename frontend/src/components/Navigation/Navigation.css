@@ -37,9 +37,7 @@
 .nav__icon {
   display: block;
   padding: .25rem;
-  background-color: #9CAFB7;
-  border: 2px #36393B solid;
-  border-radius: 3px;
+  background-color: #9CAFB7;  
   color: #36393B;
 }
 .navbar div {
