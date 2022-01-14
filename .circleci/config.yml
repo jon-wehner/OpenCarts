@@ -14,13 +14,15 @@ jobs:
       - store_artifacts:
           path: coverage
 workflows:  
-  heroku_deploy:
+  test:
     jobs:
       - test:
         filters:
           branches:
-            ignore: main               
+            ignore: main
+  deploy:
+    jobs:
       - heroku/deploy-via-git:
-        filters:
-          branches:
-            only: main
+          filters:
+            branches:
+              only: main
