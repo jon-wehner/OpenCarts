@@ -6,6 +6,7 @@ const router = express.Router();
 const { Reservation, Cart } = require('../../db/models');
 
 router.post(
+  // TODO: This needs another refactor
   '/:id(\\d+)/available',
   asyncHandler(async (req, res) => {
     const cartId = parseInt(req.params.id, 10);
@@ -106,6 +107,10 @@ router.delete(
     const { userId } = req.body;
     const reservation = await Reservation.findByPk(reservationId);
     await reservation.destroy();
+    /* 
+    TODO: This route should not need to return all of a user's reservations to them
+    TODO: Reservation calls should not need to return full cart objects
+    */
     const reservations = await Reservation.findAll({
       where: {
         userId,
