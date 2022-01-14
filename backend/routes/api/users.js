@@ -34,6 +34,7 @@ router.post(
   }),
 );
 // get a user's upcoming reservations
+// TODO: This Route should get all of a user's reservations, divided by present and future
 router.get(
   '/:id(\\d+)/reservations/future',
   asyncHandler(async (req, res) => {

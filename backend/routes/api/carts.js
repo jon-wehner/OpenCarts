@@ -20,6 +20,7 @@ router.post(
   asyncHandler(async (req, res) => {
     let { query } = req.body;
     query = query.trim();
+    // TODO: Investigate cleaner implementations for these queries
     const cuisines = await Cuisine.findAll({
       where: {
         name: {
