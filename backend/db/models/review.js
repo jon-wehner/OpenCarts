@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     cartId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    }
+    },
   }, {});
   Review.associate = function(models) {
     Review.belongsTo(models.Cart, { foreignKey : 'cartId' });
