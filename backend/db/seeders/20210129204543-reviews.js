@@ -6,7 +6,8 @@ module.exports = {
       { review:"LOVE THIS PLACE. THE FOOD ABSOLUTELY SLAPS",
         rating: 5,
         cartId: 1,
-        userId: 1
+        userId: 1,
+        reservationId: 1,
       }
     ])
   },
