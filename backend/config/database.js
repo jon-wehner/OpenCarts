@@ -5,6 +5,7 @@ const username = db.username;
 const password = db.password;
 const database = db.database;
 const host = db.host;
+const uri = db.uri;
 
 module.exports = {
   development: {
@@ -12,6 +13,7 @@ module.exports = {
     password,
     database,
     host,
+    uri,
     dialect: "postgres",
     seederStorage: "sequelize",
   },

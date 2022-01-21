@@ -10,7 +10,7 @@ module.exports = {
      */
     return queryInterface.addColumn(
       'Reviews',
-      'resertvationId',
+      'reservationId',
       {
         type: Sequelize.INTEGER,
         references: { model: 'Reservations', key: 'id'},

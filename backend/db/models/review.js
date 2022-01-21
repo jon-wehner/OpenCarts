@@ -21,10 +21,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    reservationId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {});
   Review.associate = function(models) {
     Review.belongsTo(models.Cart, { foreignKey : 'cartId' });
     Review.belongsTo(models.User, { foreignKey : 'userId' });
+    Review.belongsTo(models.Reservation, { foreignKey : 'reservationId' })
   };
   return Review;
 };
