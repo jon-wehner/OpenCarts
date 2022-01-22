@@ -2,10 +2,12 @@ const config = require('./index');
 
 const db = config.db;
 const uri = db.uri;
+const database = db.database
 
 module.exports = {
   development: {  
     uri,
+    database,
     dialect: "postgres",
     seederStorage: "sequelize",
   },

@@ -3,6 +3,7 @@ module.exports = {
   port: process.env.PORT || 5219,
   db: {
     uri: process.env.DB_CONNECTION_URI,
+    database: process.env.DB_DATABASE,
   },
   jwtConfig: {
     secret: process.env.JWT_SECRET,
