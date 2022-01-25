@@ -13,6 +13,10 @@ export const getReviewsByCart = (cartId) => async (dispatch) => {
   dispatch(loadReviews(res.data, cartId));
 };
 
+export const postReview = (review) => async (dispatch) => {
+  
+};
+
 const initialState = {};
 
 export default function reviewsReducer(state = initialState, action) {
