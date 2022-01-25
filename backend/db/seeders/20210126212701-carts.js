@@ -21,7 +21,7 @@ module.exports = {
       city: faker.address.city(),
       stateId: Math.ceil(Math.random() * 51),
       zipCode: faker.address.zipCode().slice(0, 5),
-      imageUrl: cartImages[Math.ceil(Math.random() * 30)],
+      imageUrl: cartImages[Math.floor(Math.random() * 30)],
     });
     const carts = [];
     for (let i = 0; i < 20; i += 1) {

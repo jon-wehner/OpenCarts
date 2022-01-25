@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { restoreUser } from '../../store/session';
-import { getUserFutureReservations } from '../../store/reservations';
+import { getUserReservations } from '../../store/reservations';
 import ProfileReservation from './ProfileReservation';
 
 export default function UserProfile() {
@@ -28,7 +28,7 @@ export default function UserProfile() {
 
   useEffect(() => {
     if (user) {
-      dispatch(getUserFutureReservations(user.id));
+      dispatch(getUserReservations(user.id));
     }
   }, [dispatch, user]);
 

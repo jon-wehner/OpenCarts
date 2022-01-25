@@ -33,13 +33,12 @@ router.post(
     });
   }),
 );
-// get a user's upcoming reservations
-// TODO: This Route should get all of a user's reservations, divided by present and future
+// get a user's reservations
 router.get(
-  '/:id(\\d+)/reservations/future',
+  '/:id(\\d+)/reservations',
   asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.id, 10);
-    const userReservations = await Reservation.findAll({
+    const futureReservations = await Reservation.findAll({
       where: {
         userId,
         dateTime: {
@@ -48,11 +47,21 @@ router.get(
       },
       include: [Cart],
     });
-    if (userReservations.length) {
-      res.json(userReservations);
-    } else {
-      res.send('No Reservations found for user');
+
+    const pastReservations = await Reservation.findAll({
+      where: {
+        userId,
+        dateTime: {
+          [Op.lte]: Date.now(),
+        },
+      },
+      include: [Cart],
+    });
+    const userReservations = {
+      past: pastReservations,
+      future: futureReservations,
     }
+    return res.json(userReservations);
   }),
 );
 
