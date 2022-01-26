@@ -9,18 +9,20 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          override-ci-command: npm install
+          override-ci-command: "cd frontend && npm install"
       - run: npm run coverage
       - store_artifacts:
           path: coverage
           destination: circleci-docs
   test-backend:
-    executor: node/default
+    docker:  
+      - image: cimg/node:17.4.0
+      - image: cimg/postgres:14.1.0
     steps:
       - checkout      
       - node/install-packages:
           override-ci-command: npm install
-      - run: "cd backend && npm run test"
+      - run: "cd backend && npx dotenx sequelize-cli db:create && npm run test"
 
 workflows:
   test:
