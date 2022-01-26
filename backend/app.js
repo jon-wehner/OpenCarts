@@ -20,17 +20,17 @@ if (!isProduction) {
   // enable cors in development
   app.use(cors());
 }
-if (isProduction) {
-  app.use(
-    csurf({
-      cookie: {
-        secure: isProduction,
-        sameSite: isProduction && 'Lax',
-        httpOnly: true,
-      },
-    }),
-  );
-}
+
+app.use(
+  csurf({
+    cookie: {
+      secure: isProduction,
+      sameSite: isProduction && 'Lax',
+      httpOnly: true,
+    },
+  }),
+);
+
 app.use(helmet({
   contentSecurityPolicy: false,
 }));

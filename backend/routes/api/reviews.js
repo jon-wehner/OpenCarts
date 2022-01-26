@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Review } = require('../../db/models');
+const { Review, Reservation } = require('../../db/models');
 
 const router = express.Router();
 
@@ -21,8 +21,15 @@ router.get(
 // Create a new review
 router.post(
   '/',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res) => {    
+    const { reservationId } = req.body.testReview;
+    const data = req.body.testReview;
+    const review = await Review.create(data)
+    const reservation = await Reservation.findOne({ where: {id: reservationId}});
 
+    await reservation.update({ reviewed: true })
+
+    res.json(review)
   })
 )
 
