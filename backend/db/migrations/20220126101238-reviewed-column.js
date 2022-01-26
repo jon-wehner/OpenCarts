@@ -7,12 +7,13 @@ module.exports = {
       'reviewed',
       {
         type: Sequelize.BOOLEAN,
-        default: false,
+        defaultValue: false,
+        allowNull: false,
       }
     )
   },
 
   async down (queryInterface, Sequelize) {
-    return queryInterface.removeColum('Reservations', 'reviewed')
+    return queryInterface.removeColumn('Reservations', 'reviewed')
   }
 };
