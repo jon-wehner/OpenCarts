@@ -4,17 +4,17 @@ orbs:
   node: circleci/node@4.5
   heroku: circleci/heroku@1.2.6
 jobs:
-  test:
+  test-frontend:
     executor: node/default
     steps:
       - checkout
-      - node/install-packages:          
+      - node/install-packages:
           override-ci-command: npm install
       - run: npm run coverage
       - store_artifacts:
           path: coverage
-workflows:  
-  test:
+workflows:
+  test-frontend:
     jobs:
       - test:
         filters:

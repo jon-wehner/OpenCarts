@@ -4,6 +4,8 @@
   "description": "backend setup for react project",
   "main": "app.js",
   "scripts": {
+    "test": "NODE_ENV=test jest",
+    "pretest": "NODE_ENV=test npx sequeliz-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
     "start": "per-env",
@@ -33,7 +35,9 @@
   },
   "devDependencies": {
     "dotenv-cli": "^4.1.1",
+    "jest": "^27.4.7",
     "nodemon": "^2.0.15",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1",
+    "supertest": "^6.2.2"
   }
 }
