@@ -22,6 +22,9 @@ jobs:
       - checkout      
       - node/install-packages:
           override-ci-command: npm install
+      - run:
+          name: Waiting for Postgres to be ready
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run: "cd backend && npx dotenv sequelize-cli db:create && npm run test"
       - run: npm run coverage
 
