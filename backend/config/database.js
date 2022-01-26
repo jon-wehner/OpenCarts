@@ -6,6 +6,8 @@ const password = db.password;
 const database = db.database;
 const host = db.host;
 const uri = db.uri;
+const testUri = db.testUri;
+const testDatabase = db.testDatabase;
 
 module.exports = {
   development: {  

@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "NODE_ENV=test jest",
-    "pretest": "NODE_ENV=test npx sequeliz-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "pretest": "NODE_ENV=test npm run db:reset",
+    "db:reset": "npx dotenv sequelize-cli db:migrate:undo:all && npx dotenv sequelize-cli db:migrate && npx dotenv sequelize-cli db:seed:all", 
     "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
     "start": "per-env",
