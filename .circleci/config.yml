@@ -18,6 +18,9 @@ jobs:
     docker:  
       - image: cimg/node:17.4.0
       - image: cimg/postgres:14.1
+        environment:
+          POSTGRES_USER: opencarts_app
+          POSTGRES_DB: oc-test
     steps:
       - checkout      
       - node/install-packages:
@@ -25,7 +28,7 @@ jobs:
       - run:
           name: Waiting for Postgres to be ready
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run: "cd backend && npx dotenv sequelize-cli db:create && npm run test"
+      - run: "cd backend && npm run test"
       - run: npm run coverage
 
 workflows:
