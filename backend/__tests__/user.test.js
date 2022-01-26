@@ -9,8 +9,7 @@ describe('test the get user reservations route', () => {
   it("should respond with 200 and a json payload", async () => {
     const response = await supertest(app)
     .get('/api/users/1/reservations')
-    .set('Accept', 'application/json')
-    console.log(response)
+    .set('Accept', 'application/json')    
     expect(response.headers['content-type']).toMatch(/json/);
     expect(response.status).toEqual(200);
   })
