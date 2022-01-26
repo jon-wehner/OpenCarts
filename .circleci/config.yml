@@ -17,6 +17,13 @@ jobs:
   test-backend:
     docker:  
       - image: cimg/node:17.4.0
+        environment:
+          NODE_ENV: test
+          DB_USERNAME: opencarts_app
+          DB_PASSWORD: password
+          DB_HOST: localhost
+          DB_TESTURI: postgres://opencarts_app:password@localhost/oc-test
+          DB_TESTDB: oc-test
       - image: cimg/postgres:14.1
         environment:
           POSTGRES_USER: opencarts_app
