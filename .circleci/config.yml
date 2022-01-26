@@ -13,10 +13,23 @@ jobs:
       - run: npm run coverage
       - store_artifacts:
           path: coverage
+          destination: circleci-docs
+  test-backend:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          override-ci-command: npm install
+      - run: npm run test
+
 workflows:
-  test-frontend:
+  test:
     jobs:
       - test-frontend:
+        filters:
+          branches:
+            ignore: main
+      - test-backend:
         filters:
           branches:
             ignore: main
