@@ -8,7 +8,13 @@ module.exports = {
         cartId: 1,
         userId: 1,
         reviewed: true,
-      }
+      },
+      { dateTime:"2022-01-07T15:30:00-08:00",
+        partySize:3,
+        cartId: 3,
+        userId: 1,
+        reviewed: true,
+      },
     ])
   },
 
