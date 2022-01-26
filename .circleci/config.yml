@@ -18,6 +18,7 @@ jobs:
     executor: node/default
     steps:
       - checkout
+      - run: cd backend
       - node/install-packages:
           override-ci-command: npm install
       - run: npm run test
