@@ -16,7 +16,7 @@ jobs:
 workflows:
   test-frontend:
     jobs:
-      - test:
+      - test-frontend:
         filters:
           branches:
             ignore: main
