@@ -19,11 +19,12 @@ router.get(
 );
 
 // Create a new review
+// req.body fields: review, rating, userId, cartId, reservationId
 router.post(
   '/',
   asyncHandler(async (req, res) => {    
-    const { reservationId } = req.body.testReview;
-    const data = req.body.testReview;
+    const { reservationId } = req.body;
+    const data = req.body;
     const review = await Review.create(data)
     const reservation = await Reservation.findOne({ where: {id: reservationId}});
 

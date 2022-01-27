@@ -26,13 +26,16 @@ describe('test the review post route', () => {
 
   it('should respond with status 200 and the review in json format', async () => {
     const cookie = await getCsrfToken(agent);
+    const {
+      review, rating, userId, cartId, reservationId
+    } = testReview
     const response = await agent
       .post('/api/reviews')
       .set('XSRF-TOKEN', cookie)
       .send({
-        testReview
+        review, rating, userId, cartId, reservationId
       })      
-      .set('Accept', 'application/json') 
+      .set('Accept', 'application/json')       
       
     expect(response.headers['content-type']).toMatch(/json/)
     expect(response.status).toEqual(200);

@@ -9,7 +9,9 @@ export default function ProfileReservation({ reservation }) {
   const cart = reservation.Cart;
   
   const handleSubmit = () => {
-
+    const data = {
+      
+    }
   };
   
   return (
@@ -25,16 +27,17 @@ export default function ProfileReservation({ reservation }) {
         {reservation.partySize}
         {' guests'}
       </span>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Leave a review
-          <input type="text" onChange={(e) => setReview(e.target.value)}>
-          </input>
+      <div>
+        <form onSubmit={handleSubmit} className="reviewForm">
+          <label htmlFor="review">
+            Leave a review            
+          </label>
+          <textarea name="review" type="text" rows="4" onChange={(e) => setReview(e.target.value)} />
           <button>
             Submit Review
           </button>
-        </label>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
