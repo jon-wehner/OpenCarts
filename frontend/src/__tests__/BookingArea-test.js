@@ -1,11 +1,9 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react';
 import { render } from './testUtils';
-import { cleanup, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import BookingArea from '../components/BookingArea'
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-
-afterEach(cleanup);
 
 it('Booking form renders', () => {
   render(

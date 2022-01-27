@@ -10,8 +10,7 @@ export default function ProfileReservation({ reservation }) {
   const date = new Date(reservation.dateTime);
   const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   const cart = reservation.Cart;
-  const userReview = useSelector((state) => state.reviews[cart.id].find(el => el.userId === reservation.userId))
-  console.log(userReview)
+  const cartReviews = useSelector((state) => state.reviews[cart.id])  
   useEffect (() => {
     dispatch(getReviewsByCart(cart.id))
   }, [cart.id, dispatch])
@@ -41,15 +40,17 @@ export default function ProfileReservation({ reservation }) {
         {' guests'}
       </span>
       <div>
-        {reservation.reviewed ? userReview.review : <form onSubmit={handleSubmit} className="reviewForm">
-          <label htmlFor="review">
-            Leave a review            
-          </label>
-          <textarea name="review" type="text" rows="4" onChange={(e) => setReview(e.target.value)} />
-          <button>
-            Submit Review
-          </button>
-        </form>}
+        {reservation.reviewed && cartReviews ? 
+          cartReviews.find(el => el.userId === reservation.userId).review :        
+          <form onSubmit={handleSubmit} className="reviewForm">
+            <label htmlFor="review">
+              Leave a review            
+            </label>
+            <textarea name="review" type="text" rows="4" onChange={(e) => setReview(e.target.value)} />
+            <button>
+              Submit Review
+            </button>
+          </form>}
         
       </div>
     </div>
