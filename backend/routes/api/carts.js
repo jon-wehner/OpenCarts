@@ -10,6 +10,7 @@ router.get(
   '/',
   asyncHandler(async (req, res) => {
     const carts = await Cart.findAll({ include: [State, Cuisine] });
+    carts.sort((a, b) => (a.id - b.id))
     res.json(carts);
   })
 );
@@ -39,7 +40,7 @@ router.post(
         ],
       },
       include: [State, Cuisine],
-    });
+    });    
     res.json(carts);
   })
 );

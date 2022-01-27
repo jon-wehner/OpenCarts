@@ -1,11 +1,9 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react';
 import { render } from './testUtils';
-import { cleanup, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import BookingArea from '../components/BookingArea'
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-
-afterEach(cleanup);
 
 it('Booking form renders', () => {
   render(
@@ -16,6 +14,5 @@ it('Booking form renders', () => {
     </MemoryRouter>)
   const date = new Date();
   const dateString = date.toLocaleDateString('en-CA', {day:'2-digit', year: 'numeric', month: '2-digit' })
-  expect(screen.getByDisplayValue(dateString))
-  // expect(screen.getByTestId('1'))
+  expect(screen.getByDisplayValue(dateString))  
 })

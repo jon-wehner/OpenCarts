@@ -5,15 +5,34 @@ orbs:
   heroku: circleci/heroku@1.2.6
 jobs:
   test:
-    executor: node/default
+    docker:
+      - image: cimg/node:17.4.0
+        environment:
+          NODE_ENV: test
+          DB_USERNAME: opencarts_app
+          DB_PASSWORD: password
+          DB_HOST: localhost
+          DB_TESTURI: postgres://opencarts_app:password@localhost/oc-test
+          DB_TESTDB: oc-test
+      - image: cimg/postgres:14.1
+        environment:
+          POSTGRES_USER: opencarts_app
+          POSTGRES_DB: oc-test
     steps:
       - checkout
-      - node/install-packages:          
+      - node/install-packages:
           override-ci-command: npm install
-      - run: npm run coverage
-      - store_artifacts:
-          path: coverage
-workflows:  
+      - run:
+          name: Waiting for Postgres to be ready
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Run Backend Tests
+          command: 'cd backend && npm run test'
+      - run:
+          name: Run Frontend Tests
+          command: npm run coverage
+
+workflows:
   test:
     jobs:
       - test:
