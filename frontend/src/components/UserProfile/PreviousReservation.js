@@ -1,17 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getReviewsByCart, postReview } from '../../store/reviews';
 import CartImage from '../CartDetailElements/CartImage';
 import './ProfileReservation.css';
 
 export default function ProfileReservation({ reservation }) {
+  const dispatch = useDispatch();
   const [review, setReview] = useState('');
   const date = new Date(reservation.dateTime);
   const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   const cart = reservation.Cart;
-  
-  const handleSubmit = () => {
+  const userReview = useSelector((state) => state.reviews[cart.id].find(el => el.userId === reservation.userId))
+  console.log(userReview)
+  useEffect (() => {
+    dispatch(getReviewsByCart(cart.id))
+  }, [cart.id, dispatch])
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const data = {
-      
+      review, 
+      rating: 4,
+      userId: reservation.userId,
+      cartId: reservation.cartId,
+      reservationId: reservation.id,
     }
+    await dispatch(postReview(data));    
   };
   
   return (
@@ -28,7 +41,7 @@ export default function ProfileReservation({ reservation }) {
         {' guests'}
       </span>
       <div>
-        <form onSubmit={handleSubmit} className="reviewForm">
+        {reservation.reviewed ? userReview.review : <form onSubmit={handleSubmit} className="reviewForm">
           <label htmlFor="review">
             Leave a review            
           </label>
@@ -36,7 +49,8 @@ export default function ProfileReservation({ reservation }) {
           <button>
             Submit Review
           </button>
-        </form>
+        </form>}
+        
       </div>
     </div>
   );

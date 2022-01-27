@@ -16,6 +16,5 @@ it('Booking form renders', () => {
     </MemoryRouter>)
   const date = new Date();
   const dateString = date.toLocaleDateString('en-CA', {day:'2-digit', year: 'numeric', month: '2-digit' })
-  expect(screen.getByDisplayValue(dateString))
-  // expect(screen.getByTestId('1'))
+  expect(screen.getByDisplayValue(dateString))  
 })
