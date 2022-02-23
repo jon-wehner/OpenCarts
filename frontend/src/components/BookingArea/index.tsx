@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TimeSelect from './TimeSelect';
 import tzOffsetToString from '../../utils/utils';
 import CartCarousel from '../CartCarousel';
@@ -11,15 +11,14 @@ export default function BookingArea() {
   const [query, setQuery] = useState('');
   const [date, setDate] = useState(today);
   const [time, setTime] = useState('00:00:00');
-  const [partySize, setPartySize] = useState(1);
+  const [partySize, setPartySize] = useState('0');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let offset = new Date().getTimezoneOffset() / 60;
-    offset = tzOffsetToString(offset);
-    const dateTime = `${date}T${time}${offset}`;
-    navigate( `/search?query=${query}?date=${dateTime}?party=${partySize}`
-    );
+    const offset = new Date().getTimezoneOffset() / 60;
+    const offsetString = tzOffsetToString(offset);
+    const dateTime = `${date}T${time}${offsetString}`;
+    navigate(`/search?query=${query}?date=${dateTime}?party=${partySize}`);
   };
 
   return (
@@ -62,7 +61,7 @@ export default function BookingArea() {
           </form>
         </div>
       </div>
-        <CartCarousel />
+      <CartCarousel />
     </div>
   );
 }

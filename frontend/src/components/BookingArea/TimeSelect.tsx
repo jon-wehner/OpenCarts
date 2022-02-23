@@ -2,7 +2,7 @@ import React from 'react';
 
 interface TimeSelectProps {
   onTimeChange: Function;
-  initialTime: string,
+  initialTime?: string;
 }
 
 export default function TimeSelect({ onTimeChange, initialTime }: TimeSelectProps) {
