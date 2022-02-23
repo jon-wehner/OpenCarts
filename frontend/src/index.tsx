@@ -13,15 +13,6 @@ import { ModalProvider } from './Context/Modal';
 
 const store = configureStore();
 
-if (process.env.NODE_ENV !== 'production') {
-  restoreCSRF();
-
-  window.csrfFetch = fetch;
-  window.store = store;
-  window.sessionActions = sessionActions;
-  window.cartActions = cartActions;
-}
-
 function Root() {
   return (
     <Provider store={store}>

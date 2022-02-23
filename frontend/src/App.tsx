@@ -1,6 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 import BookingArea from './components/BookingArea';
@@ -11,7 +11,11 @@ function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    const restoreAndLoad = async () => {
+      await dispatch(sessionActions.restoreUser());
+      setIsLoaded(true);
+    };
+    restoreAndLoad();
   }, [dispatch]);
 
   return (
@@ -19,9 +23,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       <div className="wrapper">
         <Routes>
-          <Route path="/" element={ <BookingArea />} />
-          <Route path="/search" element={ <SearchResults />} />    
-          <Route path="/profile" element={ <UserProfile />} />
+          <Route path="/" element={<BookingArea />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
       </div>
     </>
