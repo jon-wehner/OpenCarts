@@ -1,8 +1,15 @@
-export default function TimeSelect({ onTimeChange, initialTime }) {
+import React from 'react';
+
+interface TimeSelectProps {
+  onTimeChange: Function;
+  initialTime: string,
+}
+
+export default function TimeSelect({ onTimeChange, initialTime }: TimeSelectProps) {
   const midnight = new Date(2021, 4, 3, 0, 0, 0);
   const increment = 900000;
-  const values = [];
-  const innerTexts = [];
+  const values: string[] = [];
+  const innerTexts: string[] = [];
 
   for (let i = 0; i < 96; i += 1) {
     const newTime = new Date(midnight.getTime() + increment * i);
