@@ -9,14 +9,19 @@ import CartReservations from '../CartDetailElements/CartReservations';
 import CartReviewSnippet from '../CartDetailElements/CartReviewSnippet';
 import { getAvailReservationsByCart } from '../../store/reservations';
 import { getReviewsByCart } from '../../store/reviews';
+import { Cart } from '../../interfaces';
+import { RootState } from '../../store';
 import './CartBigDetail.css';
 
-export default function CartBigDetail({ cart }) {
+interface CartBigDetailProps {
+  cart: Cart;
+}
+export default function CartBigDetail({ cart }: CartBigDetailProps) {
   const dispatch = useDispatch();
   const location = useLocation();
   const dateTime = location.search.split('?')[2].split('=')[1];
   const partySize = location.search.split('?')[3].split('=')[1];
-  const user = useSelector((state) => state.session.user);
+  const user = useSelector((state: RootState) => state.session.user);
 
   useEffect(() => {
     dispatch(getAvailReservationsByCart(cart.id, dateTime));

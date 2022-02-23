@@ -1,11 +1,20 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-extraneous-dependencies */
 import {
-  createStore, combineReducers, applyMiddleware, compose,
+  createStore, combineReducers, applyMiddleware, compose, StoreEnhancer,
 } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import cartsReducer from './carts';
 import reservationsReducer from './reservations';
 import reviewsReducer from './reviews';
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -14,7 +23,9 @@ const rootReducer = combineReducers({
   reviews: reviewsReducer,
 });
 
-let enhancer;
+export type RootState = ReturnType<typeof rootReducer>
+
+let enhancer: StoreEnhancer;
 
 if (process.env.NODE_ENV === 'production') {
   enhancer = applyMiddleware(thunk);
@@ -24,6 +35,8 @@ if (process.env.NODE_ENV === 'production') {
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
-const configureStore = (preloadedState) => createStore(rootReducer, preloadedState, enhancer);
+const configureStore = (preloadedState: RootState) => {
+  createStore(rootReducer, preloadedState, enhancer);
+};
 
 export default configureStore;
