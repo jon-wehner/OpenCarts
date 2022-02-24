@@ -1,9 +1,8 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
-import {
-  createStore, combineReducers, applyMiddleware, compose, StoreEnhancer,
-} from 'redux';
-import thunk from 'redux-thunk';
+import { compose } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { logger } from 'redux-logger';
 import sessionReducer from './session';
 import cartsReducer from './carts';
 import reservationsReducer from './reservations';
@@ -16,27 +15,19 @@ declare global {
   }
 }
 
-const rootReducer = combineReducers({
+const reducer = ({
   session: sessionReducer,
   carts: cartsReducer,
   reservations: reservationsReducer,
   reviews: reviewsReducer,
 });
 
-export type RootState = ReturnType<typeof rootReducer>
+export const store = configureStore({
+  reducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  devTools: process.env.NODE_ENV !== 'production',
+});
 
-let enhancer: StoreEnhancer;
-
-if (process.env.NODE_ENV === 'production') {
-  enhancer = applyMiddleware(thunk);
-} else {
-  const logger = require('redux-logger').default;
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  enhancer = composeEnhancers(applyMiddleware(thunk, logger));
-}
-
-const configureStore = (preloadedState?: RootState) => {
-  createStore(rootReducer, preloadedState, enhancer);
-};
-
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 export default configureStore;
