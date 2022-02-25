@@ -1,6 +1,12 @@
+import React from 'react';
 import './CartDetail.css';
+import { Cart } from '../../interfaces';
 
-export default function CartDetail({ cart }) {
+interface CartDetailProps {
+  cart: Cart
+}
+
+export default function CartDetail({ cart }: CartDetailProps) {
   return (
     <div className="cartDetail">
       <img className="cartDetail__cartImage" src={cart.imageUrl} alt={cart.name} />

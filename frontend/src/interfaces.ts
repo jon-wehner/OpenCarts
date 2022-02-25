@@ -18,6 +18,6 @@ export interface Cart {
   stateId: number;
   zipCode: number;
   imageUrl: string;
-  state: State;
-  cuisine: Cuisine;
+  State: State;
+  Cuisine: Cuisine;
 }

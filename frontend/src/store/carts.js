@@ -20,7 +20,7 @@ export const getCartsByQuery = (query) => async (dispatch) => {
   const res = await fetch('/api/carts', options);
   dispatch(searchCarts(res.data));
 };
-const initialState = {};
+const initialState = {list: null };
 
 export default function cartsReducer(state = initialState, action) {
   switch (action.type) {
