@@ -4,16 +4,20 @@ import React, {
 import ReactDOM from 'react-dom';
 import './Modal.css';
 
-export type TModalContext = {
-
+interface ModalProps {
+  children: React.ReactNode,
+  onClose: Function
 }
 
-const ModalContext = React.createContext<TModalContext | undefined>(undefined);
-console.log('context', ModalContext);
+interface ModalProviderProps {
+  children: React.ReactNode
+}
 
-export function ModalProvider({ children }) {
-  const modalRef = useRef();
-  const [value, setValue] = useState();
+const ModalContext = React.createContext<Element | undefined | null>(undefined);
+
+export function ModalProvider({ children }: ModalProviderProps) {
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  const [value, setValue] = useState<HTMLDivElement | undefined | null>(undefined);
 
   useEffect(() => {
     setValue(modalRef.current);
@@ -29,13 +33,19 @@ export function ModalProvider({ children }) {
   );
 }
 
-export function Modal({ onClose, children }) {
+export function Modal({ onClose, children }: ModalProps) {
   const modalNode = useContext(ModalContext);
   if (!modalNode) return null;
 
+  const handleEsc = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Escape') {
+      onClose();
+    }
+  };
+
   return ReactDOM.createPortal(
     <div id="modal">
-      <div id="modal-background" onClick={onClose} />
+      <div id="modal-background" onClick={() => onClose()} aria-label="Close" role="button" tabIndex={0} onKeyPress={handleEsc} />
       <div id="modal-content">
         {children}
       </div>

@@ -2,7 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    jest: true
+    jest: true,
   },
   extends: [
     'plugin:react/recommended',
@@ -20,15 +20,23 @@ module.exports = {
     'react',
     '@typescript-eslint',
   ],
+  overrides: [
+    {
+      files: ['*.tsx'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+  ],
   rules: {
     'react/jsx-filename-extension': [2, {
-      'extensions': [
-          '.jsx',
-          '.tsx'
-      ]
+      extensions: [
+        '.jsx',
+        '.tsx',
+      ],
     }],
     'react/require-default-props': 0,
     'import/no-unresolved': 0,
-    'import/extensions': 0
-  }
+    'import/extensions': 0,
+  },
 };

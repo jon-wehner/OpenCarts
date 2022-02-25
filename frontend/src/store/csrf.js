@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import Cookies from 'js-cookie';
 
 export async function fetch(url, options = {}) {

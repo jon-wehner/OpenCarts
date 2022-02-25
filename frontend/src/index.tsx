@@ -6,6 +6,11 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { store } from './store';
 import { ModalProvider } from './Context/Modal';
+import { restoreCSRF } from './store/csrf';
+
+if (process.env.NODE_ENV !== 'production') {
+  restoreCSRF();
+}
 
 function Root() {
   return (
