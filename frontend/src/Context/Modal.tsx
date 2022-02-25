@@ -4,7 +4,12 @@ import React, {
 import ReactDOM from 'react-dom';
 import './Modal.css';
 
-const ModalContext = React.createContext();
+export type TModalContext = {
+
+}
+
+const ModalContext = React.createContext<TModalContext | undefined>(undefined);
+console.log('context', ModalContext);
 
 export function ModalProvider({ children }) {
   const modalRef = useRef();
