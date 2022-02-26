@@ -30,3 +30,8 @@ export interface Review {
   cartId: number;
   reservationId: number;
 }
+
+export interface AWction {
+  type: any
+  payload: any
+}

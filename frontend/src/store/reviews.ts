@@ -1,5 +1,5 @@
 import { fetch } from './csrf';
-import { Review } from '../interfaces';
+import { Action, Review } from '../interfaces';
 import { AppDispatch } from '.';
 
 const LOAD = '/reviews/load';
@@ -37,7 +37,8 @@ interface reviewState {
 }
 const initialState = {};
 
-export default function reviewsReducer(state = initialState, action = {}) {
+// eslint-disable-next-line default-param-last
+export default function reviewsReducer(state: reviewState = initialState, action: Action) {
   switch (action.type) {
     case LOAD: {
       const newState = {
