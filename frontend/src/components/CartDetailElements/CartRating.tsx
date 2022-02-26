@@ -1,13 +1,19 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import './CartDetails.css';
+import { RootState } from '../../store';
+import { Review } from '../../interfaces';
 
-export default function CartRating({ cartId }) {
-  const reviews = useSelector((state) => state.reviews[cartId]);
+interface CartRatingProps {
+  cartId: number;
+}
+export default function CartRating({ cartId }: CartRatingProps) {
+  const reviews = useSelector((state: RootState) => state.reviews[cartId]);
   const ratings = [];
   if (reviews) {
-    reviews.forEach((review) => ratings.push(review.rating));
+    reviews.forEach((review: Review) => ratings.push(review.rating));
   }
   const avgRating = ratings.reduce((acc, curr) => acc + curr, 0) / ratings.length;
   if (Number.isNaN(avgRating) || !reviews) {

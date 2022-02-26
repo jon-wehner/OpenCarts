@@ -21,3 +21,12 @@ export interface Cart {
   State: State;
   Cuisine: Cuisine;
 }
+
+export interface Review {
+  id: number;
+  review: string;
+  rating: number;
+  userId: number;
+  cartId: number;
+  reservationId: number;
+}

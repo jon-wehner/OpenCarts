@@ -1,4 +1,6 @@
 import { fetch } from './csrf';
+import { Review } from '../interfaces';
+import { AppDispatch } from '.';
 
 const LOAD = '/reviews/load';
 
@@ -8,29 +10,34 @@ const loadReviews = (reviews, cartId) => ({
   cartId,
 });
 
-export const getReviewsByCart = (cartId) => async (dispatch) => {
+export const getReviewsByCart = (cartId: number) => async (dispatch: AppDispatch) => {
   const res = await fetch(`/api/reviews/${cartId}`);
   dispatch(loadReviews(res.data, cartId));
 };
 
-export const postReview = (review) => async (dispatch) => {
+export const postReview = (review: Review) => async (dispatch: AppDispatch) => {
   const options = {
     method: 'POST',
-    body: JSON.stringify(review)
-  }
+    body: JSON.stringify(review),
+  };
   try {
-    const res = await fetch('api/reviews', options)
+    const res = await fetch('api/reviews', options);
     if (res.ok) {
-      dispatch(getReviewsByCart(review.cartId))
+      dispatch(getReviewsByCart(review.cartId));
+      return res;
     }
-  } catch(err) {
+  } catch (err) {
     return err.data;
   }
+  return '';
 };
 
+interface reviewState {
+  [id: string]: Review
+}
 const initialState = {};
 
-export default function reviewsReducer(state = initialState, action) {
+export default function reviewsReducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {
       const newState = {
