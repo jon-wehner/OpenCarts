@@ -1,6 +1,10 @@
+import React from 'react';
 import './CartDetails.css';
 
-export default function CartPrice({ priceLevel }) {
+interface CartPriceProps {
+  priceLevel: number;
+}
+export default function CartPrice({ priceLevel }: CartPriceProps) {
   const grayedDollars = 4 - priceLevel;
   return (
     <div className="cartDetails__price">
