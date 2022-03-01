@@ -38,5 +38,6 @@ module.exports = {
     'react/require-default-props': 0,
     'import/no-unresolved': 0,
     'import/extensions': 0,
+    'default-param-last': 0,
   },
 };

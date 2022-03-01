@@ -31,7 +31,11 @@ export interface Review {
   reservationId: number;
 }
 
-export interface AWction {
-  type: any
-  payload: any
+export interface LoadReview {
+  cartId: number;
+  reviews: Review[];
+}
+
+export interface CustomResponse extends Response {
+  data?: any;
 }

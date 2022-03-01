@@ -1,17 +1,20 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { fetch } from './csrf';
-import { Action, Review } from '../interfaces';
+import { CustomResponse, LoadReview, Review } from '../interfaces';
 import { AppDispatch } from '.';
 
 const LOAD = '/reviews/load';
 
-const loadReviews = (reviews, cartId) => ({
+const loadReviews = (reviews: Review[], cartId: number) => ({
   type: LOAD,
-  reviews,
-  cartId,
+  payload: {
+    reviews,
+    cartId,
+  },
 });
 
 export const getReviewsByCart = (cartId: number) => async (dispatch: AppDispatch) => {
-  const res = await fetch(`/api/reviews/${cartId}`);
+  const res: CustomResponse = await fetch(`/api/reviews/${cartId}`);
   dispatch(loadReviews(res.data, cartId));
 };
 
@@ -26,7 +29,7 @@ export const postReview = (review: Review) => async (dispatch: AppDispatch) => {
       dispatch(getReviewsByCart(review.cartId));
       return res;
     }
-  } catch (err) {
+  } catch (err: any) {
     return err.data;
   }
   return '';
@@ -38,12 +41,15 @@ interface reviewState {
 const initialState = {};
 
 // eslint-disable-next-line default-param-last
-export default function reviewsReducer(state: reviewState = initialState, action: Action) {
+export default function reviewsReducer(
+  state: reviewState = initialState,
+  action: PayloadAction<LoadReview>,
+) {
   switch (action.type) {
     case LOAD: {
       const newState = {
         ...state,
-        [action.cartId]: action.reviews,
+        [action.payload.cartId]: action.payload.reviews,
       };
       return newState;
     }
