@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './SignupForm.css';
+import { RootState } from '../../store';
 
 function SignupForm() {
   const dispatch = useDispatch();
-  let navigate = useNavigate();
-  const sessionUser = useSelector((state) => state.session.user);
+  const navigate = useNavigate();
+  const sessionUser = useSelector((state: RootState) => state.session.user);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,22 +16,22 @@ function SignupForm() {
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) {
-    navigate("/")
+    navigate('/');
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setErrors([]);
-    const user = await dispatch(sessionActions.signupUser({
+    await dispatch(sessionActions.signupUser({
       email,
       username,
       password,
       confirmPassword,
     }));
-    if (!user.errors) {
-      return;
-    }
-    setErrors(user.errors);
+    // TODO: Put errors into subscribable state variable
+    // if (!res.errors) {
+    //   return;
+    // }
+    // setErrors(res.errors);
   };
 
   return (

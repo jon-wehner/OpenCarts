@@ -33,7 +33,7 @@ export interface Reservation {
 }
 
 export interface Review {
-  id: number;
+  id?: number;
   review: string;
   rating: number;
   userId: number;
@@ -42,10 +42,15 @@ export interface Review {
 }
 
 export interface User {
-  id: number;
+  id?: number;
   email: string;
   username: string;
+  password?: string;
+  confirmPassword?: string;
+}
+export interface Errors {
+  errors: string[];
 }
 export interface CustomResponse extends Response {
-  data?: any;
+  data?: any | Errors;
 }
