@@ -11,7 +11,7 @@ interface CartRatingProps {
 }
 export default function CartRating({ cartId }: CartRatingProps) {
   const reviews = useSelector((state: RootState) => state.reviews[cartId]);
-  const ratings = [];
+  const ratings: number[] = [];
   if (reviews) {
     reviews.forEach((review: Review) => ratings.push(review.rating));
   }

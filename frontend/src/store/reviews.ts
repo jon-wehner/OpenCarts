@@ -1,6 +1,6 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+import { AnyAction } from 'redux';
 import { fetch } from './csrf';
-import { CustomResponse, LoadReview, Review } from '../interfaces';
+import { CustomResponse, Review } from '../interfaces';
 import { AppDispatch } from '.';
 
 const LOAD = '/reviews/load';
@@ -36,14 +36,14 @@ export const postReview = (review: Review) => async (dispatch: AppDispatch) => {
 };
 
 interface reviewState {
-  [id: string]: Review
+  [id: string]: Review[]
 }
 const initialState = {};
 
 // eslint-disable-next-line default-param-last
 export default function reviewsReducer(
   state: reviewState = initialState,
-  action: PayloadAction<LoadReview>,
+  action: AnyAction,
 ) {
   switch (action.type) {
     case LOAD: {
