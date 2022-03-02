@@ -15,7 +15,7 @@ const removeUser = () => ({
   type: REMOVE_USER,
 });
 
-export const loginUser = (user: User) => async (dispatch: AppDispatch) => {
+export const loginUser = (user: {credential: string, password: string}) => async (dispatch: AppDispatch) => {
   const options = {
     method: 'POST',
     body: JSON.stringify(user),

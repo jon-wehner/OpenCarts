@@ -1,31 +1,28 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { restoreUser } from '../../store/session';
 import { getUserReservations } from '../../store/reservations';
 import ProfileReservation from './ProfileReservation';
 import PreviousReservation from './PreviousReservation';
+import { RootState } from '../../store';
+import { Reservation } from '../../interfaces';
 
 export default function UserProfile() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
-  const futureReservations = useSelector((state) => state.reservations.userFutureReservations);
-  const previousReservations = useSelector((state) => state.reservations.userPreviousReservations);
+  const user = useSelector((state: RootState) => state.session.user);
+  const futureReservations = useSelector((state: RootState) => state.reservations.userFutureReservations);
+  const previousReservations = useSelector((state: RootState) => state.reservations.userPreviousReservations);
   const [timeString, setTimeString] = useState('');
-  const hours = new Date().getHours();
+  const hours: number = new Date().getHours();
   useEffect(() => {
     dispatch(restoreUser());
-    
-    switch (hours) {
-      case hours < 12:
-        setTimeString('Morning');
-        break
-      case hours < 18:
-        setTimeString('Afternoon')
-        break
-      default:
-        setTimeString('Evening');
+    if (hours < 12) {
+      setTimeString('Morning');
+    } else if (hours > 12 && hours < 18) {
+      setTimeString('Afternoon');
+    } else {
+      setTimeString('Evening');
     }
-
   }, [hours, dispatch]);
 
   useEffect(() => {
@@ -39,16 +36,16 @@ export default function UserProfile() {
   }
   return (
     <>
-      <h2>{'Good ' + timeString + ', ' + user.username}</h2>
+      <h2>{`Good ${timeString}, ${user.username}`}</h2>
       <section>
         <h2>{futureReservations ? 'Your Upcoming Reservations' : 'You have no upcoming reservations'}</h2>
-        {futureReservations &&
-          futureReservations.map((res) => <ProfileReservation key={res.id} reservation={res} />)}
+        {futureReservations
+          && futureReservations.map((res: Reservation) => <ProfileReservation key={res.id} reservation={res} />)}
       </section>
       <section>
         <h2>{futureReservations ? 'Booking History' : ''}</h2>
-        {previousReservations &&
-          previousReservations.map((res) => <PreviousReservation key={res.id} reservation={res} />)}
+        {previousReservations
+          && previousReservations.map((res: Reservation) => <PreviousReservation key={res.id} reservation={res} />)}
       </section>
     </>
   );

@@ -1,29 +1,35 @@
+import { AnyAction } from 'redux';
+import { AppDispatch } from '.';
+import { CustomResponse, Reservation } from '../interfaces';
 import { fetch } from './csrf';
 
 const SET_TIMESLOTS = 'reservations/set_timeslots';
 const SET_USER_RESERVATIONS = 'reservations/set_user_reservations';
 
-const setAvilableTimeslots = (availableTimeslots) => ({
+const setAvilableTimeslots = (availableTimeslots: string[]) => ({
   type: SET_TIMESLOTS,
   payload: availableTimeslots,
 });
-const setUserReservations = (reservations) => ({
+const setUserReservations = (reservations: Reservation[]) => ({
   type: SET_USER_RESERVATIONS,
   payload: reservations,
 });
 
-export const getAvailReservationsByCart = (cartId, dateTime) => async (dispatch) => {
+export const getAvailReservationsByCart = (
+  cartId: number,
+  dateTime: string,
+) => async (dispatch: AppDispatch) => {
   const options = {
     method: 'POST',
     body: JSON.stringify({ dateTime }),
   };
-  const res = await fetch(`/api/reservations/${cartId}/available`, options);
+  const res: CustomResponse = await fetch(`/api/reservations/${cartId}/available`, options);
   const pivot = res.data.length / 2;
   const timesToDisplay = res.data.slice(pivot - 2, pivot + 3);
   dispatch(setAvilableTimeslots(timesToDisplay));
 };
 
-export const makeReservation = (newReservation) => async (dispatch) => {
+export const makeReservation = (newReservation: Reservation) => async () => {
   const options = {
     method: 'POST',
     body: JSON.stringify(newReservation),
@@ -32,33 +38,41 @@ export const makeReservation = (newReservation) => async (dispatch) => {
   // TODO: Add new reservation to Store
 };
 
-export const getUserReservations = (userId) => async (dispatch) => {
+export const getUserReservations = (userId: number) => async (dispatch: AppDispatch) => {
   const url = `/api/users/${userId}/reservations`;
-  const reservations = await fetch(url);  
+  const reservations: CustomResponse = await fetch(url);
   if (reservations.data) {
     dispatch(setUserReservations(reservations.data));
   }
 };
 
-export const editReservation = (reservationId, dateTime, partySize, userId) => async (dispatch) => {
+export const editReservation = (
+  reservationId: number,
+  dateTime: string,
+  partySize: string,
+  userId: number,
+) => async (dispatch: AppDispatch) => {
   const url = `/api/reservations/${reservationId}`;
   const options = {
     method: 'PATCH',
     body: JSON.stringify({ dateTime, partySize, userId }),
   };
-  const userReservations = await fetch(url, options);
+  const userReservations: CustomResponse = await fetch(url, options);
   if (userReservations.data) {
     dispatch(setUserReservations(userReservations.data));
   }
 };
 
-export const cancelReservation = (reservationId, userId) => async (dispatch) => {
+export const cancelReservation = (
+  reservationId: number,
+  userId: number,
+) => async (dispatch: AppDispatch) => {
   const url = `/api/reservations/${reservationId}`;
   const options = {
     method: 'DELETE',
     body: JSON.stringify({ userId }),
   };
-  const userReservations = await fetch(url, options);
+  const userReservations: CustomResponse = await fetch(url, options);
   if (userReservations.data) {
     dispatch(setUserReservations(userReservations.data));
   }
@@ -69,7 +83,7 @@ const initialState = {
   userFutureReservations: null,
   userPreviousReservations: null,
 };
-export default function reservationsReducer(state = initialState, action) {
+export default function reservationsReducer(state = initialState, action: AnyAction) {
   switch (action.type) {
     case SET_TIMESLOTS: {
       const newState = {

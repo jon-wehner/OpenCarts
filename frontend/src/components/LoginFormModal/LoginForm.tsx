@@ -15,17 +15,12 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setErrors([]);
-    dispatch(sessionActions.loginUser({ credential, password })).catch(
-      (res) => {
-        if (res.data && res.data.errors) setErrors(res.data.errors);
-      },
-    );
+    dispatch(sessionActions.loginUser({ credential, password }));
+    // TODO: implement error catching for login
   };
-  const demoLogin = (e) => {
-    e.preventDefault();
+  const demoLogin = () => {
     dispatch(sessionActions.loginUser({
       credential: 'demo',
       password: 'password',

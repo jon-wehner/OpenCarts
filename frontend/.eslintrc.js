@@ -39,5 +39,6 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/extensions': 0,
     'default-param-last': 0,
+    'max-len': 0,
   },
 };
