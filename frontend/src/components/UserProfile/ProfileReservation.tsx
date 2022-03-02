@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal } from '../../Context/Modal';
 import CartImage from '../CartDetailElements/CartImage';
 import { cancelReservation } from '../../store/reservations';
 import ReservationForm from '../ReservationForm';
+import { Reservation } from '../../interfaces';
 import './ProfileReservation.css';
 
-export default function ProfileReservation({ reservation }) {
+export default function ProfileReservation({ reservation }: { reservation: Reservation }) {
   const dispatch = useDispatch();
   const [showEditModal, setShowEditModal] = useState(false);
   const [showCancelModel, setShowCancelModal] = useState(false);
@@ -20,7 +21,7 @@ export default function ProfileReservation({ reservation }) {
   });
   const cart = reservation.Cart;
 
-  const handleCancel = async (e) => {
+  const handleCancel = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShowCancelModal(false);
     await dispatch(cancelReservation(reservation.id, reservation.userId));

@@ -22,6 +22,16 @@ export interface Cart {
   Cuisine: Cuisine;
 }
 
+export interface Reservation {
+  id: number;
+  dateTime: string;
+  partySize: number | string;
+  cartId: number;
+  userId: number;
+  reviewed?: boolean;
+  Cart: Cart
+}
+
 export interface Review {
   id: number;
   review: string;
