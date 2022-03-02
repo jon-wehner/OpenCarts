@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Reservation } from '../../interfaces';
+import { ExistingReservation } from '../../interfaces';
 import { RootState } from '../../store';
 import { getReviewsByCart, postReview } from '../../store/reviews';
 import CartImage from '../CartDetailElements/CartImage';
 import './ProfileReservation.css';
 
-export default function ProfileReservation({ reservation }: { reservation: Reservation}) {
+export default function ProfileReservation({ reservation }: { reservation: ExistingReservation}) {
   const dispatch = useDispatch();
   const [review, setReview] = useState('');
   const [userReview, setUserReview] = useState('');

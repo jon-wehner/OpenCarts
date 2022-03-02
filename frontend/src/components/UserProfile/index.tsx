@@ -5,7 +5,7 @@ import { getUserReservations } from '../../store/reservations';
 import ProfileReservation from './ProfileReservation';
 import PreviousReservation from './PreviousReservation';
 import { RootState } from '../../store';
-import { Reservation } from '../../interfaces';
+import { ExistingReservation } from '../../interfaces';
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -40,12 +40,12 @@ export default function UserProfile() {
       <section>
         <h2>{futureReservations ? 'Your Upcoming Reservations' : 'You have no upcoming reservations'}</h2>
         {futureReservations
-          && futureReservations.map((res: Reservation) => <ProfileReservation key={res.id} reservation={res} />)}
+          && futureReservations.map((res: ExistingReservation) => <ProfileReservation key={res.id} reservation={res} />)}
       </section>
       <section>
         <h2>{futureReservations ? 'Booking History' : ''}</h2>
         {previousReservations
-          && previousReservations.map((res: Reservation) => <PreviousReservation key={res.id} reservation={res} />)}
+          && previousReservations.map((res: ExistingReservation) => <PreviousReservation key={res.id} reservation={res} />)}
       </section>
     </>
   );

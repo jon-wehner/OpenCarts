@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { AppDispatch } from '.';
-import { CustomResponse, Reservation } from '../interfaces';
+import { CustomResponse, ExistingReservation, NewReservation } from '../interfaces';
 import { fetch } from './csrf';
 
 const SET_TIMESLOTS = 'reservations/set_timeslots';
@@ -10,7 +10,7 @@ const setAvilableTimeslots = (availableTimeslots: string[]) => ({
   type: SET_TIMESLOTS,
   payload: availableTimeslots,
 });
-const setUserReservations = (reservations: Reservation[]) => ({
+const setUserReservations = (reservations: ExistingReservation[]) => ({
   type: SET_USER_RESERVATIONS,
   payload: reservations,
 });
@@ -29,7 +29,7 @@ export const getAvailReservationsByCart = (
   dispatch(setAvilableTimeslots(timesToDisplay));
 };
 
-export const makeReservation = (newReservation: Reservation) => async () => {
+export const makeReservation = (newReservation: NewReservation) => async () => {
   const options = {
     method: 'POST',
     body: JSON.stringify(newReservation),
@@ -49,7 +49,7 @@ export const getUserReservations = (userId: number) => async (dispatch: AppDispa
 export const editReservation = (
   reservationId: number,
   dateTime: string,
-  partySize: string,
+  partySize: string | number,
   userId: number,
 ) => async (dispatch: AppDispatch) => {
   const url = `/api/reservations/${reservationId}`;

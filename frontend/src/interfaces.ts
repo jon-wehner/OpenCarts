@@ -22,7 +22,7 @@ export interface Cart {
   Cuisine: Cuisine;
 }
 
-export interface Reservation {
+export interface ExistingReservation {
   id: number;
   dateTime: string;
   partySize: number | string;
@@ -31,7 +31,13 @@ export interface Reservation {
   reviewed?: boolean;
   Cart: Cart
 }
-
+export interface NewReservation {
+  dateTime: string;
+  partySize: number | string;
+  cartId: number;
+  userId: number;
+  reviewed?: boolean;
+}
 export interface Review {
   id?: number;
   review: string;

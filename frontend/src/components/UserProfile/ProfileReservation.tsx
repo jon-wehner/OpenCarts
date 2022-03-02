@@ -4,10 +4,10 @@ import { Modal } from '../../Context/Modal';
 import CartImage from '../CartDetailElements/CartImage';
 import { cancelReservation } from '../../store/reservations';
 import ReservationForm from '../ReservationForm';
-import { Reservation } from '../../interfaces';
+import { ExistingReservation } from '../../interfaces';
 import './ProfileReservation.css';
 
-export default function ProfileReservation({ reservation }: { reservation: Reservation }) {
+export default function ProfileReservation({ reservation }: { reservation: ExistingReservation }) {
   const dispatch = useDispatch();
   const [showEditModal, setShowEditModal] = useState(false);
   const [showCancelModel, setShowCancelModal] = useState(false);
