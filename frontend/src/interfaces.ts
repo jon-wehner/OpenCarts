@@ -41,11 +41,11 @@ export interface Review {
   reservationId: number;
 }
 
-export interface LoadReview {
-  cartId: number;
-  reviews: Review[];
+export interface User {
+  id: number;
+  email: string;
+  username: string;
 }
-
 export interface CustomResponse extends Response {
   data?: any;
 }

@@ -7,9 +7,10 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { RootState } from '../../store';
 
-function Navigation({ isLoaded }) {
-  const sessionUser = useSelector((state) => state.session.user);
+function Navigation({ isLoaded }: {isLoaded: boolean}) {
+  const sessionUser = useSelector((state: RootState) => state.session.user);
   const location = useLocation();
 
   let sessionLinks;
@@ -30,7 +31,7 @@ function Navigation({ isLoaded }) {
     <nav className="navbar">
       <h1 className="navbar__title">OpenCarts</h1>
       <div>
-        {location.pathname !== '/' && <NavLink className="navbar__link" exact to="/"><FontAwesomeIcon className="nav__icon" icon={faHome} /></NavLink>}
+        {location.pathname !== '/' && <NavLink className="navbar__link" to="/"><FontAwesomeIcon className="nav__icon" icon={faHome} /></NavLink>}
         {isLoaded && sessionLinks}
       </div>
     </nav>
