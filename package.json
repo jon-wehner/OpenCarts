@@ -2,7 +2,7 @@
   "name": "react-project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.tsx",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
@@ -19,6 +19,7 @@
     "nodemon": "^2.0.15",
     "per-env": "^1.0.2",
     "pg": "^8.7.1",
+    "redux-logger": "^3.0.6",
     "sequelize": "^6.11.0",
     "sequelize-cli": "^6.3.0"
   },
@@ -43,5 +44,8 @@
   "bugs": {
     "url": "https://github.com/jon-wehner/super-duper-octo-barnacle/issues"
   },
-  "homepage": "https://github.com/jon-wehner/super-duper-octo-barnacle#readme"
+  "homepage": "https://github.com/jon-wehner/super-duper-octo-barnacle#readme",
+  "devDependencies": {
+    "@types/redux-logger": "^3.0.9"
+  }
 }
