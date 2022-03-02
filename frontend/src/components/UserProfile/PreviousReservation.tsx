@@ -27,7 +27,8 @@ export default function ProfileReservation({ reservation }: { reservation: Exist
     if (resReview) setUserReview(resReview.review);
   }, [cartReviews, reservation.userId]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const data = {
       review,
       // TODO: Implement Rating

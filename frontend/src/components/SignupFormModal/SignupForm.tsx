@@ -19,7 +19,8 @@ function SignupForm() {
     navigate('/');
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setErrors([]);
     await dispatch(sessionActions.signupUser({
       email,

@@ -15,12 +15,14 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setErrors([]);
     dispatch(sessionActions.loginUser({ credential, password }));
     // TODO: implement error catching for login
   };
-  const demoLogin = () => {
+  const demoLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     dispatch(sessionActions.loginUser({
       credential: 'demo',
       password: 'password',
