@@ -7,7 +7,7 @@ import './BookingArea.css';
 
 export default function BookingArea() {
   const navigate = useNavigate();
-  const today = new Date().toISOString().slice(0, 10);
+  const today = new Date().toLocaleDateString('en-CA', { day: '2-digit', year: 'numeric', month: '2-digit' });
   const [query, setQuery] = useState('');
   const [date, setDate] = useState(today);
   const [time, setTime] = useState('00:00:00');

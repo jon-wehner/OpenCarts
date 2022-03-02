@@ -1,13 +1,28 @@
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/function-component-definition */
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render as rtlRender } from '@testing-library/react';
+import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import configureStore from '../store';
-import testState from './testState';
+import { reducer } from '../store';
+import { testState } from './testState';
 
-const Wrapper = ({ children }) => <Provider store={configureStore(testState)}>{children}</Provider>;
+function render(
+  ui,
+  {
+    preloadedState,
+    store = configureStore({ reducer, testState }),
+    ...renderOptions
+  } = {},
+) {
+  function Wrapper({ children }) {
+    return <Provider store={store}>{children}</Provider>;
+  }
+  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+}
 
-const customRender = (ui, options) => render(ui, { wrapper: Wrapper, ...options });
-
+// re-export everything
 export * from '@testing-library/react';
-
-export { customRender as render };
+// override render method
+export { render };
