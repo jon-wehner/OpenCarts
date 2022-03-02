@@ -8,8 +8,14 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
+    "@reduxjs/toolkit": "^1.7.2",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.19",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "@types/react-redux": "^7.1.22",
     "js-cookie": "^3.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -18,7 +24,8 @@
     "react-scripts": "^5.0.0",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
-    "start": "^5.1.0"
+    "start": "^5.1.0",
+    "typescript": "^4.5.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,14 +51,19 @@
   },
   "jest": {
     "testMatch": [
+      "**/__tests__/*-test.jsx",
       "**/__tests__/*-test.js"
     ]
   },
   "devDependencies": {
     "@testing-library/react": "^12.1.2",
-    "eslint-config-airbnb": "^19.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "msw": "^0.36.3",
     "redux-logger": "^3.0.6"
