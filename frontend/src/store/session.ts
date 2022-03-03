@@ -59,9 +59,8 @@ export const signupUser = (user: User) => async (dispatch: AppDispatch) => {
   try {
     const res: CustomResponse = await fetch('api/users', options);
     dispatch(setUser(res.data.user));
-    return res.data;
   } catch (err: any) {
-    return err.data;
+    dispatch(setErrors(err.data.errors));
   }
 };
 

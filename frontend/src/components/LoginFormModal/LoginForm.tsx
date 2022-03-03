@@ -31,8 +31,8 @@ function LoginForm() {
   return (
     <form className="loginForm" onSubmit={handleSubmit}>
       <ul>
-        {errors && errors.map((error: string) => (
-          <li key={error}>{error}</li>
+        {errors && errors.map((err: string) => (
+          <li key={err}>{err}</li>
         ))}
       </ul>
       <label className="loginForm__label" htmlFor="credential">

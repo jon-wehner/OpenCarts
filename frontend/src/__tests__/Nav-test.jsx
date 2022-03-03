@@ -6,7 +6,7 @@ import { render } from './testUtils';
 import App from '../App';
 
 describe('Login component', () => {
-  test('the login form renders and users can successfully login', async () => {
+  test('The NavBar Renders', async () => {
     render(
       <MemoryRouter initialEntries={['/']} initialIndex={0}>
         <Routes>

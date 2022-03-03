@@ -11,7 +11,14 @@ const router = express.Router();
 const validateSignup = [
   check('email')
     .isEmail()
-    .withMessage('Please provide a valid email.'),
+    .withMessage('Please provide a valid email.')
+    .custom((val) => {
+      return User.findAll({where: {email: val}}).then(user => {
+        if (user) {
+          return Promise.reject('Email in already use')
+        }
+      })
+    }),
   check('username')
     .isLength({ min: 4 })
     .withMessage('Please provide a username longer than 4 charachters.'),
