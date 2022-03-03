@@ -47,13 +47,16 @@ export const restoreUser = () => async (dispatch: AppDispatch) => {
 };
 
 export const signupUser = (user: User) => async (dispatch: AppDispatch) => {
-  const { username, email, password } = user;
+  const {
+    username, email, password, confirmPassword,
+  } = user;
   const options = {
     method: 'POST',
     body: JSON.stringify({
       username,
       email,
       password,
+      confirmPassword,
     }),
   };
   try {

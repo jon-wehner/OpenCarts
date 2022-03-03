@@ -12,15 +12,12 @@ const validateSignup = [
   check('email')
     .isEmail()
     .withMessage('Please provide a valid email.'),
-    // .custom((val) => {
-    //   // eslint-disable-next-line consistent-return
-    //   User.findAll({ where: { email: val } }).then((user) => {
-    //     if (user) {
-    //       // eslint-disable-next-line prefer-promise-reject-errors
-    //       return Promise.reject('Email already in use');
-    //     }
-    //   });
-    // }),
+  check('email')
+    .custom(async (val) => {
+      const user = await User.findOne({ where: { email: val } });
+      if (user) throw new Error();
+    })
+    .withMessage('Email already in use'),
   check('username')
     .isLength({ min: 4 })
     .withMessage('Please provide a username longer than 4 charachters.'),
