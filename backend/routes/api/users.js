@@ -11,20 +11,27 @@ const router = express.Router();
 const validateSignup = [
   check('email')
     .isEmail()
-    .withMessage('Please provide a valid email.')
-    .custom((val) => {
-      return User.findAll({where: {email: val}}).then(user => {
-        if (user) {
-          return Promise.reject('Email in already use')
-        }
-      })
-    }),
+    .withMessage('Please provide a valid email.'),
+    // .custom((val) => {
+    //   // eslint-disable-next-line consistent-return
+    //   User.findAll({ where: { email: val } }).then((user) => {
+    //     if (user) {
+    //       // eslint-disable-next-line prefer-promise-reject-errors
+    //       return Promise.reject('Email already in use');
+    //     }
+    //   });
+    // }),
   check('username')
     .isLength({ min: 4 })
     .withMessage('Please provide a username longer than 4 charachters.'),
   check('password')
     .isLength({ min: 6 })
     .withMessage('Password must be 6 characters or more.'),
+  check(
+    'password',
+    'Password fields do not match',
+  )
+    .custom((val, { req }) => val === req.body.confirmPassword),
   handleValidationErrors,
 ];
 // signup
@@ -67,7 +74,7 @@ router.get(
     const userReservations = {
       past: pastReservations,
       future: futureReservations,
-    }
+    };
     return res.json(userReservations);
   }),
 );
