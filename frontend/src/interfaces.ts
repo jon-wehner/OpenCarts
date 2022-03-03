@@ -54,9 +54,11 @@ export interface User {
   password?: string;
   confirmPassword?: string;
 }
-export interface Errors {
+export interface Error {
   errors: string[];
+  message: string;
+  title: string;
 }
 export interface CustomResponse extends Response {
-  data?: any | Errors;
+  data?: any | Error;
 }

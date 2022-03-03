@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import * as sessionActions from '../../store/session';
+import { clearErrors, signupUser } from '../../store/session';
 import './SignupForm.css';
 import { RootState } from '../../store';
 
@@ -13,7 +13,7 @@ function SignupForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [errors, setErrors] = useState([]);
+  const errors = useSelector((state: RootState) => state.session.errors);
 
   if (sessionUser) {
     navigate('/');
@@ -21,24 +21,19 @@ function SignupForm() {
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setErrors([]);
-    await dispatch(sessionActions.signupUser({
+    dispatch(clearErrors());
+    await dispatch(signupUser({
       email,
       username,
       password,
       confirmPassword,
     }));
-    // TODO: Put errors into subscribable state variable
-    // if (!res.errors) {
-    //   return;
-    // }
-    // setErrors(res.errors);
   };
 
   return (
     <form className="signupForm" onSubmit={handleSubmit}>
       <ul>
-        {errors.map((err) => <li key={err}>{err}</li>)}
+        {errors && errors.map((err: string) => <li key={err}>{err}</li>)}
       </ul>
       <label className="signupForm__label" htmlFor="email">
         Email:

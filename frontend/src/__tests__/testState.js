@@ -6,6 +6,7 @@ export const testState = {
       username: 'demo',
       email: 'demo@user.io',
     },
+    errors: ['error'],
   },
   carts: {
     list: [

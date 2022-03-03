@@ -9,7 +9,7 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { RootState } from '../../store';
 
-function Navigation({ isLoaded }: {isLoaded: boolean}) {
+function Navigation() {
   const sessionUser = useSelector((state: RootState) => state.session.user);
   const location = useLocation();
 
@@ -32,7 +32,7 @@ function Navigation({ isLoaded }: {isLoaded: boolean}) {
       <h1 className="navbar__title">OpenCarts</h1>
       <div>
         {location.pathname !== '/' && <NavLink className="navbar__link" to="/"><FontAwesomeIcon className="nav__icon" icon={faHome} /></NavLink>}
-        {isLoaded && sessionLinks}
+        {sessionLinks}
       </div>
     </nav>
   );

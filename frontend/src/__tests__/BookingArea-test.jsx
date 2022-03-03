@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import React from 'react';
 import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';

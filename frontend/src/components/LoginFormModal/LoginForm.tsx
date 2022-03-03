@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { loginUser, clearErrors } from '../../store/session';
 import './LoginForm.css';
 
 const buttonContainerStyle = {
@@ -13,17 +14,16 @@ function LoginForm() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([]);
+  const errors = useSelector((state: RootState) => state.session.errors);
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setErrors([]);
-    dispatch(sessionActions.loginUser({ credential, password }));
-    // TODO: implement error catching for login
+    dispatch(clearErrors());
+    dispatch(loginUser({ credential, password }));
   };
   const demoLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch(sessionActions.loginUser({
+    dispatch(loginUser({
       credential: 'demo',
       password: 'password',
     }));
@@ -31,8 +31,8 @@ function LoginForm() {
   return (
     <form className="loginForm" onSubmit={handleSubmit}>
       <ul>
-        {errors.map((error) => (
-          <li key={error}>{error}</li>
+        {errors && errors.map((err: string) => (
+          <li key={err}>{err}</li>
         ))}
       </ul>
       <label className="loginForm__label" htmlFor="credential">
