@@ -6,6 +6,7 @@ import { fetch } from './csrf';
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 const SET_ERRORS = 'session/setErrors';
+const CLEAR_ERRORS = 'session/clearErrors';
 
 const setUser = (user: User) => ({
   type: SET_USER,
@@ -19,6 +20,10 @@ const removeUser = () => ({
 const setErrors = (errors: Error) => ({
   type: SET_ERRORS,
   payload: errors,
+});
+
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS,
 });
 
 export const loginUser = (user: {credential: string, password: string}) => async (dispatch: AppDispatch) => {
@@ -68,6 +73,7 @@ export const logoutUser = () => async (dispatch: AppDispatch) => {
 
 const initialState = {
   user: null,
+  errors: [],
 };
 
 export default function sessionReducer(state = initialState, action: AnyAction) {
@@ -90,6 +96,13 @@ export default function sessionReducer(state = initialState, action: AnyAction) 
       const newState = {
         ...state,
         errors: action.payload,
+      };
+      return newState;
+    }
+    case CLEAR_ERRORS: {
+      const newState = {
+        ...state,
+        errors: [],
       };
       return newState;
     }
