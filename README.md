@@ -73,7 +73,7 @@
 OpenCarts is a platform for users to connect with local food carts and skip the line. Users can search the platform for local food carts by name, location, or cuisine and make reservations. Users can view past and future reservations, and also leave reviews. The frontend of the application was created in the ReactJS library, and the Express NodeJS framework was utilized for the backend. The application is connected to a postgres databse and deployed to Heroku.
 
 ### Technologies
-- React
+- React with TypeScript
 - Redux
 - NodeJS
 - Express
@@ -83,10 +83,10 @@ OpenCarts is a platform for users to connect with local food carts and skip the 
 
 
 ## Frontend Technologies
-### React
-The OpenCarts frontend was created with the aid of the ReactJS library. The application makes heavy use of React's component tree and virtualDOM features to update components without page refreshes. I created components that could be used in several different areas of the application to streamline development and provide a consistent user experience. 
+### React with TypeScript
+The OpenCarts frontend was created with the aid of the ReactJS library. The application makes heavy use of React's component tree and virtualDOM features to update components without page refreshes. I created components that could be used in several different areas of the application to streamline development and provide a consistent user experience. TypeScript was added to the project to add variable typing and simplify future development of the application. Variable typing reduces errors, and allows developers to easily see what types are being passed into compoments without needing to trace the props through several layers of parent components. 
 ### Redux 
-OpenCarts relies on the redux library for app-wide state management. Redux-thunk is used for making API calls to the backend. As the app needs queries user data, it is put into the store to be made available to all components. This reduces the total API calls that the client needs to make and improves overall application performance.
+OpenCarts relies on the redux library for app-wide state management. The modern Redux tooling with Redux Toolkit was adding to simplify the implementation of the Redux library, and reduce the amount of boilerplate code. Redux-thunk is utilized to handle asynclogic utilized in calls to the API.
 
 ## Backend Technologies
 The backend of the application consists of a RESTful API created with the Express framework. The Sequelize ORM was utilized to interface with a PostgreSQL database. 
