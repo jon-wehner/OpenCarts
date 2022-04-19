@@ -38,3 +38,50 @@ body {
 button:active {
   transform: translateY(0.2rem);
 }
+.authForm {
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  width: 100%;
+  background: var(--background-lightgray);
+  font: 1.4rem Georgia, "Times New Roman", Times, serif;
+	font-weight: 600;
+  color: var(--text-gray);
+  text-shadow: 1px 1px 1px var(--text-gray-shadow);
+  border:1px solid var(--border-lightgray);
+	border-radius: 1rem;
+	box-shadow: var(--std-shadow);
+	padding:2rem;
+}
+.authForm__label {
+  display: inline-block;
+  margin: 1rem auto;
+  width: 80%;
+}
+.authForm__input {
+border: 1px solid var(--border-lightgray);
+color: var(--text-gray);
+display: inline-block;
+height: 2.5rem;
+outline: 0 none;
+width: 100%;
+font-size: 1.2rem;
+line-height:1.5rem;
+margin-top: .5rem;
+}
+.authForm__btn {
+background: var(--button-green);
+border: none;
+padding: 1rem 2.5rem;
+color: black;
+border-radius: .6rem;
+cursor: pointer;
+}
+.authForm__btn:hover {
+  background: var(--button-green-hover);
+  box-shadow: var(--std-shadow);
+}
+.authForm__btn:active {
+transform: translateY(.1rem);
+}

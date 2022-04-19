@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { loginUser, clearErrors } from '../../store/session';
-import './LoginForm.css';
 
 const buttonContainerStyle = {
   display: 'flex',
@@ -29,36 +28,36 @@ function LoginForm() {
     }));
   };
   return (
-    <form className="loginForm" onSubmit={handleSubmit}>
+    <form className="authForm" onSubmit={handleSubmit}>
       <ul>
         {errors && errors.map((err: string) => (
           <li key={err}>{err}</li>
         ))}
       </ul>
-      <label className="loginForm__label" htmlFor="credential">
+      <label className="authForm__label" htmlFor="credential">
         Username or Email:
         <input
           type="text"
           value={credential}
-          className="loginForm__input"
+          className="authForm__input"
           onChange={(e) => setCredential(e.target.value)}
           required
         />
       </label>
-      <label className="loginForm__label" htmlFor="password">
+      <label className="authForm__label" htmlFor="password">
         Password:
         <input
           type="password"
           value={password}
-          className="loginForm__input"
+          className="authForm__input"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
       <span />
       <div style={buttonContainerStyle}>
-        <button className="loginForm__btn" type="submit">Log In</button>
-        <button className="loginForm__btn" type="button" onClick={demoLogin}>Demo User</button>
+        <button className="authForm__btn" type="submit">Log In</button>
+        <button className="authForm__btn" type="button" onClick={demoLogin}>Demo User</button>
       </div>
     </form>
   );
