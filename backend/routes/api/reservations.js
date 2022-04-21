@@ -11,15 +11,19 @@ router.post(
     const cartId = parseInt(req.params.id, 10);
     const { dateTime } = req.body;
     // Get end times, 2 hours on either side of the desired time
+    const increment = 900000;
     const dateObj = new Date(dateTime);
+    const roundedNow = Math.round((new Date().getTime() / increment)) * increment;
     const hours = dateObj.getHours();
-    const minTime = new Date(dateTime).setHours(hours - 2);
+
+    let minTime = new Date(dateTime).setHours(hours - 2);
+    minTime = minTime < roundedNow ? roundedNow : minTime;
     const maxTime = new Date(dateTime).setHours(hours + 2);
     const timeslots = {};
     // Generate time values for each 15 min timeslot within the range
     let i = minTime;
     while (i <= maxTime) {
-      i += 900000;
+      i += increment;
       timeslots[i] = [];
     }
     // Get reservations within time range
@@ -28,7 +32,7 @@ router.post(
         cartId,
         dateTime: {
           [Op.and]: [
-            { [Op.gt]: new Date().getTime() },
+            { [Op.gt]: roundedNow },
             { [Op.gte]: minTime },
             { [Op.lte]: maxTime },
           ],

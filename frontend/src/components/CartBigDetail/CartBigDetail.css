@@ -1,22 +1,23 @@
 .searchResults__cart {
   display:grid;
   width: 80%;
-  /* height: 20rem; */
   grid-template-columns: 15rem auto;
-  grid-template-rows: 3rem 2rem 2rem 2rem 3rem 3rem 5rem;
+  grid-template-rows: 3rem 2rem 2rem 2rem 3rem 5rem;
   margin: 2rem auto;
   padding: 1rem;
+  border-bottom: 1px lightgray solid;
 }
 .cartDetails__image {
   grid-column: 1 / 1;
   grid-row: 1 / 5;
-  max-width: 15rem;
-  max-height: 20rem;
+  height: 15rem;
+  width: 15rem;
 }
 .cartDetails__name {
   grid-row: 1;
   grid-column: 2;
-  font-size: 1.4rem;  
+  font-size: 1.8rem;
+  font-weight: 700;  
 }
 .cartDetails__price {
   grid-row: 2;
@@ -30,12 +31,17 @@
 }
 .cartDetails__buttonContainer {
     grid-column: 2 / 3;
-    grid-row: 6;
+    grid-row: 5;
     padding-top: .5rem;
-    margin: 1rem 0;
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 85%;
 }
 .cartDetails__review {
   grid-column: 2;
   grid-row: 4;
   margin-left: 2rem;
+  font-size: 1.4rem;
 }

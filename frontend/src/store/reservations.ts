@@ -28,9 +28,7 @@ export const getAvailReservationsByCart = (
     body: JSON.stringify({ dateTime }),
   };
   const res: CustomResponse = await fetch(`/api/reservations/${cartId}/available`, options);
-  const pivot = res.data.length / 2;
-  const timesToDisplay = res.data.slice(pivot - 2, pivot + 3);
-  dispatch(setAvilableTimeslots(timesToDisplay));
+  dispatch(setAvilableTimeslots(res.data));
 };
 
 export const makeReservation = (newReservation: NewReservation) => async () => {
