@@ -15,7 +15,10 @@ const setUserReservations = (reservations: ExistingReservation[]) => ({
   type: SET_USER_RESERVATIONS,
   payload: reservations,
 });
-
+const deleteReservation = (id: number) => ({
+  type: DELETE_RESERVATION,
+  payload: id,
+});
 export const getAvailReservationsByCart = (
   cartId: number,
   dateTime: string,
@@ -75,7 +78,7 @@ export const cancelReservation = (
   };
   const userReservations: CustomResponse = await fetch(url, options);
   if (userReservations.data) {
-    dispatch(setUserReservations(userReservations.data));
+    dispatch(deleteReservation(userReservations.data.id));
   }
 };
 
@@ -112,7 +115,11 @@ export default function reservationsReducer(state = initialState, action: AnyAct
         ...state,
       };
       if (newState.userFutureReservations !== null) {
-        newState.userFutureReservations.find((reservation: ExistingReservation) => reservation.id === action.payload.reservationId);
+        const reservations = newState.userFutureReservations;
+        const idx = reservations.findIndex((reservation: ExistingReservation) => reservation.id === action.payload);
+        if (idx !== -1) {
+          reservations.splice(idx);
+        }
       }
       return newState;
     }

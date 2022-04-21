@@ -105,7 +105,7 @@ router.delete(
     const reservationId = parseInt(req.params.id, 10);
     const reservation = await Reservation.findByPk(reservationId);
     await reservation.destroy();
-    res.json({message: 'Reservation Deleted'});
+    res.json({ message: 'Reservation Deleted', id: reservationId });
   }),
 );
 
