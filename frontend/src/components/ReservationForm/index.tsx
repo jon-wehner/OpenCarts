@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { editReservation, makeReservation } from '../../store/reservations';
 import TimeSelect from '../BookingArea/TimeSelect';
-import tzOffsetToString from '../../utils/utils';
+import { tzOffsetToString } from '../../utils/utils';
 import './ReservationForm.css';
 import { Cart } from '../../interfaces';
 import { RootState } from '../../store';

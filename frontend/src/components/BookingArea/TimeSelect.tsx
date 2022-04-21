@@ -1,4 +1,5 @@
 import React from 'react';
+import { getRoundedDate } from '../../utils/utils';
 
 interface TimeSelectProps {
   onTimeChange: Function;
@@ -8,7 +9,7 @@ interface TimeSelectProps {
 export default function TimeSelect({ onTimeChange, initialTime }: TimeSelectProps) {
   const now = new Date();
   const increment = 900000;
-  const roundedDate = new Date(Math.round(now.getTime() / increment) * increment);
+  const roundedDate = getRoundedDate(now, increment);
   const values: string[] = [];
   const innerTexts: string[] = [];
 

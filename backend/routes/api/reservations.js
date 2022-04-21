@@ -28,6 +28,7 @@ router.post(
         cartId,
         dateTime: {
           [Op.and]: [
+            { [Op.gt]: new Date().getTime() },
             { [Op.gte]: minTime },
             { [Op.lte]: maxTime },
           ],

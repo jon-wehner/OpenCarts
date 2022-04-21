@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TimeSelect from './TimeSelect';
-import tzOffsetToString from '../../utils/utils';
+import { tzOffsetToString, getInitialTimeValue } from '../../utils/utils';
 import CartCarousel from '../CartCarousel';
 import './BookingArea.css';
 
 export default function BookingArea() {
   const navigate = useNavigate();
-  const today = new Date().toLocaleDateString('en-CA', { day: '2-digit', year: 'numeric', month: '2-digit' });
+  const now = new Date();
+  const today = now.toLocaleDateString('en-CA', { day: '2-digit', year: 'numeric', month: '2-digit' });
   const [query, setQuery] = useState('');
   const [date, setDate] = useState(today);
-  const [time, setTime] = useState('00:00:00');
+  const [time, setTime] = useState(getInitialTimeValue(now));
   const [partySize, setPartySize] = useState('0');
-
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const offset = new Date().getTimezoneOffset() / 60;
+    const offset = now.getTimezoneOffset() / 60;
     const offsetString = tzOffsetToString(offset);
     const dateTime = `${date}T${time}${offsetString}`;
     navigate(`/search?query=${query}?date=${dateTime}?party=${partySize}`);
