@@ -18,15 +18,15 @@ export default function CartReservations({
   cart, userId, dateTime, partySize,
 }: CartReservationsProps) {
   const [resTime, setResTime] = useState('');
-  const availTimeslots = useSelector((state: RootState) => state.reservations.availableTimeslots);
+  const availTimeSlots = useSelector((state: RootState) => state.reservations.availableTimeSlots);
   const [showModal, setShowModal] = useState(false);
 
-  if (!availTimeslots) {
+  if (!availTimeSlots) {
     return null;
   }
   return (
     <div className="cartDetails__buttonContainer">
-      {availTimeslots.map((time: string) => {
+      {availTimeSlots.map((time: string) => {
         const date = new Date(time);
         const innerText = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         return (

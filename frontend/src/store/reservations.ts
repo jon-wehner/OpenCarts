@@ -5,6 +5,7 @@ import { fetch } from './csrf';
 
 const SET_TIMESLOTS = 'reservations/set_timeslots';
 const SET_USER_RESERVATIONS = 'reservations/set_user_reservations';
+const DELETE_RESERVATION = 'reservations/delete_reservation';
 
 const setAvilableTimeslots = (availableTimeslots: string[]) => ({
   type: SET_TIMESLOTS,
@@ -78,8 +79,14 @@ export const cancelReservation = (
   }
 };
 
-const initialState = {
-  availableTimeslots: null,
+interface reservationState {
+  availableTimeSlots: null | string[],
+  userFutureReservations: null | ExistingReservation[],
+  userPreviousReservations: null | ExistingReservation[]
+}
+
+const initialState: reservationState = {
+  availableTimeSlots: null,
   userFutureReservations: null,
   userPreviousReservations: null,
 };
@@ -88,7 +95,7 @@ export default function reservationsReducer(state = initialState, action: AnyAct
     case SET_TIMESLOTS: {
       const newState = {
         ...state,
-        availableTimeslots: action.payload,
+        availableTimeSlots: action.payload,
       };
       return newState;
     }
@@ -98,6 +105,15 @@ export default function reservationsReducer(state = initialState, action: AnyAct
         userFutureReservations: action.payload.future,
         userPreviousReservations: action.payload.past,
       };
+      return newState;
+    }
+    case DELETE_RESERVATION: {
+      const newState = {
+        ...state,
+      };
+      if (newState.userFutureReservations !== null) {
+        newState.userFutureReservations.find((reservation: ExistingReservation) => reservation.id === action.payload.reservationId);
+      }
       return newState;
     }
     default:
