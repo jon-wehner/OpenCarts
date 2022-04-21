@@ -6,21 +6,24 @@ const router = express.Router();
 const { Reservation, Cart } = require('../../db/models');
 
 router.post(
-  // TODO: This needs another refactor
   '/:id(\\d+)/available',
   asyncHandler(async (req, res) => {
     const cartId = parseInt(req.params.id, 10);
     const { dateTime } = req.body;
     // Get end times, 2 hours on either side of the desired time
+    const increment = 900000;
     const dateObj = new Date(dateTime);
+    const roundedNow = Math.round((new Date().getTime() / increment)) * increment;
     const hours = dateObj.getHours();
-    const minTime = new Date(dateTime).setHours(hours - 2);
+
+    let minTime = new Date(dateTime).setHours(hours - 2);
+    minTime = minTime < roundedNow ? roundedNow : minTime;
     const maxTime = new Date(dateTime).setHours(hours + 2);
     const timeslots = {};
     // Generate time values for each 15 min timeslot within the range
     let i = minTime;
     while (i <= maxTime) {
-      i += 900000;
+      i += increment;
       timeslots[i] = [];
     }
     // Get reservations within time range
@@ -29,6 +32,7 @@ router.post(
         cartId,
         dateTime: {
           [Op.and]: [
+            { [Op.gt]: roundedNow },
             { [Op.gte]: minTime },
             { [Op.lte]: maxTime },
           ],
@@ -104,23 +108,9 @@ router.delete(
   '/:id(\\d+)',
   asyncHandler(async (req, res) => {
     const reservationId = parseInt(req.params.id, 10);
-    const { userId } = req.body;
     const reservation = await Reservation.findByPk(reservationId);
     await reservation.destroy();
-    /* 
-    TODO: This route should not need to return all of a user's reservations to them
-    TODO: Reservation calls should not need to return full cart objects
-    */
-    const reservations = await Reservation.findAll({
-      where: {
-        userId,
-        dateTime: {
-          [Op.gte]: Date.now(),
-        },
-      },
-      include: [Cart],
-    });
-    res.json(reservations);
+    res.json({ message: 'Reservation Deleted', id: reservationId });
   }),
 );
 
