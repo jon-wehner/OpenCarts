@@ -6,13 +6,24 @@ interface TimeSelectProps {
 }
 
 export default function TimeSelect({ onTimeChange, initialTime }: TimeSelectProps) {
-  const midnight = new Date(2021, 4, 3, 0, 0, 0);
+  const now = new Date();
   const increment = 900000;
+  const roundedDate = new Date(Math.round(now.getTime() / increment) * increment);
   const values: string[] = [];
   const innerTexts: string[] = [];
 
-  for (let i = 0; i < 96; i += 1) {
-    const newTime = new Date(midnight.getTime() + increment * i);
+  const getIncrements = (date: Date) => {
+    const midnight = new Date(date);
+    midnight.setDate(date.getDate() + 1);
+    midnight.setHours(0, 0, 0);
+    const difference = midnight.getTime() - date.getTime();
+
+    return Math.floor(difference / increment);
+  };
+
+  const increments = getIncrements(roundedDate);
+  for (let i = 0; i < increments; i += 1) {
+    const newTime = new Date(roundedDate.getTime() + increment * i);
     values.push(newTime.toLocaleTimeString('en-GB'));
     innerTexts.push(newTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
   }

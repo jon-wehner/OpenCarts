@@ -39,7 +39,6 @@ export const makeReservation = (newReservation: NewReservation) => async () => {
     body: JSON.stringify(newReservation),
   };
   await fetch('/api/reservations/new', options);
-  // TODO: Add new reservation to Store
 };
 
 export const getUserReservations = (userId: number) => async (dispatch: AppDispatch) => {
