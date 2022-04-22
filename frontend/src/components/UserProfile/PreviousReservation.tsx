@@ -5,11 +5,13 @@ import { RootState } from '../../store';
 import { getReviewsByCart, postReview } from '../../store/reviews';
 import CartImage from '../CartDetailElements/CartImage';
 import './ProfileReservation.css';
+import ReviewRating from './ReviewRating';
 
 export default function ProfileReservation({ reservation }: { reservation: ExistingReservation}) {
   const dispatch = useDispatch();
   const [review, setReview] = useState('');
   const [userReview, setUserReview] = useState('');
+  const [showReview, setShowReview] = useState(false);
   const date = new Date(reservation.dateTime);
   const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   const cart = reservation.Cart;
@@ -54,19 +56,19 @@ export default function ProfileReservation({ reservation }: { reservation: Exist
         {' guests'}
       </span>
       <div>
-        {reservation.reviewed
-          ? userReview
-          : (
-            <form onSubmit={handleSubmit} className="reviewForm">
-              <label htmlFor="review">
-                Leave a review
-                <textarea rows={4} onChange={(e) => setReview(e.target.value)} />
-              </label>
-              <button type="submit">
-                Submit Review
-              </button>
-            </form>
-          )}
+        {reservation.reviewed && userReview}
+        {!reservation.reviewed && <button type="button" onClick={() => setShowReview(!showReview)}>{showReview ? 'Hide Review Form' : 'Leave a review'}</button>}
+        {showReview && (
+        <form onSubmit={handleSubmit} className="reviewForm">
+          <ReviewRating />
+          <label htmlFor="review">
+            <textarea rows={4} onChange={(e) => setReview(e.target.value)} />
+          </label>
+          <button type="submit">
+            Submit Review
+          </button>
+        </form>
+        )}
 
       </div>
     </div>

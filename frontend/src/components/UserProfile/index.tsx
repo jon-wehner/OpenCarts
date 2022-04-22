@@ -43,7 +43,7 @@ export default function UserProfile() {
           && futureReservations.map((res: ExistingReservation) => <ProfileReservation key={res.id} reservation={res} />)}
       </section>
       <section>
-        <h2>{previousReservations ? 'Booking History' : ''}</h2>
+        <h2>{previousReservations ? 'Past Reservations' : ''}</h2>
         {previousReservations
           && previousReservations.map((res: ExistingReservation) => <PreviousReservation key={res.id} reservation={res} />)}
       </section>
