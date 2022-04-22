@@ -38,12 +38,12 @@ export default function UserProfile() {
     <>
       <h2>{`Good ${timeString}, ${user.username}`}</h2>
       <section>
-        <h2>{futureReservations ? 'Your Upcoming Reservations' : 'You have no upcoming reservations'}</h2>
+        <h2>{futureReservations && futureReservations.length ? 'Your Upcoming Reservations' : 'You have no upcoming reservations'}</h2>
         {futureReservations
           && futureReservations.map((res: ExistingReservation) => <ProfileReservation key={res.id} reservation={res} />)}
       </section>
       <section>
-        <h2>{futureReservations ? 'Booking History' : ''}</h2>
+        <h2>{previousReservations ? 'Booking History' : ''}</h2>
         {previousReservations
           && previousReservations.map((res: ExistingReservation) => <PreviousReservation key={res.id} reservation={res} />)}
       </section>

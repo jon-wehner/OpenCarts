@@ -66,6 +66,9 @@ router.get(
           [Op.lte]: Date.now(),
         },
       },
+      order: [
+        ['dateTime', 'DESC'],
+      ],
       include: [Cart],
     });
     const userReservations = {
