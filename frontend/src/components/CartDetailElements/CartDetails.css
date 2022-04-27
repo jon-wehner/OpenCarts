@@ -36,7 +36,7 @@
   font-weight: 700;
 }
 .cartDetails__rating {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 .cartDetails__ratingText {
   display: inline;
@@ -45,9 +45,10 @@
 }
 .cartDetails__filledStar {
   display: inline-block;
+  color: goldenrod;
 }
 .cartDetails__unfilledStar {
-  color: pink;
+  color: darkgray;
 }
 .cartDetails__review {
   font-size: 1.2rem;  

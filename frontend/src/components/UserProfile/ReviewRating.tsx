@@ -4,10 +4,11 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import '../CartDetailElements/CartDetails.css';
 
 interface ReviewRatingProps {
+  rating: number,
   setRating: Function,
 }
 
-export default function ReviewRating({ setRating }: ReviewRatingProps) {
+export default function ReviewRating({ rating, setRating }: ReviewRatingProps) {
   const [displayedRating, setDisplayedRating] = useState(0);
 
   const stars = [];
@@ -19,8 +20,16 @@ export default function ReviewRating({ setRating }: ReviewRatingProps) {
     stars.push(star);
   }
   return (
-    <div>
-      {stars.map((star) => <FontAwesomeIcon key={star.val} onMouseOver={() => setDisplayedRating(star.val)} icon={faStar} className={star.className} />)}
+    <div className="cartDetails__rating" onMouseLeave={() => setDisplayedRating(rating)}>
+      {stars.map((star) => (
+        <FontAwesomeIcon
+          key={star.val}
+          onMouseOver={() => setDisplayedRating(star.val)}
+          onClick={() => setRating(star.val)}
+          icon={faStar}
+          className={star.className}
+        />
+      ))}
     </div>
   );
 }

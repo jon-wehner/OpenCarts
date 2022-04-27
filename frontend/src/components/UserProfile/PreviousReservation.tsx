@@ -34,7 +34,6 @@ export default function ProfileReservation({ reservation }: { reservation: Exist
     e.preventDefault();
     const data = {
       review,
-      // TODO: Implement Rating
       rating,
       userId: reservation.userId,
       cartId: reservation.cartId,
@@ -61,7 +60,7 @@ export default function ProfileReservation({ reservation }: { reservation: Exist
         {!reservation.reviewed && <button type="button" onClick={() => setShowReview(!showReview)}>{showReview ? 'Hide Review Form' : 'Leave a review'}</button>}
         {showReview && (
         <form onSubmit={handleSubmit} className="reviewForm">
-          <ReviewRating setRating={setRating} />
+          <ReviewRating rating={rating} setRating={setRating} />
           <label htmlFor="review">
             <textarea rows={4} onChange={(e) => setReview(e.target.value)} />
           </label>
