@@ -30,17 +30,21 @@ export default function CartBigDetail({ cart }: CartBigDetailProps) {
 
   return (
     <div className="searchResults__cart">
-      <CartImage name={cart.name} imageUrl={cart.imageUrl} />
-      <CartTitle name={cart.name} />
-      <CartPrice priceLevel={cart.priceLevel} />
-      <CartRating cartId={cart.id} />
-      <CartReviewSnippet cartId={cart.id} />
-      <CartReservations
-        userId={user ? user.id : null}
-        cart={cart}
-        dateTime={dateTime}
-        partySize={partySize}
-      />
+      <div className="searchResults__imgContainer">
+        <CartImage name={cart.name} imageUrl={cart.imageUrl} />
+      </div>
+      <div className="searchResults__textContainer">
+        <CartTitle name={cart.name} />
+        <CartPrice priceLevel={cart.priceLevel} />
+        <CartRating cartId={cart.id} />
+        <CartReviewSnippet cartId={cart.id} />
+        <CartReservations
+          userId={user ? user.id : null}
+          cart={cart}
+          dateTime={dateTime}
+          partySize={partySize}
+        />
+      </div>
     </div>
   );
 }
