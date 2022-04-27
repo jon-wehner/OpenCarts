@@ -11,7 +11,7 @@ import { RootState } from '../../store';
 interface ReservationFormProps {
   cart: Cart;
   userId: number;
-  initialDateTime: string;
+  initialDate: string;
   initialPartySize: string | number;
   initialTime: string;
   edit?: boolean;
@@ -20,12 +20,12 @@ interface ReservationFormProps {
 
 export default function ReservationForm({
   cart, userId,
-  initialDateTime, initialPartySize, initialTime, edit, id,
+  initialDate, initialPartySize, initialTime, edit, id,
 }: ReservationFormProps) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sessionUser = useSelector((state: RootState) => state.session.user);
-  const [date, setDate] = useState(initialDateTime.slice(0, 10));
+  const [date, setDate] = useState(initialDate);
   const [time, setTime] = useState(initialTime);
   const [partySize, setPartySize] = useState(initialPartySize);
 

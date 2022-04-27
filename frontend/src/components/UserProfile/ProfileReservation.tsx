@@ -6,6 +6,7 @@ import { cancelReservation } from '../../store/reservations';
 import ReservationForm from '../ReservationForm';
 import { ExistingReservation } from '../../interfaces';
 import './ProfileReservation.css';
+import { getCalendarDateValue } from '../../utils/utils';
 
 export default function ProfileReservation({ reservation }: { reservation: ExistingReservation }) {
   const dispatch = useDispatch();
@@ -20,7 +21,6 @@ export default function ProfileReservation({ reservation }: { reservation: Exist
     hour12: false,
   });
   const cart = reservation.Cart;
-
   const handleCancel = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShowCancelModal(false);
@@ -47,7 +47,7 @@ export default function ProfileReservation({ reservation }: { reservation: Exist
           <ReservationForm
             cart={cart}
             userId={reservation.userId}
-            initialDateTime={reservation.dateTime}
+            initialDate={getCalendarDateValue(date)}
             initialPartySize={reservation.partySize}
             initialTime={timeValue}
             edit
