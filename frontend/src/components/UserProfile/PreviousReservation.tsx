@@ -12,6 +12,7 @@ export default function ProfileReservation({ reservation }: { reservation: Exist
   const [review, setReview] = useState('');
   const [userReview, setUserReview] = useState('');
   const [showReview, setShowReview] = useState(false);
+  const [rating, setRating] = useState(0);
   const date = new Date(reservation.dateTime);
   const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   const cart = reservation.Cart;
@@ -34,7 +35,7 @@ export default function ProfileReservation({ reservation }: { reservation: Exist
     const data = {
       review,
       // TODO: Implement Rating
-      rating: 4,
+      rating,
       userId: reservation.userId,
       cartId: reservation.cartId,
       reservationId: reservation.id,
@@ -60,7 +61,7 @@ export default function ProfileReservation({ reservation }: { reservation: Exist
         {!reservation.reviewed && <button type="button" onClick={() => setShowReview(!showReview)}>{showReview ? 'Hide Review Form' : 'Leave a review'}</button>}
         {showReview && (
         <form onSubmit={handleSubmit} className="reviewForm">
-          <ReviewRating />
+          <ReviewRating setRating={setRating} />
           <label htmlFor="review">
             <textarea rows={4} onChange={(e) => setReview(e.target.value)} />
           </label>
