@@ -25,3 +25,12 @@ export function getInitialTimeValue(date) {
 
   return timeValue;
 }
+
+export function getCalendarDateValue(date) {
+  const calendarDateElements = date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }).split('/');
+  const year = calendarDateElements.pop();
+  if (year !== undefined) {
+    calendarDateElements.unshift(year);
+  }
+  return calendarDateElements.join('-');
+}

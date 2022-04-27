@@ -28,6 +28,7 @@ export default function ReservationForm({
   const [date, setDate] = useState(initialDate);
   const [time, setTime] = useState(initialTime);
   const [partySize, setPartySize] = useState(initialPartySize);
+
   const reserve = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const offset = (new Date().getTimezoneOffset() / 60);

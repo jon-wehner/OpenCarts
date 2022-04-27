@@ -41,7 +41,6 @@ export default function CartBigDetail({ cart }: CartBigDetailProps) {
         <CartReservations
           userId={user ? user.id : null}
           cart={cart}
-          dateTime={dateTime}
           partySize={partySize}
         />
       </div>

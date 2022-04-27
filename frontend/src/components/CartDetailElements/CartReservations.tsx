@@ -3,21 +3,22 @@ import { useSelector } from 'react-redux';
 import { Modal } from '../../Context/Modal';
 import { Cart } from '../../interfaces';
 import { RootState } from '../../store';
+import { getCalendarDateValue } from '../../utils/utils';
 import ReservationForm from '../ReservationForm';
 import './CartDetails.css';
 
 interface CartReservationsProps {
   cart: Cart;
   userId: number,
-  dateTime: string,
   partySize: string,
 
 }
 
 export default function CartReservations({
-  cart, userId, dateTime, partySize,
+  cart, userId, partySize,
 }: CartReservationsProps) {
   const [resTime, setResTime] = useState('');
+  const [resDate, setResDate] = useState('');
   const availTimeSlots = useSelector((state: RootState) => state.reservations.availableTimeSlots);
   const [showModal, setShowModal] = useState(false);
 
@@ -28,8 +29,8 @@ export default function CartReservations({
     <div className="cartDetails__buttonContainer">
       {availTimeSlots.map((time: string) => {
         const date = new Date(time);
-        console.log(date.toLocaleDateString('en-US'));
         const innerText = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const calendarDate = getCalendarDateValue(date);
         return (
           <button
             key={time}
@@ -38,6 +39,7 @@ export default function CartReservations({
             onClick={() => {
               setShowModal(true);
               setResTime(date.toLocaleTimeString('en-GB'));
+              setResDate(calendarDate);
             }}
           >
             {innerText}
@@ -49,7 +51,7 @@ export default function CartReservations({
           <ReservationForm
             cart={cart}
             userId={userId}
-            initialDate={dateTime}
+            initialDate={resDate}
             initialPartySize={partySize}
             initialTime={resTime}
           />
