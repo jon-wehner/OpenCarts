@@ -1,0 +1,4 @@
+.profile__reservationSection {
+  display: flex;
+  flex-wrap: wrap;
+}

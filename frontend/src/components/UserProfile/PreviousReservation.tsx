@@ -62,7 +62,7 @@ export default function ProfileReservation({ reservation }: { reservation: Exist
         <form onSubmit={handleSubmit} className="reviewForm">
           <ReviewRating rating={rating} setRating={setRating} />
           <label htmlFor="review">
-            <textarea rows={4} onChange={(e) => setReview(e.target.value)} />
+            <textarea placeholder="Leave a review" rows={5} onChange={(e) => setReview(e.target.value)} />
           </label>
           <button type="submit">
             Submit Review

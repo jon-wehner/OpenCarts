@@ -6,6 +6,7 @@ import ProfileReservation from './ProfileReservation';
 import PreviousReservation from './PreviousReservation';
 import { RootState } from '../../store';
 import { ExistingReservation } from '../../interfaces';
+import './UserProfile.css';
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -37,13 +38,13 @@ export default function UserProfile() {
   return (
     <>
       <h2>{`Good ${timeString}, ${user.username}`}</h2>
-      <section>
-        <h2>{futureReservations && futureReservations.length ? 'Your Upcoming Reservations' : 'You have no upcoming reservations'}</h2>
+      <h2>{futureReservations && futureReservations.length ? 'Your Upcoming Reservations' : 'You have no upcoming reservations'}</h2>
+      <section className="profile__reservationSection">
         {futureReservations
           && futureReservations.map((res: ExistingReservation) => <ProfileReservation key={res.id} reservation={res} />)}
       </section>
-      <section>
-        <h2>{previousReservations ? 'Past Reservations' : ''}</h2>
+      <h2>{previousReservations ? 'Past Reservations' : ''}</h2>
+      <section className="profile__reservationSection">
         {previousReservations
           && previousReservations.map((res: ExistingReservation) => <PreviousReservation key={res.id} reservation={res} />)}
       </section>
