@@ -16,7 +16,6 @@
   background-color: var(--button-green-hover);
 }
 .cartDetails__name {
-  margin-left: 2rem;
   display: block;
 }
 .cartDetails__image {
