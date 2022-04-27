@@ -28,6 +28,7 @@ export default function CartReservations({
     <div className="cartDetails__buttonContainer">
       {availTimeSlots.map((time: string) => {
         const date = new Date(time);
+        console.log(date.toLocaleDateString('en-US'));
         const innerText = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         return (
           <button
@@ -48,7 +49,7 @@ export default function CartReservations({
           <ReservationForm
             cart={cart}
             userId={userId}
-            initialDateTime={dateTime}
+            initialDate={dateTime}
             initialPartySize={partySize}
             initialTime={resTime}
           />
