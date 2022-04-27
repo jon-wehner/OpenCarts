@@ -46,6 +46,9 @@
 .cartDetails__filledStar {
   display: inline-block;
 }
+.cartDetails__unfilledStar {
+  color: pink;
+}
 .cartDetails__review {
   font-size: 1.2rem;  
 }

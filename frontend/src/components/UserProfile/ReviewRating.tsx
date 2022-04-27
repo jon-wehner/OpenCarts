@@ -9,18 +9,18 @@ interface ReviewRatingProps {
 
 export default function ReviewRating({ setRating }: ReviewRatingProps) {
   const [displayedRating, setDisplayedRating] = useState(0);
-  const updateRating = (n) => {
-    console.log(displayedRating);
-    setDisplayedRating(n);
-    console.log('new rating', displayedRating);
+
+  const stars = [];
+  for (let i = 1; i <= 5; i += 1) {
+    const star = { val: i, className: 'cartDetails__unfilledStar' };
+    if (i <= displayedRating) {
+      star.className = 'cartDetails__filledStar';
+    }
+    stars.push(star);
   }
   return (
     <div>
-      <FontAwesomeIcon onMouseOver={() => updateRating(1)} icon={faStar} />
-      <FontAwesomeIcon onMouseOver={() => updateRating(2)} icon={faStar} />
-      <FontAwesomeIcon onMouseOver={() => updateRating(3)} icon={faStar} />
-      <FontAwesomeIcon onMouseOver={() => updateRating(4)} icon={faStar} />
-      <FontAwesomeIcon onMouseOver={() => updateRating(5)} icon={faStar} />
+      {stars.map((star) => <FontAwesomeIcon key={star.val} onMouseOver={() => setDisplayedRating(star.val)} icon={faStar} className={star.className} />)}
     </div>
   );
 }
