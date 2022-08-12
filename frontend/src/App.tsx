@@ -7,12 +7,14 @@ import BookingArea from './components/BookingArea';
 import SearchResults from './components/SearchResults';
 import UserProfile from './components/UserProfile';
 import CartProfile from './components/CartProfile';
+import { getAllCarts } from './store/carts';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     const restoreAndLoad = async () => {
       await dispatch(sessionActions.restoreUser());
+      await dispatch(getAllCarts());
     };
     restoreAndLoad();
   }, [dispatch]);
