@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { Op } = require('sequelize');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie } = require('../../utils/auth');
+const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Reservation, Cart } = require('../../db/models');
 
 const router = express.Router();
@@ -47,8 +47,9 @@ router.post(
 // get a user's reservations
 router.get(
   '/:id(\\d+)/reservations',
+  requireAuth,
   asyncHandler(async (req, res) => {
-    const userId = parseInt(req.params.id, 10);
+    const userId = req.user.id;
     const futureReservations = await Reservation.findAll({
       where: {
         userId,
