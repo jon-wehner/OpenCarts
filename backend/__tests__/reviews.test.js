@@ -6,37 +6,42 @@ const supertest = require('supertest');
 const testReview = {
   review: 'the food was ok!',
   rating: 3,
-  userId: 1,
   cartId: 3,
   reservationId: 2,
 }
 
 const getCsrfToken = async (agent) => {
   const xsrfRes = await agent
-    .get('/api/csrf/restore')  
+    .get('/api/csrf/restore')
   let cookie = xsrfRes.headers['set-cookie'][1].split(';')[0]
-  cookie = cookie.split('=')[1]    
+  cookie = cookie.split('=')[1]
   return cookie
-}   
+}
 
 describe('test the review post route', () => {
   let testDb = db;
-  
+
   const agent = supertest.agent(app);
 
   it('should respond with status 200 and the review in json format', async () => {
     const cookie = await getCsrfToken(agent);
+
+    await agent
+      .post('/api/session')
+      .set('XSRF-TOKEN', cookie)
+      .send({ credential: 'demo', password: 'password' });
+
     const {
-      review, rating, userId, cartId, reservationId
+      review, rating, cartId, reservationId
     } = testReview
     const response = await agent
       .post('/api/reviews')
       .set('XSRF-TOKEN', cookie)
       .send({
-        review, rating, userId, cartId, reservationId
-      })      
-      .set('Accept', 'application/json')       
-      
+        review, rating, cartId, reservationId
+      })
+      .set('Accept', 'application/json')
+
     expect(response.headers['content-type']).toMatch(/json/)
     expect(response.status).toEqual(200);
     expect(response.body.review).toEqual(testReview.review)

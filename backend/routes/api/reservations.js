@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Op } = require('sequelize');
+const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
 const { Reservation, Cart } = require('../../db/models');
@@ -61,19 +62,14 @@ router.post(
 // make a new reservation
 router.post(
   '/new',
+  requireAuth,
   asyncHandler(async (req, res) => {
-    const {
-      dateTime,
-      partySize,
-      userId,
-      cartId,
-    } = req.body;
-
+    const { dateTime, partySize, cartId } = req.body;
     const newRes = await Reservation.create({
       dateTime,
       partySize,
-      userId,
       cartId,
+      userId: req.user.id,
     });
     res.json(newRes);
   }),
@@ -81,36 +77,40 @@ router.post(
 
 router.patch(
   '/:id(\\d+)',
+  requireAuth,
   asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id, 10);
-    const {
-      dateTime,
-      partySize,
-      userId,
-    } = req.body;
+    const { dateTime, partySize } = req.body;
     const reservation = await Reservation.findByPk(id);
+    if (!reservation || reservation.userId !== req.user.id) {
+      return res.status(403).json({ message: 'Forbidden' });
+    }
     reservation.dateTime = dateTime;
     reservation.partySize = partySize;
     await reservation.save();
     const reservations = await Reservation.findAll({
       where: {
-        userId,
+        userId: req.user.id,
         dateTime: {
           [Op.gte]: Date.now(),
         },
       },
       include: [Cart],
     });
-    res.json(reservations);
+    return res.json(reservations);
   }),
 );
 router.delete(
   '/:id(\\d+)',
+  requireAuth,
   asyncHandler(async (req, res) => {
     const reservationId = parseInt(req.params.id, 10);
     const reservation = await Reservation.findByPk(reservationId);
+    if (!reservation || reservation.userId !== req.user.id) {
+      return res.status(403).json({ message: 'Forbidden' });
+    }
     await reservation.destroy();
-    res.json({ message: 'Reservation Deleted', id: reservationId });
+    return res.json({ message: 'Reservation Deleted', id: reservationId });
   }),
 );
 

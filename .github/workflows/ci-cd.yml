@@ -1,0 +1,43 @@
+name: CI/CD
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14.1
+        env:
+          POSTGRES_USER: opencarts_app
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: oc-test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    env:
+      NODE_ENV: test
+      DB_USERNAME: opencarts_app
+      DB_PASSWORD: password
+      DB_HOST: localhost
+      DB_TESTURI: postgres://opencarts_app:password@localhost/oc-test
+      DB_TESTDB: oc-test
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm install
+      - name: Run backend tests
+        run: cd backend && npm run test
+      - name: Run frontend coverage
+        run: npm run coverage
