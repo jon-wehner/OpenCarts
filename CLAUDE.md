@@ -107,4 +107,4 @@ All API calls go through the custom `fetch` wrapper in `store/csrf.js`, which in
 
 ### CI/CD
 
-CircleCI runs backend tests (`cd backend && npm run test`) and frontend coverage on all branches except `main`. Pushes to `main` trigger a Heroku deploy via git.
+Github actions runs backend tests (`cd backend && npm run test`) and frontend coverage on all branches except `main`.

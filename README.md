@@ -59,6 +59,7 @@
       <a href="#frontend-technologies">Frontend Technologies</a>    
     </li>
     <li><a href="#Backend-technologies">Backend Technologies</a></li>
+    <li><a href="#local-development">Local Development</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -94,6 +95,55 @@ The backend of the application consists of a RESTful API created with the Expres
 Express is a minimalist web framework for Node.js. A large amount of middleware packages exist that developers can use to streamline API development. It is also possible to create custom middleware, such as a middleware function to handle async calls. Express only has a basic set of features out of the box, and developers can include middleware to improve the functionality of their application. This results in a backend that has only the features required, and nothing extra. 
 ### PostgreSQL
 OpenCarts uses the PostgreSQL database to store application data. Postgres is an open-source and highly regarded relational database system. The system is very well document and has an active development community. One reason that I chose to use a relational database over a NoSQL databse is that I felt it was right for the scale of the application, and the enforced schema validation helps reduce data anamolies.
+
+## Local Development
+
+### Prerequisites
+- Node.js
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) (the dev DB helper runs Postgres in a container so you don't need to install Postgres locally)
+
+### Spin up a local Postgres database
+
+A helper script at [`backend/scripts/dev-db.sh`](backend/scripts/dev-db.sh) starts a temporary Postgres 16 container and writes a matching `backend/.env` so `npm start`, `npm test`, and `npm run db:reset` work out of the box.
+
+```bash
+cd backend
+
+./scripts/dev-db.sh up      # start the container and write .env (default)
+./scripts/dev-db.sh status  # show whether the container is running
+./scripts/dev-db.sh reset   # tear down and bring up a fresh container
+./scripts/dev-db.sh down    # stop, remove the container, and delete the managed .env
+```
+
+After running `up`, apply migrations and seed data:
+
+```bash
+npm run db:reset   # undo migrations, re-migrate, re-seed
+```
+
+The script binds to host port `5432` and creates a database named `opencarts_dev` with credentials `opencarts` / `opencarts`. Override any of these by exporting env vars before invoking the script:
+
+| Variable          | Default              |
+|-------------------|----------------------|
+| `DEV_DB_NAME`     | `opencarts-dev-pg`   |
+| `DEV_DB_PORT`     | `5432`               |
+| `DEV_DB_USER`     | `opencarts`          |
+| `DEV_DB_PASSWORD` | `opencarts`          |
+| `DEV_DB_DATABASE` | `opencarts_dev`      |
+| `DEV_DB_IMAGE`    | `postgres:16-alpine` |
+
+If you already have a `backend/.env`, the script backs it up to `.env.bak.<timestamp>` before overwriting. `down` only deletes `.env` if it was written by the helper (identified by the `DEV_DB_MANAGED=1` marker).
+
+### Running the test suites
+
+```bash
+# Backend integration tests (resets the DB first, then runs Jest)
+cd backend && npm test
+
+# Frontend tests
+cd frontend && npm test
+```
+
 ## Roadmap
 
 See the [open issues](https://github.com/jon-wehner/opencarts/issues) for a list of proposed features (and known issues).

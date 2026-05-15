@@ -29,7 +29,7 @@ export default function CartBigDetail({ cart }: CartBigDetailProps) {
   }, [dispatch, cart.id, dateTime]);
 
   return (
-    <div className="searchResults__cart">
+    <div className="searchResults__cart" data-testid="cart-big-detail">
       <div className="searchResults__imgContainer">
         <CartImage name={cart.name} imageUrl={cart.imageUrl} />
       </div>

@@ -24,7 +24,7 @@ export default function ProfileReservation({ reservation }: { reservation: Exist
   const handleCancel = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShowCancelModal(false);
-    await dispatch(cancelReservation(reservation.id, reservation.userId));
+    await dispatch(cancelReservation(reservation.id));
   };
   return (
     <div className="profileReservation">

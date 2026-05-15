@@ -60,7 +60,7 @@ export const signupUser = (user: User) => async (dispatch: AppDispatch) => {
     }),
   };
   try {
-    const res: CustomResponse = await fetch('api/users', options);
+    const res: CustomResponse = await fetch('/api/users', options);
     dispatch(setUser(res.data.user));
   } catch (err: any) {
     dispatch(setErrors(err.data.errors));

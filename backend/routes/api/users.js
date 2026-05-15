@@ -49,6 +49,10 @@ router.get(
   '/:id(\\d+)/reservations',
   requireAuth,
   asyncHandler(async (req, res) => {
+    const paramUserId = parseInt(req.params.id, 10);
+    if (paramUserId !== req.user.id) {
+      return res.status(403).json({ message: 'Forbidden' });
+    }
     const userId = req.user.id;
     const futureReservations = await Reservation.findAll({
       where: {

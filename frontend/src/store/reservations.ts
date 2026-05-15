@@ -7,11 +7,16 @@ const SET_TIMESLOTS = 'reservations/set_timeslots';
 const SET_USER_RESERVATIONS = 'reservations/set_user_reservations';
 const DELETE_RESERVATION = 'reservations/delete_reservation';
 
-const setAvilableTimeslots = (availableTimeslots: string[]) => ({
+interface UserReservationsPayload {
+  past: ExistingReservation[];
+  future: ExistingReservation[];
+}
+
+const setAvailableTimeslots = (availableTimeslots: string[]) => ({
   type: SET_TIMESLOTS,
   payload: availableTimeslots,
 });
-const setUserReservations = (reservations: ExistingReservation[]) => ({
+const setUserReservations = (reservations: UserReservationsPayload) => ({
   type: SET_USER_RESERVATIONS,
   payload: reservations,
 });
@@ -28,7 +33,7 @@ export const getAvailReservationsByCart = (
     body: JSON.stringify({ dateTime }),
   };
   const res: CustomResponse = await fetch(`/api/reservations/${cartId}/available`, options);
-  dispatch(setAvilableTimeslots(res.data));
+  dispatch(setAvailableTimeslots(res.data));
 };
 
 export const makeReservation = (newReservation: NewReservation) => async () => {
@@ -51,12 +56,11 @@ export const editReservation = (
   reservationId: number,
   dateTime: string,
   partySize: string | number,
-  userId: number,
 ) => async (dispatch: AppDispatch) => {
   const url = `/api/reservations/${reservationId}`;
   const options = {
     method: 'PATCH',
-    body: JSON.stringify({ dateTime, partySize, userId }),
+    body: JSON.stringify({ dateTime, partySize }),
   };
   const userReservations: CustomResponse = await fetch(url, options);
   if (userReservations.data) {
@@ -66,12 +70,10 @@ export const editReservation = (
 
 export const cancelReservation = (
   reservationId: number,
-  userId: number,
 ) => async (dispatch: AppDispatch) => {
   const url = `/api/reservations/${reservationId}`;
   const options = {
     method: 'DELETE',
-    body: JSON.stringify({ userId }),
   };
   const userReservations: CustomResponse = await fetch(url, options);
   if (userReservations.data) {
@@ -108,17 +110,13 @@ export default function reservationsReducer(state = initialState, action: AnyAct
       return newState;
     }
     case DELETE_RESERVATION: {
-      const newState = {
+      if (state.userFutureReservations === null) return state;
+      return {
         ...state,
+        userFutureReservations: state.userFutureReservations.filter(
+          (reservation) => reservation.id !== action.payload,
+        ),
       };
-      if (newState.userFutureReservations !== null) {
-        const reservations = newState.userFutureReservations;
-        const idx = reservations.findIndex((reservation: ExistingReservation) => reservation.id === action.payload);
-        if (idx !== -1) {
-          reservations.splice(idx);
-        }
-      }
-      return newState;
     }
     default:
       return state;
