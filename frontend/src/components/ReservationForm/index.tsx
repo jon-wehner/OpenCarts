@@ -41,7 +41,7 @@ export default function ReservationForm({
       dateTime,
     };
     if (edit && id) {
-      dispatch(editReservation(id, dateTime, partySize, userId));
+      dispatch(editReservation(id, dateTime, partySize));
     } else {
       dispatch(makeReservation(newRes));
     }

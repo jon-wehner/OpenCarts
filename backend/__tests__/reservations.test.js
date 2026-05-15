@@ -1,31 +1,13 @@
 const app = require('../app');
-const db = require('../db/models');
 const supertest = require('supertest');
-
-const getCsrfToken = async (agent) => {
-  const xsrfRes = await agent.get('/api/csrf/restore');
-  let cookie = xsrfRes.headers['set-cookie'][1].split(';')[0];
-  cookie = cookie.split('=')[1];
-  return cookie;
-};
-
-const loginAs = async (agent, csrf, credential = 'demo', password = 'password') => {
-  await agent
-    .post('/api/session')
-    .set('XSRF-TOKEN', csrf)
-    .send({ credential, password });
-};
-
-// A date guaranteed to be in the future for reservation tests
-const futureDateISO = () => {
-  const d = new Date();
-  d.setFullYear(d.getFullYear() + 1);
-  return d.toISOString();
-};
+const {
+  getCsrfToken,
+  loginAs,
+  signupUser,
+  futureDateISO,
+} = require('../test-helpers');
 
 describe('reservation routes', () => {
-  let testDb = db;
-
   describe('POST /api/reservations/:id/available', () => {
     it('returns 200 with an array of available timeslots', async () => {
       const agent = supertest.agent(app);
@@ -80,7 +62,6 @@ describe('reservation routes', () => {
       const agent = supertest.agent(app);
       const csrf = await getCsrfToken(agent);
       await loginAs(agent, csrf);
-      // get current user id
       const sessionRes = await agent.get('/api/session');
       const userId = sessionRes.body.user.id;
 
@@ -98,36 +79,37 @@ describe('reservation routes', () => {
       const agent = supertest.agent(app);
       const csrf = await getCsrfToken(agent);
       const res = await agent
-        .patch('/api/reservations/2')
+        .patch('/api/reservations/1')
         .set('XSRF-TOKEN', csrf)
         .send({ dateTime: futureDateISO(), partySize: 2 });
       expect(res.status).toBe(401);
     });
 
-    it('returns 403 when editing another user\'s reservation (IDOR protection)', async () => {
-      // Sign up a second user
-      const agent2 = supertest.agent(app);
-      const csrf2 = await getCsrfToken(agent2);
-      await agent2
-        .post('/api/users')
-        .set('XSRF-TOKEN', csrf2)
-        .send({
-          email: 'idor-patch-test@example.com',
-          username: 'idorpatchuser',
-          password: 'testpassword123',
-          confirmPassword: 'testpassword123',
-        });
+    it("returns 403 when editing another user's reservation (IDOR protection)", async () => {
+      // Create a reservation as the demo user
+      const owner = supertest.agent(app);
+      const ownerCsrf = await getCsrfToken(owner);
+      await loginAs(owner, ownerCsrf);
+      const createRes = await owner
+        .post('/api/reservations/new')
+        .set('XSRF-TOKEN', ownerCsrf)
+        .send({ dateTime: futureDateISO(), partySize: 1, cartId: 1 });
+      expect(createRes.status).toBe(200);
+      const reservationId = createRes.body.id;
 
-      // reservation 2 belongs to the demo user (userId: 1); attempt to edit it as idorpatchuser
-      const res = await agent2
-        .patch('/api/reservations/2')
-        .set('XSRF-TOKEN', csrf2)
+      // Sign up an unrelated user and try to edit the demo user's reservation
+      const attacker = supertest.agent(app);
+      const attackerCsrf = await getCsrfToken(attacker);
+      await signupUser(attacker, attackerCsrf);
+
+      const res = await attacker
+        .patch(`/api/reservations/${reservationId}`)
+        .set('XSRF-TOKEN', attackerCsrf)
         .send({ dateTime: futureDateISO(), partySize: 5 });
       expect(res.status).toBe(403);
     });
 
     it('updates the reservation when requested by the owner', async () => {
-      // Create a fresh reservation as demo, then edit it
       const agent = supertest.agent(app);
       const csrf = await getCsrfToken(agent);
       await loginAs(agent, csrf);
@@ -139,7 +121,7 @@ describe('reservation routes', () => {
       expect(createRes.status).toBe(200);
       const reservationId = createRes.body.id;
 
-      const newDate = futureDateISO();
+      const newDate = futureDateISO(2);
       const patchRes = await agent
         .patch(`/api/reservations/${reservationId}`)
         .set('XSRF-TOKEN', csrf)
@@ -148,6 +130,9 @@ describe('reservation routes', () => {
       expect(patchRes.status).toBe(200);
       // Response is the full list of future reservations
       expect(Array.isArray(patchRes.body)).toBe(true);
+      const edited = patchRes.body.find((r) => r.id === reservationId);
+      expect(edited).toBeDefined();
+      expect(edited.partySize).toBe(4);
     });
   });
 
@@ -156,27 +141,30 @@ describe('reservation routes', () => {
       const agent = supertest.agent(app);
       const csrf = await getCsrfToken(agent);
       const res = await agent
-        .delete('/api/reservations/2')
+        .delete('/api/reservations/1')
         .set('XSRF-TOKEN', csrf);
       expect(res.status).toBe(401);
     });
 
-    it('returns 403 when deleting another user\'s reservation (IDOR protection)', async () => {
-      const agent2 = supertest.agent(app);
-      const csrf2 = await getCsrfToken(agent2);
-      await agent2
-        .post('/api/users')
-        .set('XSRF-TOKEN', csrf2)
-        .send({
-          email: 'idor-delete-test@example.com',
-          username: 'idordeleteuser',
-          password: 'testpassword123',
-          confirmPassword: 'testpassword123',
-        });
+    it("returns 403 when deleting another user's reservation (IDOR protection)", async () => {
+      // Create a reservation as the demo user
+      const owner = supertest.agent(app);
+      const ownerCsrf = await getCsrfToken(owner);
+      await loginAs(owner, ownerCsrf);
+      const createRes = await owner
+        .post('/api/reservations/new')
+        .set('XSRF-TOKEN', ownerCsrf)
+        .send({ dateTime: futureDateISO(), partySize: 1, cartId: 1 });
+      expect(createRes.status).toBe(200);
+      const reservationId = createRes.body.id;
 
-      const res = await agent2
-        .delete('/api/reservations/2')
-        .set('XSRF-TOKEN', csrf2);
+      const attacker = supertest.agent(app);
+      const attackerCsrf = await getCsrfToken(attacker);
+      await signupUser(attacker, attackerCsrf);
+
+      const res = await attacker
+        .delete(`/api/reservations/${reservationId}`)
+        .set('XSRF-TOKEN', attackerCsrf);
       expect(res.status).toBe(403);
     });
 
@@ -185,7 +173,6 @@ describe('reservation routes', () => {
       const csrf = await getCsrfToken(agent);
       await loginAs(agent, csrf);
 
-      // Create a reservation to delete
       const createRes = await agent
         .post('/api/reservations/new')
         .set('XSRF-TOKEN', csrf)

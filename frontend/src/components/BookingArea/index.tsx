@@ -36,6 +36,7 @@ export default function BookingArea() {
             <TimeSelect onTimeChange={setTime} />
             <select
               className="reservationSearch__inputs"
+              data-testid="party-size-select"
               onChange={(e) => setPartySize(e.target.value)}
             >
               <option value="1">1 Person</option>

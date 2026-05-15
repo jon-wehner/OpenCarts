@@ -52,13 +52,11 @@ describe('SearchResults', () => {
   });
 
   it('renders one cart card per result', () => {
-    renderSearchResults({
+    const { getAllByTestId } = renderSearchResults({
       ...testState,
       carts: { list: null, searchResults: testState.carts.list.slice(0, 3) },
     });
-    // CartBigDetail renders a div.searchResults__cart for each cart
-    const cartCards = document.querySelectorAll('.searchResults__cart');
-    expect(cartCards.length).toBe(3);
+    expect(getAllByTestId('cart-big-detail').length).toBe(3);
   });
 
   it('renders cart names from search results', () => {

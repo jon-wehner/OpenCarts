@@ -28,6 +28,14 @@ describe('tzOffsetToString', () => {
   it('handles double-digit offsets without extra padding', () => {
     expect(tzOffsetToString(10)).toBe('-10:00');
   });
+
+  it('returns "-01:00" for offset 1 (UTC−1, one hour west of UTC)', () => {
+    expect(tzOffsetToString(1)).toBe('-01:00');
+  });
+
+  it('returns "+01:00" for offset -1 (UTC+1, one hour east of UTC)', () => {
+    expect(tzOffsetToString(-1)).toBe('+01:00');
+  });
 });
 
 describe('getRoundedDate', () => {
@@ -82,12 +90,17 @@ describe('getInitialTimeValue', () => {
     expect(result).toMatch(/^\d{2}:\d{2}:\d{2}$/);
   });
 
-  it('returns a time rounded to the nearest 15-minute mark', () => {
-    // 12:07 → rounds to 12:00:00
+  it('rounds 12:07 down to 12:00:00', () => {
     const date = new Date();
     date.setHours(12, 7, 0, 0);
     const result = getInitialTimeValue(date);
-    const [, minutes] = result.split(':').map(Number);
-    expect(minutes % 15).toBe(0);
+    expect(result).toBe('12:00:00');
+  });
+
+  it('rounds 12:08 up to 12:15:00', () => {
+    const date = new Date();
+    date.setHours(12, 8, 0, 0);
+    const result = getInitialTimeValue(date);
+    expect(result).toBe('12:15:00');
   });
 });

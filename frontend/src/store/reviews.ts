@@ -3,7 +3,7 @@ import { fetch } from './csrf';
 import { CustomResponse, Review } from '../interfaces';
 import { AppDispatch } from '.';
 
-const LOAD = '/reviews/load';
+const LOAD = 'reviews/load';
 
 const loadReviews = (reviews: Review[], cartId: number) => ({
   type: LOAD,
@@ -24,7 +24,7 @@ export const postReview = (review: Review) => async (dispatch: AppDispatch) => {
     body: JSON.stringify(review),
   };
   try {
-    const res = await fetch('api/reviews', options);
+    const res = await fetch('/api/reviews', options);
     if (res.ok) {
       dispatch(getReviewsByCart(review.cartId));
       return res;

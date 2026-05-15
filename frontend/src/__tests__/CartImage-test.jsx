@@ -4,10 +4,11 @@ import CartImage from '../components/CartDetailElements/CartImage';
 
 afterEach(cleanup);
 
-it('CartImage renders and image with correct src and alt attributes', () => {
+it('CartImage renders an image with correct src and alt attributes', () => {
   const { queryByAltText } = render(
-    <CartImage name="name" imageUrl="name.jpg" />,
+    <CartImage name="my-cart" imageUrl="my-cart.jpg" />,
   );
-  expect(queryByAltText('name')).toBeTruthy();
-  expect();
+  const img = queryByAltText('my-cart');
+  expect(img).toBeTruthy();
+  expect(img.getAttribute('src')).toBe('my-cart.jpg');
 });

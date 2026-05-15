@@ -72,6 +72,30 @@ describe('reservationsReducer', () => {
     expect(state.userFutureReservations).not.toContainEqual(mockFutureReservation);
   });
 
+  it('DELETE_RESERVATION removes only the matching reservation from a multi-item list', () => {
+    const other = { ...mockFutureReservation, id: 7 };
+    const another = { ...mockFutureReservation, id: 9 };
+    const initial = {
+      availableTimeSlots: null,
+      userFutureReservations: [other, mockFutureReservation, another],
+      userPreviousReservations: [],
+    };
+    const state = reservationsReducer(initial, { type: DELETE_RESERVATION, payload: 2 });
+    expect(state.userFutureReservations).toEqual([other, another]);
+  });
+
+  it('DELETE_RESERVATION does not mutate the previous state', () => {
+    const initial = {
+      availableTimeSlots: null,
+      userFutureReservations: [mockFutureReservation],
+      userPreviousReservations: [],
+    };
+    const beforeArray = initial.userFutureReservations;
+    reservationsReducer(initial, { type: DELETE_RESERVATION, payload: 2 });
+    expect(initial.userFutureReservations).toBe(beforeArray);
+    expect(initial.userFutureReservations).toHaveLength(1);
+  });
+
   it('DELETE_RESERVATION does not touch userPreviousReservations', () => {
     const initial = {
       availableTimeSlots: null,

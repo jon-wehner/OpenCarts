@@ -11,8 +11,8 @@ import { testState } from './testState';
 function render(
   ui,
   {
-    preloadedState,
-    store = configureStore({ reducer, testState }),
+    preloadedState = testState,
+    store = configureStore({ reducer, preloadedState }),
     ...renderOptions
   } = {},
 ) {

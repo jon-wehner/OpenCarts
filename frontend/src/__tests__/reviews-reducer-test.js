@@ -1,6 +1,6 @@
 import reviewsReducer from '../store/reviews';
 
-const LOAD = '/reviews/load';
+const LOAD = 'reviews/load';
 
 const mockReviews = [
   {

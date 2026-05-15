@@ -1,17 +1,8 @@
 const app = require('../app');
-const db = require('../db/models');
 const supertest = require('supertest');
-
-const getCsrfToken = async (agent) => {
-  const xsrfRes = await agent.get('/api/csrf/restore');
-  let cookie = xsrfRes.headers['set-cookie'][1].split(';')[0];
-  cookie = cookie.split('=')[1];
-  return cookie;
-};
+const { getCsrfToken } = require('../test-helpers');
 
 describe('session routes', () => {
-  let testDb = db;
-
   it('GET /api/session returns empty object when unauthenticated', async () => {
     const agent = supertest.agent(app);
     const res = await agent.get('/api/session').set('Accept', 'application/json');

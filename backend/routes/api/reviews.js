@@ -25,6 +25,13 @@ router.post(
   requireAuth,
   asyncHandler(async (req, res) => {
     const { review, rating, cartId, reservationId } = req.body;
+    const reservation = await Reservation.findOne({ where: { id: reservationId } });
+    if (!reservation || reservation.userId !== req.user.id) {
+      return res.status(403).json({ message: 'Forbidden' });
+    }
+    if (reservation.cartId !== cartId) {
+      return res.status(400).json({ message: 'cartId does not match reservation' });
+    }
     const newReview = await Review.create({
       review,
       rating,
@@ -32,10 +39,9 @@ router.post(
       reservationId,
       userId: req.user.id,
     });
-    const reservation = await Reservation.findOne({ where: { id: reservationId } });
     await reservation.update({ reviewed: true });
-    res.json(newReview);
+    return res.json(newReview);
   }),
-)
+);
 
 module.exports = router;
