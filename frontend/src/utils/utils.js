@@ -1,6 +1,6 @@
 export function tzOffsetToString(offset) {
   if (offset === 0) return 'z';
-  const digits = offset.toString().length;
+  const digits = Math.abs(offset).toString().length;
   let prepend = '';
   if (offset > 1) {
     prepend += '-';
